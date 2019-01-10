@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool isDead;
+    public int player_HealthPoints;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
