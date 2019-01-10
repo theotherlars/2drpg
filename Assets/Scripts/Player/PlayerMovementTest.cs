@@ -8,21 +8,27 @@ public class PlayerMovementTest : MonoBehaviour {
 	private new Rigidbody2D rigidbody2D;
 	private float horizontalMove = 0f;
 	private float verticalMove = 0f;
-	
+
+    PlayerController playerController;
+
 	//private Animator animator;
 
 	// Use this for initialization
 	void Start ()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
+        playerController = FindObjectOfType<PlayerController>();
 	}
 	
 	// Update is called once per frame
 	// This is where we should get user input
 	void Update () 
 	{
-		horizontalMove 	= Input.GetAxisRaw("Horizontal"); // A or D button
-		verticalMove 	= Input.GetAxisRaw("Vertical"); // W or S button
+        if (playerController.isDead == false)
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal"); // A or D button
+            verticalMove = Input.GetAxisRaw("Vertical"); // W or S button
+        }
 	}
 
 	private void FixedUpdate() 
