@@ -11,12 +11,12 @@ public class ItemDatabase : MonoBehaviour
         BuildDatabase();
     }
 
-    public Item GetItem(int id)
+    public Item GetItem(int id) // Returns Item from itemDatabase using id
     {
         return items.Find(item => item.id == id);
     }
 
-    public Item GetItem(string itemTitle)
+    public Item GetItem(string itemTitle) // Returns Item from itemDatabase using itemTitle
     {
         return items.Find(item => item.title == itemTitle);
     }
