@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     PlayerController playerController;
+    public GameObject inventoryPanel;
     public Text playerHP;
 
     public GameObject deathMenu;
@@ -21,7 +22,16 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ToggleInventoryUI();
         playerHP.text = "HP: " + playerController.player_HealthPoints.ToString();
+    }
+
+    private void ToggleInventoryUI()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
+        }
     }
 
     private void FixedUpdate()
@@ -31,6 +41,7 @@ public class UIController : MonoBehaviour
             deathMenu.SetActive(true);
         }
     }
+
 
     public void ReloadScene()
     {

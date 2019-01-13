@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbcfb3f9e1c3c34994426daba1a5226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 1343117194}
   playerHP: {fileID: 1661749706}
   deathMenu: {fileID: 1530205658}
 --- !u!1 &372412894
@@ -25678,6 +25679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882566618922102320, guid: a2a83ec97eb0d1843b16431f7ffb911c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2a83ec97eb0d1843b16431f7ffb911c, type: 3}
