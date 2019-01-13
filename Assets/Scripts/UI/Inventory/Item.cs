@@ -19,7 +19,7 @@ public class Item
         this.id = id;
         this.title = title;
         this.description = description;
-        this.icon = Resources.Load<Sprite>("Assets/Resources/Sprites/UI/Inventory/Icons" + title);
+        this.icon = Resources.Load<Sprite>("Assets/Resources/Sprites/UI/Inventory/Icons/" + title);
         this.stats = stats;
     }
 
@@ -28,7 +28,7 @@ public class Item
         this.id = item.id;
         this.title = item.title;
         this.description = item.description;
-        this.icon = Resources.Load<Sprite>("Assets/Resources/Sprites/UI/Inventory/Icons" + item.title);
+        this.icon = Resources.Load<Sprite>("Assets/Resources/Sprites/UI/Inventory/Icons/" + item.title);
         this.stats = item.stats;
     }
 }

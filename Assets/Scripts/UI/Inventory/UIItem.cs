@@ -21,6 +21,8 @@ public class UIItem : MonoBehaviour
         {
             spriteImage.color = Color.white;
             spriteImage.sprite = this.item.icon;
+            print("Sprite: " + spriteImage.sprite);
+            print("Icon: " + this.item.icon);
         }
         else
         {

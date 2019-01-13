@@ -25700,4 +25700,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDatabase: {fileID: 807984045}
-  uiInventory: {fileID: 0}
+  uiInventory: {fileID: 1343117198}
