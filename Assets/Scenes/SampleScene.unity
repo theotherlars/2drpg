@@ -24993,7 +24993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1343117195
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25620,11 +25620,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
-    - target: {fileID: 6630369916278642532, guid: a2a83ec97eb0d1843b16431f7ffb911c,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 5154297608361498120, guid: a2a83ec97eb0d1843b16431f7ffb911c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25680,30 +25675,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 882566618922102320, guid: a2a83ec97eb0d1843b16431f7ffb911c,
+    - target: {fileID: 8095149019859578897, guid: a2a83ec97eb0d1843b16431f7ffb911c,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: itemDatabase
+      value: 
+      objectReference: {fileID: 807984045}
+    - target: {fileID: 8095149019859578897, guid: a2a83ec97eb0d1843b16431f7ffb911c,
+        type: 3}
+      propertyPath: uiInventory
+      value: 
+      objectReference: {fileID: 1343117198}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2a83ec97eb0d1843b16431f7ffb911c, type: 3}
---- !u!1 &8095149019859578896 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6630369916278642532, guid: a2a83ec97eb0d1843b16431f7ffb911c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8095149019859578895}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8095149019859578897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8095149019859578896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d73f2b7fccace0344865df169e94c32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDatabase: {fileID: 807984045}
-  uiInventory: {fileID: 1343117198}

@@ -94,9 +94,10 @@ GameObject:
   - component: {fileID: 2369026797434169863}
   - component: {fileID: 1501239265793286452}
   - component: {fileID: 1068861076}
+  - component: {fileID: 8095149019859578897}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +173,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6630369916278642532}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 02b73c36ca30a724aa43e29362fc4a0a, type: 2}
   m_CullingMode: 0
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 100
+  animationSpeed: 0.35
 --- !u!114 &1068861076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,3 +257,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96197d0107b9407448639c123620b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
+  player_HealthPoints: 100
+--- !u!114 &8095149019859578897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630369916278642532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73f2b7fccace0344865df169e94c32e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDatabase: {fileID: 0}
+  uiInventory: {fileID: 0}

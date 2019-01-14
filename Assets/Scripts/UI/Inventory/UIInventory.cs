@@ -9,8 +9,8 @@ public class UIInventory : MonoBehaviour
     public Transform slotPanel;
     public int numberOfSlots = 16;
 
-    private void Awake()
-    {
+    private void Start()
+    { 
         for (int i = 0; i < numberOfSlots; i++)
         {
             GameObject instance = Instantiate(slotPrefab);
