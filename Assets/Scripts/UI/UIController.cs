@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
 {
     PlayerController playerController;
     public GameObject inventoryPanel;
+    public GameObject inventorySlots;
     public Text playerHP;
 
     public GameObject deathMenu;
@@ -17,21 +18,25 @@ public class UIController : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         deathMenu.SetActive(false);
+        inventoryPanel.SetActive(false);
+        inventorySlots.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ToggleInventoryUI();
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleInventoryUI();
+        }
+
         playerHP.text = "HP: " + playerController.player_HealthPoints.ToString();
     }
 
     private void ToggleInventoryUI()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
-        }
+        inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
+        inventorySlots.SetActive(!inventorySlots.activeSelf);
     }
 
     private void FixedUpdate()

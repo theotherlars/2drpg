@@ -19,7 +19,7 @@ public class Item
         this.id = id;
         this.title = title;
         this.description = description;
-        this.icon = Resources.Load<Sprite>("Assets/Resources/Sprites/UI/Inventory/Icons/" + title + ".png");
+        this.icon = Resources.Load<Sprite>("Assets/Resources/Sprites/UI/Inventory/Icons/" + title);
         this.stats = stats;
     }
 
