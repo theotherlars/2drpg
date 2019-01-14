@@ -14,9 +14,7 @@ public class Inventory : MonoBehaviour
         GiveItem(1);
         GiveItem(0);
         GiveItem(0);
-        GiveItem(1);
-        RemoveItem(1);
-        
+        GiveItem(1);        
     }
 
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id

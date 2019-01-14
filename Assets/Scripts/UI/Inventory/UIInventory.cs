@@ -22,7 +22,6 @@ public class UIInventory : MonoBehaviour
             GameObject instance = Instantiate(slotPrefab);
             instance.transform.SetParent(slotPanel);
             uiItems.Add(instance.GetComponentInChildren<UIItem>());
-
         }
     }
 

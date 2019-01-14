@@ -8,19 +8,18 @@ public class UIItem : MonoBehaviour, IPointerClickHandler
 {
     public Item item;
     private Image spriteImage;
-    private Sprite sprite;
     private UIItem selectedItem;
 
     private void Awake()
     {
         spriteImage = GetComponent<Image>();
-        //UpdateItem(null);
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
     }
 
     public void UpdateItem(Item item)
     {
         this.item = item;
+
         if (this.item != null)
         {
             spriteImage.color = Color.white;
