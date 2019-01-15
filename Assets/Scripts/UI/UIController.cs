@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     PlayerController playerController;
     public GameObject inventoryPanel;
     public GameObject inventorySlots;
+    public GameObject testButtons;
     public Text playerHP;
 
     public GameObject deathMenu;
@@ -20,6 +21,7 @@ public class UIController : MonoBehaviour
         deathMenu.SetActive(false);
         inventoryPanel.SetActive(false);
         inventorySlots.SetActive(false);
+        testButtons.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,10 +35,11 @@ public class UIController : MonoBehaviour
         playerHP.text = "HP: " + playerController.player_HealthPoints.ToString();
     }
 
-    private void ToggleInventoryUI()
+    public void ToggleInventoryUI()
     {
         inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
         inventorySlots.SetActive(!inventorySlots.activeSelf);
+        testButtons.SetActive(!testButtons.activeSelf);
     }
 
     private void FixedUpdate()

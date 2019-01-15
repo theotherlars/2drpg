@@ -37,6 +37,13 @@ public class ItemDatabase : MonoBehaviour
             {
                 {"Block", 25},
                 {"Defence", 10}
+            }),
+
+            new Item(2,"Arrow of Death","Little arrow bring a great amount of damage to your enemy. With this in your quiver you'll bring fear to all your enemies.",
+            new Dictionary<string, int>
+            {
+                {"Attack Power", 100},
+                {"Attack Speed", 25}
             })
         };
     }

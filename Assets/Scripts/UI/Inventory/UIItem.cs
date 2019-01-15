@@ -4,30 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIItem : MonoBehaviour, IPointerClickHandler
+public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Item item;
     private Image spriteImage;
     private UIItem selectedItem;
+    private Tooltip tooltip;
 
     private void Awake()
     {
         spriteImage = GetComponent<Image>();
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
+        tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
     }
 
     public void UpdateItem(Item item)
     {
         this.item = item;
 
-        if (this.item != null)
+        if (item != null)
         {
             spriteImage.color = Color.white;
-            spriteImage.sprite = this.item.icon;            
+            spriteImage.sprite = this.item.icon;
         }
         else
         {
             spriteImage.color = Color.clear;
+            spriteImage.sprite = null;
         }
     }
 
@@ -53,14 +56,18 @@ public class UIItem : MonoBehaviour, IPointerClickHandler
             selectedItem.UpdateItem(null);
         }
     }
-    /*
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (this.item != null)
+        {
+            tooltip.gameObject.SetActive(true);
+            tooltip.GenerateTooltip(this.item);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
-    }*/
+        tooltip.gameObject.SetActive(false);
+    }
 }

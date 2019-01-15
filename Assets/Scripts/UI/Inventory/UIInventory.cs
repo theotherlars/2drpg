@@ -23,12 +23,9 @@ public class UIInventory : MonoBehaviour
             instance.transform.SetParent(slotPanel);
             uiItems.Add(instance.GetComponentInChildren<UIItem>());
         }
-    }
-
-    private void Start()
-    {
         backgroundImage.enabled = true;
     }
+
 
     public void UpdateSlot(int slot, Item item)
     {
