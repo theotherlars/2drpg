@@ -23,7 +23,8 @@ public class Item
         this.stats = stats;
     }
 
-    public Item(Item item)
+    /*
+    public Item(Item_SO item)
     {
         this.id = item.id;
         this.title = item.title;
@@ -31,4 +32,5 @@ public class Item
         this.icon = Resources.Load<Sprite>("Sprites/UI/Inventory/Icons/" + item.title);
         this.stats = item.stats;
     }
+    */
 }

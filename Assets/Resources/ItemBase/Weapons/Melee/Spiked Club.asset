@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Spiked Club
   itemID: 10
-  itemSprite: {fileID: 21300000, guid: 15d7211382a115c45846aef5663b08ed, type: 3}
+  itemSprite: {fileID: 21300000, guid: 772d2bc63d70faa4c9242ec64599aaa6, type: 3}
   itemLevel: 12
   description: This spiked club is a "hand-me-down" your mother
   category: 1

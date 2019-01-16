@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Item item;
+    public Item_SO item;
     private Image spriteImage;
     private UIItem selectedItem;
     private Tooltip tooltip;
@@ -15,17 +15,17 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         spriteImage = GetComponent<Image>();
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
-        tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
+        tooltip = GameObject.Find("TooltipTest").GetComponent<Tooltip>();
     }
 
-    public void UpdateItem(Item item)
+    public void UpdateItem(Item_SO item)
     {
         this.item = item;
 
         if (item != null)
         {
             spriteImage.color = Color.white;
-            spriteImage.sprite = this.item.icon;
+            spriteImage.sprite = this.item.ItemSprite;
         }
         else
         {
@@ -40,7 +40,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         {
             if (selectedItem.item != null)
             {
-                Item clone = new Item(selectedItem.item);
+                Item_SO clone = new Item_SO(selectedItem.item);
                 selectedItem.UpdateItem(this.item);
                 UpdateItem(clone);
             }

@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Item> characterItems = new List<Item>();
+    public List<Item_SO> characterItems = new List<Item_SO>();
     public ItemDatabase itemDatabase;
     public UIInventory uiInventory;
 
     private void Start()
     {
-        GiveItem(1);
-        GiveItem(0);
-        GiveItem(2);        
+        GiveItem(10);      
     }
 
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id
     {
-        Item itemToAdd = itemDatabase.GetItem(id);
+        Item_SO itemToAdd = itemDatabase.GetItem(id);
         characterItems.Add(itemToAdd);
         uiInventory.AddNewItem(itemToAdd);
     }
 
     public void GiveItem(string itemTitle) // Adds item from ItemDatabase to characterItems list by title
     {
-        Item itemToAdd = itemDatabase.GetItem(itemTitle);
+        Item_SO itemToAdd = itemDatabase.GetItem(itemTitle);
         characterItems.Add(itemToAdd);
         uiInventory.AddNewItem(itemToAdd);
     }
 
-    public Item CheckForItem(int id) // Checks if characterItems list contains item by id
+    public Item_SO CheckForItem(int id) // Checks if characterItems list contains item by id
     {
-        return characterItems.Find(item => item.id == id);
+        return characterItems.Find(item => item.ItemID == id);
     }
 
     //
@@ -39,7 +37,7 @@ public class Inventory : MonoBehaviour
     //
     public void RemoveItem(int id) // If characterItem list contains item, removes it
     {
-        Item itemToRemove = CheckForItem(id);
+        Item_SO itemToRemove = CheckForItem(id);
         if (itemToRemove != null)
         {
             characterItems.Remove(itemToRemove);

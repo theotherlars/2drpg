@@ -48,7 +48,15 @@ public class Item_SO : ScriptableObject
     [Header("Attributes:")]
     [SerializeField]
     private List<ItemAttribute> attributes;
+
+    private Item_SO item;
+    
     public List<ItemAttribute> Attributes { get { return attributes; } }
+
+    public Item_SO(Item_SO item)
+    {
+        this.item = item;
+    }
 
     public enum Rarity
     {
