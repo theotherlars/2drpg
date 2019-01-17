@@ -30,6 +30,7 @@ public class Tooltip : MonoBehaviour
     public void GenerateTooltip(Item_SO item)
     {
         image.enabled = true;
+
         switch (item.ItemRarity.ToString())
         {
             case "Normal":
