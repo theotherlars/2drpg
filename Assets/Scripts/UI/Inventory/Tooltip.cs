@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Tooltip : MonoBehaviour
 {
     //private Text tooltipText;
     [SerializeField]
-    public Text itemTitle;
+    public TextMeshProUGUI itemTitle;
     [SerializeField]
-    public Text itemCategory; 
+    public TextMeshProUGUI itemCategory; 
     [SerializeField]
-    public Text itemDescription;
+    public TextMeshProUGUI itemDescription;
     [SerializeField]
-    public Text itemAttributes;
+    public TextMeshProUGUI itemAttributes;
     [SerializeField]
-    public Text itemLevel;
+    public TextMeshProUGUI itemLevel;
 
     private Image image;
     // Start is called before the first frame update
@@ -62,6 +63,7 @@ public class Tooltip : MonoBehaviour
                 break;
             }
         }
+
         itemTitle.text = item.Title;
         itemCategory.text = item.ItemCategory.ToString();
         itemDescription.text = item.Description + "\n";

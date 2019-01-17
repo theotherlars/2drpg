@@ -15,7 +15,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         spriteImage = GetComponent<Image>();
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
-        tooltip = GameObject.Find("TooltipTest").GetComponent<Tooltip>();
+        tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
     }
 
     public void UpdateItem(Item_SO item)

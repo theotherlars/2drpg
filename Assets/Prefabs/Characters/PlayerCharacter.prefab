@@ -271,5 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73f2b7fccace0344865df169e94c32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterItems: []
   itemDatabase: {fileID: 0}
   uiInventory: {fileID: 0}
