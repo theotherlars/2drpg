@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 553e639e352de8149abbe65d50937447, type: 3}
-  m_Name: Spiked Club
+  m_Name: War Axe
   m_EditorClassIdentifier: 
-  title: Spiked Club
-  itemID: 1
-  itemSprite: {fileID: 21300000, guid: 772d2bc63d70faa4c9242ec64599aaa6, type: 3}
+  title: War Axe
+  itemID: 2
+  itemSprite: {fileID: 21300000, guid: 0d31f94c13b60f6449041da7b16ced2b, type: 3}
   itemLevel: 12
-  description: This spiked club is a "hand-me-down" your mother
+  description: This axe has seen many wars
   category: 1
-  rarity: 3
+  rarity: 2
   isStackable: 0
   weaponArmor: 8
   attributes:
   - attribute: {fileID: 11400000, guid: 24ca82d948b95d2408c2d1d7ca89646d, type: 2}
-    amount: 4
-  - attribute: {fileID: 11400000, guid: 3a711fef16db1984cb0ecbab9d283594, type: 2}
-    amount: 1
-  - attribute: {fileID: 11400000, guid: 3e9f8b75ea7a75c4b8688123467198ab, type: 2}
+    amount: 14
+  - attribute: {fileID: 11400000, guid: c896bcf41734d0742ba8b1f2db91267b, type: 2}
     amount: 7
+  - attribute: {fileID: 11400000, guid: 3e9f8b75ea7a75c4b8688123467198ab, type: 2}
+    amount: 4

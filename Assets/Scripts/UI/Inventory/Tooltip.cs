@@ -29,10 +29,43 @@ public class Tooltip : MonoBehaviour
     public void GenerateTooltip(Item_SO item)
     {
         image.enabled = true;
+        switch (item.ItemRarity.ToString())
+        {
+            case "Normal":
+            {
+                itemTitle.color = Color.white;
+                break;
+            }
+            case "Rare":
+            {
+                itemTitle.color = Color.blue;
+                break;
+            }
+            case "Epic":
+            {
+                itemTitle.color = Color.magenta;
+                break;
+            }
+            case "Mythic":
+            {
+                itemTitle.color = Color.red;
+                break;
+            }
+            case "Legendary":
+            {
+                itemTitle.color = Color.yellow;
+                break;
+            }
+            default:
+            {
+                itemTitle.color = Color.white;
+                break;
+            }
+        }
         itemTitle.text = item.Title;
         itemCategory.text = item.ItemCategory.ToString();
-        itemDescription.text = item.Description;
-        itemLevel.text = item.ItemLevel.ToString();
+        itemDescription.text = item.Description + "\n";
+        itemLevel.text = "Item Level: " + item.ItemLevel.ToString();
 
         string attributeText = "";
         if (item.Attributes.Count > 0)
