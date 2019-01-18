@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 0}
   inventorySlots: {fileID: 0}
+  characterPanel: {fileID: 0}
   testButtons: {fileID: 0}
   playerHP: {fileID: 0}
   deathMenu: {fileID: 0}

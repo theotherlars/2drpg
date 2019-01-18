@@ -1,19 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerController player;
+
     public bool isDead;
     public int player_HealthPoints = 100;
 
+    public float playerStaminaImpactOnHealth = 1f;
+
+    public int player_Stamina = 10;
+    public int Player_Stamina { get { return player_Stamina; } set { player_Stamina = value;} }
+
+    public int player_Strength = 5;
+    public int Player_Strength { get { return player_Strength; } set { player_Strength = value; } }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player_HealthPoints = 100;
+       // player_HealthPoints += Mathf.RoundToInt(player_Stamina * 1);
+
     }
 
     // Update is called once per frame
@@ -25,10 +36,45 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void UpdatePlayerAttributes(string attributeName, int attributeValue)
+    {
+        switch (attributeName)
+        {
+            case "Stamina":
+                {
+                    if (attributeValue > 0)
+                    {
+                        player_Stamina += attributeValue;
+                        player_HealthPoints += Mathf.RoundToInt(attributeValue * 1);
+                    }
+                    else if (attributeValue < 0)
+                    {
+                        player_Stamina += attributeValue;
+                        player_HealthPoints += Mathf.RoundToInt(attributeValue * 1);
+                    }
+
+                    break;
+                }
+            case "Strength":
+                {
+                    if (attributeValue > 0)
+                    {
+                        player_Strength += attributeValue;
+                    }
+                    else if (attributeValue < 0)
+                    {
+                        player_Strength += attributeValue;
+                    }
+
+                    break;
+                }
+                default: { break; }
+        }
+    }
+
     private void playerDied()
     {
         isDead = true;
-        //Time.timeScale = 0;
     }
 
     private void OnCollisionStay2D(Collision2D other) 

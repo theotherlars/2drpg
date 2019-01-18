@@ -75,7 +75,7 @@ public class Tooltip : MonoBehaviour
         {
             for (int i = 0; i < item.Attributes.Count; i++)
             {
-                attributeText += item.Attributes[i].attribute.name.ToString() + ": " + item.Attributes[0].amount.ToString() + "\n";
+                attributeText += item.Attributes[i].attribute.attributeName + ": " + item.Attributes[i].amount.ToString() + "\n";
             }
         }
         itemAttributes.text = attributeText;

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIController : MonoBehaviour
 {
     PlayerController playerController;
     public GameObject inventoryPanel;
     public GameObject inventorySlots;
+    public GameObject characterPanel;
     public GameObject testButtons;
     public Text playerHP;
 
@@ -21,6 +23,7 @@ public class UIController : MonoBehaviour
         deathMenu.SetActive(false);
         inventoryPanel.SetActive(false);
         inventorySlots.SetActive(false);
+        characterPanel.SetActive(false);
         testButtons.SetActive(false);
     }
 
@@ -32,7 +35,17 @@ public class UIController : MonoBehaviour
             ToggleInventoryUI();
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ToggleCharacterPanel();
+        }
+
         playerHP.text = "HP: " + playerController.player_HealthPoints.ToString();
+    }
+
+    private void ToggleCharacterPanel()
+    {
+        characterPanel.SetActive(!characterPanel.activeSelf);
     }
 
     public void ToggleInventoryUI()
