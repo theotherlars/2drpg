@@ -94,9 +94,10 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             if (selectedItem.item != null)
             {
+                //Item_SO clone = ScriptableObject.CreateInstance<Item_SO>();
                 Item_SO clone = new Item_SO(selectedItem.item);
                 selectedItem.UpdateItem(this.item);
-                UpdateItem(clone);
+                UpdateItem(clone);   
             }
             else
             {
@@ -107,7 +108,7 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
             }
         }
-        else if (selectedItem.item != null)
+        else if (selectedItem.item != null && this.tag.Replace("Slot", "") == selectedItem.item.ItemWeaponArmor.ToString()) // Checks if the item selected is same category as itemslot
         {
             
             UpdateItem(selectedItem.item);

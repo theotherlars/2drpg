@@ -20,7 +20,7 @@ MonoBehaviour:
   category: 1
   rarity: 3
   isStackable: 0
-  weaponArmor: 8
+  weaponArmor: 10
   attributes:
   - attribute: {fileID: 11400000, guid: 24ca82d948b95d2408c2d1d7ca89646d, type: 2}
     amount: 4

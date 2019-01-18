@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Unfriendly
+  - MeleeSlot
+  - HelmetSlot
+  - ChestSlot
+  - GlovesSlot
+  - BootsSlot
+  - PantsSlot
   layers:
   - Default
   - TransparentFX
