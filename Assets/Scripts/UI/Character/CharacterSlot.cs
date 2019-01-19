@@ -20,6 +20,7 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         spriteImage = GetComponent<Image>();
         //selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
+
     }
     private void Start()
     {

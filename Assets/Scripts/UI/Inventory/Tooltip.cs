@@ -24,7 +24,7 @@ public class Tooltip : MonoBehaviour
     {
         //tooltipText = GetComponentInChildren<Text>();
         image = GetComponent<Image>();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public void GenerateTooltip(Item_SO item)
