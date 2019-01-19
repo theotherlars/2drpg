@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 553e639e352de8149abbe65d50937447, type: 3}
-  m_Name: Spiked Club
+  m_Name: Great Helmet
   m_EditorClassIdentifier: 
-  title: Spiked Club
-  itemID: 1
-  itemSprite: {fileID: 21300000, guid: 772d2bc63d70faa4c9242ec64599aaa6, type: 3}
-  itemLevel: 12
-  description: This spiked club is a "hand-me-down" your mother
+  title: Great Helmet
+  itemID: 3
+  itemSprite: {fileID: 21300000, guid: f645b9ffe45a2a846a61f6bff41fe97c, type: 3}
+  itemLevel: 14
+  description: This helmet was worn by no one. It's new.
   category: 1
   rarity: 3
   isStackable: 0
-  weaponArmor: 8
+  weaponArmor: 10
   attributes:
-  - attribute: {fileID: 11400000, guid: 24ca82d948b95d2408c2d1d7ca89646d, type: 2}
-    amount: 4
-  - attribute: {fileID: 11400000, guid: 3a711fef16db1984cb0ecbab9d283594, type: 2}
-    amount: 1
+  - attribute: {fileID: 11400000, guid: 643e4f46e114d6d478556c5039742938, type: 2}
+    amount: 3
   - attribute: {fileID: 11400000, guid: 3e9f8b75ea7a75c4b8688123467198ab, type: 2}
-    amount: 7
+    amount: 5
+  - attribute: {fileID: 11400000, guid: c896bcf41734d0742ba8b1f2db91267b, type: 2}
+    amount: 4

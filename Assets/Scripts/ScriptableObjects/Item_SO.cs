@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,6 +54,11 @@ public class Item_SO : ScriptableObject
     
     public List<ItemAttribute> Attributes { get { return attributes; } }
 
+    internal static Item_SO CreateInstance(Item_SO item)
+    {
+        return item;
+    }
+
     public Item_SO(Item_SO item)
     {
         this.item = item;
@@ -70,4 +76,6 @@ public class Item_SO : ScriptableObject
     {
         None = 0, Chest = 1, Pants = 2, Gloves = 3, Boots = 4, Ring = 5, Neckless = 6, Gun = 7, Melee = 8, Shield = 9, Helmet = 10
     }
+
+
 }

@@ -259,6 +259,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   player_HealthPoints: 100
+  playerStaminaImpactOnHealth: 1
+  player_Stamina: 10
+  player_Strength: 5
 --- !u!114 &8095149019859578897
 MonoBehaviour:
   m_ObjectHideFlags: 0

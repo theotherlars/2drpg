@@ -40,8 +40,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         {
             if (selectedItem.item != null)
             {
-                //Item_SO clone = ScriptableObject.CreateInstance;
-                Item_SO clone = new Item_SO(selectedItem.item);
+                Item_SO clone = Item_SO.CreateInstance(selectedItem.item);
                 selectedItem.UpdateItem(this.item);
                 UpdateItem(clone);
             }

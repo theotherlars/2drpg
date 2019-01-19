@@ -18,8 +18,12 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         player = FindObjectOfType<PlayerController>();
         spriteImage = GetComponent<Image>();
-        selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
+        //selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
+    }
+    private void Start()
+    {
+        selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
     }
 
     public void UpdateItem(Item_SO item)
@@ -94,10 +98,12 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             if (selectedItem.item != null)
             {
-                //Item_SO clone = ScriptableObject.CreateInstance<Item_SO>();
-                Item_SO clone = new Item_SO(selectedItem.item);
+                Item_SO clone = Item_SO.CreateInstance(selectedItem.item);
+                RemoveStatsFromPlayer(this.item);
+
                 selectedItem.UpdateItem(this.item);
-                UpdateItem(clone);   
+                UpdateItem(clone);
+                
             }
             else
             {
