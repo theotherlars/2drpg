@@ -8,47 +8,47 @@ public class Item_SO : ScriptableObject
 {
     [Header("Required:")]
     [SerializeField]
-    private string title;
+    private string title = "";
     public string Title {get { return title;}}
 
     [SerializeField]
-    private int itemID;
+    private int itemID = 0;
     public int ItemID { get { return itemID; } }
 
     [SerializeField]
-    private Sprite itemSprite;
+    private Sprite itemSprite = null;
     public Sprite ItemSprite { get { return itemSprite; } }
 
     [SerializeField]
-    private int itemLevel;
+    private int itemLevel = 0;
     public int ItemLevel { get { return itemLevel; } }
 
     [SerializeField][TextArea(1,5)]
-    public string description;
+    public string description = "";
     public string Description { get { return description; } }
 
     [Header("Item Specifics:")]
     [SerializeField]
-    private Category category;
+    private Category category = 0;
     public Category ItemCategory { get { return category; } }
 
     [SerializeField]
-    private Rarity rarity;
+    private Rarity rarity = 0;
     public Rarity ItemRarity { get { return rarity; } }
 
     [Header("If Item is Consumable:")]
     [SerializeField]
-    private bool isStackable;
+    private bool isStackable = false;
     public bool IsStackable { get { return isStackable; } }
 
     [Header("If Item is Weapon/Gear:")]
     [SerializeField]
-    private WeaponArmor weaponArmor;
+    private WeaponArmor weaponArmor = 0;
     public WeaponArmor ItemWeaponArmor { get { return weaponArmor; } }
 
     [Header("Attributes:")]
     [SerializeField]
-    private List<ItemAttribute> attributes;
+    private List<ItemAttribute> attributes = null;
 
     private Item_SO item;
     
