@@ -38,11 +38,8 @@ MonoBehaviour:
       nextSentenceIndex: 2
       prerequsite: 
       trigger: {fileID: 0}
-    - replyOptions: 'Non of your business... I''ll see if I''ll find someone less
-        chatty.
-
-        *Leave*'
-      nextSentenceIndex: -1
+    - replyOptions: Non of your business... I'll see if I'll find someone less chatty.
+      nextSentenceIndex: 3
       prerequsite: 
       trigger: {fileID: 0}
   - text: Oh my, he has done it again has he... Well I'll see if I can find him on

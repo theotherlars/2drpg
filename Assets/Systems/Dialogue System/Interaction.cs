@@ -18,8 +18,29 @@ public class Interaction : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E) && isCollidingWithPlayer)
         {
-            interactionText.SetActive(false);
-            InitiateDialogue();
+            switch (dialogue.NPCCategory)
+            {
+                case Dialogue.NPC_Category.Dialogue: // NPC with dialogue
+                    {
+                        interactionText.SetActive(false);
+                        InitiateDialogue();
+                        break;
+                    }
+                case Dialogue.NPC_Category.Quest: // NPC with quest
+                    {
+                        InitiateQuest();
+                        break;
+                    }
+                case Dialogue.NPC_Category.Shop:
+                    {
+                        InitiateShop();
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
         }
     }
 
@@ -35,6 +56,16 @@ public class Interaction : MonoBehaviour
         textHandler.LoadDialogue(dialogue);
     }
 
+    public void InitiateShop()
+    {
+        print("Opens shop/trading window");
+    }
+
+    public void InitiateQuest()
+    {
+        print("Opens quest window");
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -47,6 +78,7 @@ public class Interaction : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            interactionText.SetActive(false);
             isCollidingWithPlayer = false;
         }
     }
