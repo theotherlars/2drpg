@@ -35,7 +35,7 @@ MonoBehaviour:
       prerequsite: 
       trigger: {fileID: 0}
     - replyOptions: He owes me some money from a poker game we had a few weeks ago
-      nextSentenceIndex: 3
+      nextSentenceIndex: 2
       prerequsite: 
       trigger: {fileID: 0}
     - replyOptions: 'Non of your business... I''ll see if I''ll find someone less
@@ -45,8 +45,8 @@ MonoBehaviour:
       nextSentenceIndex: -1
       prerequsite: 
       trigger: {fileID: 0}
-  - text: Oh my, his done it again has he... well I'll see if I can find him on my
-      radar 100101110101...
+  - text: Oh my, he has done it again has he... Well I'll see if I can find him on
+      my radar 100101110101...
     responses:
     - replyOptions: Wow thanks! I do really appreaciate it. I'll leave you for a while.
         I'll come back later to see if you've found him.
