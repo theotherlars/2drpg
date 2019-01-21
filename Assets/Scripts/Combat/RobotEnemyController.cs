@@ -8,7 +8,7 @@ public class RobotEnemyController : MonoBehaviour
     private Rigidbody2D myRb;
     public float moveSpeed;
     private static int currentHealth;
-    private static int maxHealth;
+    private static int maxHealth = 100;
 
     public PlayerController thePlayer;
 
