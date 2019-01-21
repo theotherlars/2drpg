@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotEnemyHealthManager : MonoBehaviour
+public class EnemyHealthManager : MonoBehaviour
 {
 
-    public static int maxHealth = 80;
+    public int maxHealth;
     public static int currentHealth;
 
     // Start is called before the first frame update
@@ -17,12 +17,14 @@ public class RobotEnemyHealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Kills enemy
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
     }
 
+    //Deals damage
     public void HurtEnemy(int damage)
     {
         currentHealth -= damage;

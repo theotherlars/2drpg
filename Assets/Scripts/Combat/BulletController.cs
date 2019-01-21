@@ -28,6 +28,7 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
+        //Destroys bullet after set time
         lifetime -= Time.deltaTime; 
 
         if (lifetime <= 0)
@@ -38,13 +39,14 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        //Deals damage to enemy and destroys bullet
         if (other.gameObject.CompareTag("Hostile"))
         {
-            other.gameObject.GetComponent<RobotEnemyHealthManager>().HurtEnemy(damageToGive);
+            other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
             Destroy(gameObject);
         }
 
-        //Funker ikke. FIKS!
+        //Ignores collision with player Funker ikke. FIKS!
         if (other.gameObject.tag == "Player")
         {
             Physics2D.IgnoreCollision(other.collider, gameObject.GetComponent<CircleCollider2D>());

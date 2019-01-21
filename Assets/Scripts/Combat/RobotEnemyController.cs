@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class RobotEnemyController : MonoBehaviour
 {
 
     private Rigidbody2D myRb;
@@ -17,23 +17,30 @@ public class EnemyController : MonoBehaviour
     {
         myRb = GetComponent<Rigidbody2D>();
         thePlayer = FindObjectOfType<PlayerController>(); //Finds player object
-        
+
+        //Get max health from health manager
+        GameObject enemyRobot = GameObject.Find("EnemyRobot");
+        EnemyHealthManager robotEnemyHealthManager = enemyRobot.GetComponent<EnemyHealthManager>();
+        maxHealth = robotEnemyHealthManager.maxHealth;
+
     }
 
     void FixedUpdate()
     {
+        //Sets speed for enemy
         myRb.velocity = (transform.forward) * moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.LookAt(thePlayer.transform.position);
+        //Makes enemy always move towards player
         transform.position = Vector2.MoveTowards(transform.position, thePlayer.transform.position, moveSpeed * Time.deltaTime);
 
-        currentHealth = RobotEnemyHealthManager.currentHealth;
-        maxHealth = RobotEnemyHealthManager.maxHealth;
+        //Gets current health from EnemyHealthManager
+        currentHealth = EnemyHealthManager.currentHealth;
 
+        //Increases speed at half health
         if (currentHealth <= (maxHealth/2))
         {
             moveSpeed = 4;

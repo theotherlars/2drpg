@@ -20,6 +20,7 @@ public class WeaponController : MonoBehaviour
             isFiring = true;
         }
 
+        //Delay between shots
         if (isFiring)
         {
             shotCounter -= Time.deltaTime;
