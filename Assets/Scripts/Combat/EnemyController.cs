@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody2D myRb;
     public float moveSpeed;
+    private static int currentHealth;
+    private static int maxHealth;
 
     public PlayerController thePlayer;
 
@@ -26,6 +28,15 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(thePlayer.transform.position);
+        //transform.LookAt(thePlayer.transform.position);
+        transform.position = Vector2.MoveTowards(transform.position, thePlayer.transform.position, moveSpeed * Time.deltaTime);
+
+        currentHealth = RobotEnemyHealthManager.currentHealth;
+        maxHealth = RobotEnemyHealthManager.maxHealth;
+
+        if (currentHealth <= (maxHealth/2))
+        {
+            moveSpeed = 4;
+        }
     }
 }
