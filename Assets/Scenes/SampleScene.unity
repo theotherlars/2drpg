@@ -25238,16 +25238,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6418558052707609078, guid: 93efd255194d69c4c9d5334d655250aa,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8095149019859578897}
-    - target: {fileID: 6418558051809055396, guid: 93efd255194d69c4c9d5334d655250aa,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8095149019859578897}
     - target: {fileID: 6418558053200551832, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -25958,6 +25948,16 @@ PrefabInstance:
       propertyPath: shopSlots
       value: 
       objectReference: {fileID: 5316230796120007945}
+    - target: {fileID: 6418558051809055396, guid: 93efd255194d69c4c9d5334d655250aa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8095149019859578897}
+    - target: {fileID: 6418558052707609078, guid: 93efd255194d69c4c9d5334d655250aa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8095149019859578897}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93efd255194d69c4c9d5334d655250aa, type: 3}
 --- !u!1001 &8095149019859578895
@@ -26039,7 +26039,7 @@ PrefabInstance:
       objectReference: {fileID: 1343117198}
     - target: {fileID: 286997004, guid: a2a83ec97eb0d1843b16431f7ffb911c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2a83ec97eb0d1843b16431f7ffb911c, type: 3}

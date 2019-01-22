@@ -87,4 +87,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void incomingDamage(int damage)
+    {
+        player_HealthPoints -= damage;
+    }
 }
