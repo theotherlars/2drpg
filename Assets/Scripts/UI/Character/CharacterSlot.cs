@@ -97,7 +97,7 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         if (this.item != null)
         {
-            if (selectedItem.item != null)
+            if (selectedItem.item != null && this.tag.Replace("Slot", "") == selectedItem.item.ItemWeaponArmor.ToString())
             {
                 Item_SO clone = Item_SO.CreateInstance(selectedItem.item);
                 RemoveStatsFromPlayer(this.item);

@@ -6,14 +6,20 @@ public class ShopController : MonoBehaviour
 {
     public List<Item_SO> shopInventory = new List<Item_SO>();
     public List<UIItem> slotsInShop = new List<UIItem>();
-    public GameObject shopSlots;
+    private GameObject shopSlots;
+
 
     private void OnEnable()
     {
-        
-            slotsInShop.Add(shopSlots.GetComponentInChildren<UIItem>());
-        
-        //slotsInShop.Add(shopSlots.GetComponentInChildren<UIItem>());
+        shopSlots = GetComponentInChildren<Transform>().gameObject;
+        print(shopSlots.name);
+
+
+        foreach (GameObject slot in shopSlots.GetComponentInChildren<Transform>())
+        {
+            print(slot.name);
+        }
+        //
         UpdateShop();
     }
 
@@ -25,9 +31,9 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    public void ToggleShop()
+    public void OpenShop()
     {
-        this.gameObject.SetActive(!this.gameObject.activeSelf);
+        this.gameObject.SetActive(true);
     }
 
 }

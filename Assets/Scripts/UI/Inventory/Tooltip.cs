@@ -66,7 +66,7 @@ public class Tooltip : MonoBehaviour
         }
 
         itemTitle.text = item.Title;
-        itemCategory.text = item.ItemCategory.ToString();
+        itemCategory.text = item.ItemWeaponArmor.ToString();
         itemDescription.text = item.Description + "\n";
         itemLevel.text = "Item Level: " + item.ItemLevel.ToString();
 

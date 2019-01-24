@@ -28,11 +28,13 @@ public class Interaction : MonoBehaviour
                     }
                 case Dialogue.NPC_Category.Quest: // NPC with quest
                     {
+                        interactionText.SetActive(false);
                         InitiateQuest();
                         break;
                     }
                 case Dialogue.NPC_Category.Shop:
                     {
+                        interactionText.SetActive(false);
                         InitiateShop();
                         break;
                     }
@@ -58,7 +60,14 @@ public class Interaction : MonoBehaviour
 
     public void InitiateShop()
     {
-        print("Opens shop/trading window");
+        print("test");
+        ShopController shopController = FindObjectOfType<ShopController>();
+        print("this is the shopController: " + shopController.gameObject.name);
+        if (shopController.gameObject.activeInHierarchy)
+        {
+            shopController.OpenShop();
+        }
+        
     }
 
     public void InitiateQuest()
