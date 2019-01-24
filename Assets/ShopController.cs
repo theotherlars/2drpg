@@ -4,36 +4,45 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour
 {
-    public List<Item_SO> shopInventory = new List<Item_SO>();
     public List<UIItem> slotsInShop = new List<UIItem>();
-    private GameObject shopSlots;
+    public Transform slotsPanel;
 
-
-    private void OnEnable()
+    public void AddNewItem(ShopItem item)
     {
-        shopSlots = GetComponentInChildren<Transform>().gameObject;
-        print(shopSlots.name);
-
-
-        foreach (GameObject slot in shopSlots.GetComponentInChildren<Transform>())
-        {
-            print(slot.name);
-        }
-        //
-        UpdateShop();
+        UpdateShop(slotsInShop.FindIndex(i => i.item == null), item.shopItem);
     }
 
-    private void UpdateShop()
+    /*public void RemoveItem(Item_SO item)
     {
-        for (int i = 0; i < shopInventory.Count; i++)
+        UpdateShop(itemsInShop.FindIndex(i => i.item == item), null);
+    }*/
+
+    public void UpdateShop(int slot, Item_SO shopItem)
+    {
+        slotsInShop[slot].UpdateItem(shopItem);
+    }
+
+    public void CleanShop()
+    {
+        foreach (UIItem slot in slotsInShop)
         {
-            slotsInShop[i].UpdateItem(shopInventory[i]);
+            slot.UpdateItem(null);
+        }
+        //slotsInShop.Clear();
+    }
+
+    public void OpenShop(VendorController vendorController)
+    {
+        for (int i = 0; i < vendorController.shopInventory.Count; i++)
+        {
+            AddNewItem(vendorController.shopInventory[i]);
         }
     }
 
-    public void OpenShop()
+    public void CloseShop()
     {
-        this.gameObject.SetActive(true);
+        CleanShop();
+        this.gameObject.SetActive(false);
     }
 
 }

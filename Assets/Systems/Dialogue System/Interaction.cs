@@ -11,12 +11,13 @@ public class Interaction : MonoBehaviour
     private TextHandler textHandler;
     public Dialogue dialogue;
     public GameObject dialoguePanel;
+    public ShopController shopController;
 
     private bool isCollidingWithPlayer;
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.E) && isCollidingWithPlayer)
+        if (Input.GetKeyDown(KeyCode.E) && isCollidingWithPlayer)
         {
             switch (dialogue.NPCCategory)
             {
@@ -60,12 +61,14 @@ public class Interaction : MonoBehaviour
 
     public void InitiateShop()
     {
-        print("test");
-        ShopController shopController = FindObjectOfType<ShopController>();
-        print("this is the shopController: " + shopController.gameObject.name);
-        if (shopController.gameObject.activeInHierarchy)
+        if (!shopController.gameObject.activeSelf)
         {
-            shopController.OpenShop();
+            shopController.gameObject.SetActive(true);
+            shopController.OpenShop(gameObject.GetComponent<VendorController>());
+        }
+        else
+        {
+            shopController.CloseShop();
         }
         
     }
