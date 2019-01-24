@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class DragonBulletController : MonoBehaviour
 {
 
     public float speed;
@@ -20,22 +20,17 @@ public class BulletController : MonoBehaviour
 
         //...setting shoot direction
         Vector3 shootDirection;
-        shootDirection = Input.mousePosition;
-        shootDirection.z = 0.0f;
-        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
-        shootDirection = shootDirection - transform.position;
+        shootDirection = thePlayer.transform.position;
 
         //rb.velocity = transform.right * speed;
         rb.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
-
-        Physics2D.IgnoreCollision(thePlayer.gameObject.GetComponent<BoxCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
 
     }
 
     void Update()
     {
         //Destroys bullet after set time
-        lifetime -= Time.deltaTime; 
+        lifetime -= Time.deltaTime;
 
         if (lifetime <= 0)
         {
@@ -46,9 +41,9 @@ public class BulletController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         //Deals damage to enemy and destroys bullet
-        if (other.gameObject.CompareTag("Hostile"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
+            other.gameObject.GetComponent<PlayerController>().incomingDamage(damageToGive);
             Destroy(gameObject);
         }
     }
@@ -56,4 +51,4 @@ public class BulletController : MonoBehaviour
 
 
 
- 
+
