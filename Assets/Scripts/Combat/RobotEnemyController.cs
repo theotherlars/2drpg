@@ -9,6 +9,9 @@ public class RobotEnemyController : MonoBehaviour
     public float moveSpeed;
     private static int currentHealth;
     private static int maxHealth = 100;
+    public int damageToGive;
+    public float timeBetweenHits;
+    private float timeBetweenHitsCounter;
 
     public PlayerController thePlayer;
 
@@ -22,6 +25,7 @@ public class RobotEnemyController : MonoBehaviour
         GameObject enemyRobot = GameObject.Find("EnemyRobot");
         EnemyHealthManager robotEnemyHealthManager = enemyRobot.GetComponent<EnemyHealthManager>();
         maxHealth = robotEnemyHealthManager.maxHealth;
+        timeBetweenHitsCounter = 0;
 
     }
 
@@ -45,5 +49,16 @@ public class RobotEnemyController : MonoBehaviour
         {
             moveSpeed = 4;
         }
+    }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        //Deals damage to player
+        if (other.gameObject.CompareTag("Player") && (timeBetweenHitsCounter <= 0))
+        { 
+            other.gameObject.GetComponent<PlayerController>().incomingDamage(damageToGive);
+            timeBetweenHitsCounter = timeBetweenHits;
+        }
+        timeBetweenHitsCounter -= Time.deltaTime;
     }
 }
