@@ -11,20 +11,23 @@ public class DragonBulletController : MonoBehaviour
     public int damageToGive;
 
     public PlayerController thePlayer;
+    public DragonEnemyController theDragon;
 
     // Start is called before the first frame update
     void Start()
     {
 
         thePlayer = FindObjectOfType<PlayerController>();
+        theDragon = FindObjectOfType<DragonEnemyController>();
 
         //...setting shoot direction
-        Vector3 shootDirection;
+        Vector2 shootDirection;
         shootDirection = thePlayer.transform.position;
 
         //rb.velocity = transform.right * speed;
         rb.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
 
+        Physics2D.IgnoreCollision(theDragon.gameObject.GetComponent<PolygonCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
     }
 
     void Update()

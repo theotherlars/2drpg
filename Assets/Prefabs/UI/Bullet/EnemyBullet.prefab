@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5771991079108443134}
   - component: {fileID: 2407806266889913484}
   - component: {fileID: 7543338836857516244}
+  - component: {fileID: 3102643005608048442}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: Untagged
@@ -118,3 +119,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.21736948
+--- !u!114 &3102643005608048442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562717415309002580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2148997477847c34685293103fe31027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  rb: {fileID: 2407806266889913484}
+  lifetime: 2
+  damageToGive: 5
+  thePlayer: {fileID: 0}
+  theDragon: {fileID: 0}
