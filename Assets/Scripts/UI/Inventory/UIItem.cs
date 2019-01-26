@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Item_SO item;
+
     private Image spriteImage;
     private UIItem selectedItem;
     private Tooltip tooltip;
@@ -15,7 +17,8 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         spriteImage = GetComponent<Image>();
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
-        tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
+        tooltip = FindObjectOfType<Tooltip>();
+        //tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
     }
 
     public void UpdateItem(Item_SO item)
@@ -61,13 +64,13 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         if (this.item != null)
         {
-            tooltip.gameObject.SetActive(true);
+            tooltip.gameObject.GetComponent<Image>().enabled = true;           
             tooltip.GenerateTooltip(this.item);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        tooltip.gameObject.SetActive(false);
+        tooltip.gameObject.GetComponent<Image>().enabled = false;
     }
 }

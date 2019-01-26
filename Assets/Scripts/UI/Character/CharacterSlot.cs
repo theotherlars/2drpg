@@ -128,13 +128,15 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         if (this.item != null)
         {
-            tooltip.gameObject.SetActive(true);
+            //tooltip.gameObject.SetActive(true);
+            tooltip.gameObject.GetComponent<Image>().enabled = true;
             tooltip.GenerateTooltip(this.item);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        tooltip.gameObject.SetActive(false);
+        //tooltip.gameObject.SetActive(false);
+        tooltip.gameObject.GetComponent<Image>().enabled = false;
     }
 }

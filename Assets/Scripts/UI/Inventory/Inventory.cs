@@ -10,7 +10,12 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        GiveItem(10);      
+        GiveItem(0);
+        GiveItem(1);
+        GiveItem(2);
+        GiveItem(3);
+        GiveItem(4);
+        GiveItem(4);
     }
 
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id

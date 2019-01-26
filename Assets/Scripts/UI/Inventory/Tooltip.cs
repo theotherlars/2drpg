@@ -19,12 +19,20 @@ public class Tooltip : MonoBehaviour
     public TextMeshProUGUI itemLevel;
 
     private Image image;
+
+    private void Update()
+    {
+        itemTitle.enabled = image.enabled;
+        itemCategory.enabled = image.enabled;
+        itemDescription.enabled = image.enabled;
+        itemAttributes.enabled = image.enabled;
+        itemLevel.enabled = image.enabled;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //tooltipText = GetComponentInChildren<Text>();
         image = GetComponent<Image>();
-        //gameObject.SetActive(false);
     }
 
     public void GenerateTooltip(Item_SO item)
@@ -80,23 +88,7 @@ public class Tooltip : MonoBehaviour
         }
         itemAttributes.text = attributeText;
 
-        gameObject.SetActive(true);
-
-        /*
-        image.enabled = true;
-        string statText = "";
-
-        if (item.Attributes.Count > 0)
-        {
-            foreach (var attribute in item.Attributes)
-            {
-                statText += attribute.attribute.name.ToString() + ": " + attribute.amount.ToString() + "\n";
-            }
-        }
-        string tooltip = string.Format("<b>{0}</b>\n{1}\n\n<b>{2}</b>\n Item level: {3}", item.Title, item.Description,statText, item.ItemLevel);
-        //tooltipText.text = tooltip;
-        //tooltipText.gameObject.SetActive(true);
-
-        */
+        
+        //gameObject.SetActive(true);
     }
 }

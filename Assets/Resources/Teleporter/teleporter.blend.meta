@@ -3,6 +3,36 @@ guid: ac42af92e63906340ab8e0c0463d8e08
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
+    100000: Cylinder_000
+    100002: Plane
+    100004: RenderPlatform
+    100006: RuneGlow
+    100008: RuneOff
+    100010: //RootNode
+    400000: Cylinder_000
+    400002: Plane
+    400004: RenderPlatform
+    400006: RuneGlow
+    400008: RuneOff
+    400010: //RootNode
+    2100000: RuneGlow
+    2100002: Rune
+    2100004: Blank
+    2100006: TeleporterMat__ao
+    2300000: Cylinder_000
+    2300002: Plane
+    2300004: RuneGlow
+    2300006: RuneOff
+    3300000: Cylinder_000
+    3300002: Plane
+    3300004: RuneGlow
+    3300006: RuneOff
+    4300000: RuneGlow
+    4300002: RuneOff
+    4300004: Plane
+    4300006: Cylinder_000
+    7400000: Default Take
+    9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -57,7 +87,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
