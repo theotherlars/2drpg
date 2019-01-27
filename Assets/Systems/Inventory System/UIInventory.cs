@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class UIInventory : MonoBehaviour
 {
     public List<UIItem> uiItems = new List<UIItem>();
-    //public List<Item_SO> itemStack = new List<Item_SO>();
-
+    
     public GameObject slotPrefab;
     public Transform slotPanel;
     public int numberOfSlots = 16;
@@ -69,12 +68,11 @@ public class UIInventory : MonoBehaviour
                         if (uiItems[i].stackedItems.Count < uiItems[i].item.MaxStack)
                         {
                             AddToStack(i, item); // Add to stack instead of slot
-                            return; // stop loop
+                            return; // Exit method and loop
                         }
                     }
                 }
             }
-
             int nextSlot = uiItems.FindIndex(i => i.item == null);
             UpdateSlot(nextSlot, item); // if the loop goes all the way through and could not find item, them add to first available slot 
             AddToStack(nextSlot, item); // adds item to itemStack
@@ -84,7 +82,6 @@ public class UIInventory : MonoBehaviour
             UpdateSlot(uiItems.FindIndex(i => i.item == null), item);
         }
     }
-
     public void RemoveItem(Item_SO item)
     {
         if (item.IsStackable)

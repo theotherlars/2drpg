@@ -53,14 +53,8 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 
     public void AddToStack(Item_SO item)
     {
-        //if (this.item.ItemID == item.ItemID && stackedItems.Count < this.item.MaxStack)
         stackedItems.Add(item);
         stackNumber.text = (stackedItems.Count).ToString();
-    }
-
-    public void ResetItemStack()
-    {
-        stackedItems.Clear();
     }
 
     public void RemoveFromStack(Item_SO item)
@@ -77,6 +71,11 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         stackNumber.text = (stackedItems.Count).ToString();
     }
 
+    public void ResetItemStack()
+    {
+        stackedItems.Clear();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (this.item != null)
@@ -90,13 +89,42 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         if (this.item != null)
         {
-            if (selectedItem.item != null)
+            if (Input.GetKey(KeyCode.LeftShift) && item.IsStackable)
             {
-                Swap();
+                if (selectedItem.item != null && selectedItem.item.IsStackable)
+                {
+                    selectedItem.AddToStack(this.item);
+                    this.RemoveFromStack(this.item);
+                }
+                else
+                {
+                    selectedItem.UpdateItem(this.item);
+                    selectedItem.AddToStack(this.item);
+                    this.RemoveFromStack(this.item);
+                }
             }
             else
             {
-                PickUp();
+                if (selectedItem.item != null)
+                {
+                    if (this.item.ItemID == selectedItem.item.ItemID && this.item.IsStackable)
+                    {
+                        for (int i = 0; i < selectedItem.stackedItems.Count; i++)
+                        {
+                            print(selectedItem.stackedItems.Count);
+                            this.AddToStack(selectedItem.stackedItems[i]);
+                            selectedItem.RemoveFromStack(selectedItem.stackedItems[i]);
+                        }
+                    }
+                    else
+                    {
+                        Swap();
+                    }
+                }
+                else
+                {
+                    PickUp();
+                }
             }
         }
         else if (selectedItem.item != null)
