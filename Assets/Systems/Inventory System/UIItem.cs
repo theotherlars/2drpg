@@ -9,7 +9,8 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 {
     public Item_SO item;
 
-    public List<Item_SO> stackedItems = new List<Item_SO>(); // Testing
+    public List<Item_SO> stackedItems = new List<Item_SO>();
+    private List<Item_SO> stackedItemsTemp = new List<Item_SO>();
 
     public TextMeshProUGUI stackNumber;
 
@@ -40,7 +41,6 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             {
                 stackNumber.enabled = false;
             }
-
         }
         else
         {
@@ -77,47 +77,31 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         stackNumber.text = (stackedItems.Count).ToString();
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (this.item != null)
+        {
+            tooltip.gameObject.GetComponent<Image>().enabled = true;
+            tooltip.GenerateTooltip(this.item);
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (this.item != null)
         {
             if (selectedItem.item != null)
             {
-                Item_SO clone = Item_SO.CreateInstance(selectedItem.item);
-                selectedItem.UpdateItem(this.item);
-                UpdateItem(clone);
+                Swap();
             }
             else
             {
-                selectedItem.UpdateItem(this.item);
-                for (int i = 0; i < this.stackedItems.Count; i++)
-                {
-                    selectedItem.AddToStack(this.stackedItems[i]);
-                }
-                stackedItems.Clear();
-                UpdateItem(null);
+                PickUp();
             }
         }
         else if (selectedItem.item != null)
         {
-            UpdateItem(selectedItem.item);
-            for (int i = 0; i < selectedItem.stackedItems.Count; i++)
-            {
-                AddToStack(selectedItem.stackedItems[i]);
-                //stackedItems.Add(selectedItem.stackedItems[i]);
-            }
-            selectedItem.stackedItems.Clear();
-            selectedItem.UpdateItem(null);
-            
-        }
-    }
-    
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (this.item != null)
-        {
-            tooltip.gameObject.GetComponent<Image>().enabled = true;           
-            tooltip.GenerateTooltip(this.item);
+            Place();
         }
     }
 
@@ -125,4 +109,58 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         tooltip.gameObject.GetComponent<Image>().enabled = false;
     }
+
+
+    private void Place() // Places the selected item to the selected slot
+    {
+        UpdateItem(selectedItem.item);
+        for (int i = 0; i < selectedItem.stackedItems.Count; i++)
+        {
+            AddToStack(selectedItem.stackedItems[i]);
+        }
+        selectedItem.stackedItems.Clear();
+        selectedItem.UpdateItem(null);
+    }
+
+    private void PickUp() // This will pick up selected item
+    {
+        selectedItem.UpdateItem(this.item);
+        for (int i = 0; i < this.stackedItems.Count; i++)
+        {
+            selectedItem.AddToStack(this.stackedItems[i]);
+        }
+        stackedItems.Clear();
+        UpdateItem(null);
+    }
+
+    private void Swap() // This will replace the object you are holding with the one in slot
+    {
+        Item_SO clone = Item_SO.CreateInstance(selectedItem.item);
+
+        for (int i = 0; i < selectedItem.stackedItems.Count; i++) // Adds selected.stackeditems to temp list
+        {
+            stackedItemsTemp.Add(selectedItem.stackedItems[i]);
+        }
+
+        selectedItem.ResetItemStack(); // Empties selected item stack
+
+        for (int i = 0; i < this.stackedItems.Count; i++) // Adds this.stackeditems to selected
+        {
+            selectedItem.AddToStack(this.stackedItems[i]);
+        }
+        selectedItem.UpdateItem(this.item);
+
+        this.ResetItemStack(); // Empties this item stack
+
+        for (int i = 0; i < this.stackedItemsTemp.Count; i++) // Adds tempItems to stacked items list
+        {
+            this.AddToStack(this.stackedItemsTemp[i]);
+        }
+
+        UpdateItem(clone);
+
+        this.stackedItemsTemp.Clear(); // Empties the temp item stack
+    }
+
+
 }

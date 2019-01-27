@@ -54,7 +54,6 @@ public class UIInventory : MonoBehaviour
     {
         UpdateSlot(uiItems.FindIndex(i => i.item == item), null);
     }
-
     */
 
     public void AddNewItem(Item_SO item)
