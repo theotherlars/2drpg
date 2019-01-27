@@ -2,34 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is the class that controlls the backend of the players inventory, this is storing if the player has the item or not.
+
+    // TODO:
+    // - Save and Load items that player has.
+    // - Implement money
+
 public class Inventory : MonoBehaviour
 {
-    public List<Item_SO> characterItems = new List<Item_SO>();
+    public List<Item_SO> characterItems = new List<Item_SO>(); // Creates a list to store the players items
     public ItemDatabase itemDatabase;
-    public UIInventory uiInventory;
+    public UIInventory uiInventory; // This is controlling / displaying the items in Inventory
 
     private void Start()
     {
-        GiveItem(0);
-        GiveItem(1);
-        GiveItem(2);
-        GiveItem(3);
-        GiveItem(4);
-        GiveItem(4);
+        GiveItem(1); // FOR TESTING
+        GiveItem(2); // FOR TESTING
+        GiveItem(3); // FOR TESTING
+        GiveItem(4); // FOR TESTING
+        GiveItem(4); // FOR TESTING
+        GiveItem(4); // FOR TESTING
+        GiveItem(4); // FOR TESTING
     }
 
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id
     {
         Item_SO itemToAdd = itemDatabase.GetItem(id);
-        characterItems.Add(itemToAdd);
-        uiInventory.AddNewItem(itemToAdd);
+        if (itemToAdd != null)
+        {
+            characterItems.Add(itemToAdd);
+            uiInventory.AddNewItem(itemToAdd);
+        }
     }
 
     public void GiveItem(string itemTitle) // Adds item from ItemDatabase to characterItems list by title
     {
         Item_SO itemToAdd = itemDatabase.GetItem(itemTitle);
-        characterItems.Add(itemToAdd);
-        uiInventory.AddNewItem(itemToAdd);
+        if (itemToAdd != null)
+        {
+            characterItems.Add(itemToAdd);
+            uiInventory.AddNewItem(itemToAdd);
+        }
     }
 
     public Item_SO CheckForItem(int id) // Checks if characterItems list contains item by id

@@ -9,6 +9,10 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 {
     public Item_SO item;
 
+    public List<Item_SO> stackedItems = new List<Item_SO>(); // Testing
+
+    public TextMeshProUGUI stackNumber;
+
     private Image spriteImage;
     private UIItem selectedItem;
     private Tooltip tooltip;
@@ -18,7 +22,6 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         spriteImage = GetComponent<Image>();
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         tooltip = FindObjectOfType<Tooltip>();
-        //tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
     }
 
     public void UpdateItem(Item_SO item)
@@ -29,12 +32,49 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         {
             spriteImage.color = Color.white;
             spriteImage.sprite = this.item.ItemSprite;
+            if (item.IsStackable)
+            {
+                stackNumber.enabled = true;
+            }
+            else
+            {
+                stackNumber.enabled = false;
+            }
+
         }
         else
         {
             spriteImage.color = Color.clear;
             spriteImage.sprite = null;
+            stackNumber.enabled = false;
         }
+    }
+
+
+    public void AddToStack(Item_SO item)
+    {
+        //if (this.item.ItemID == item.ItemID && stackedItems.Count < this.item.MaxStack)
+        stackedItems.Add(item);
+        stackNumber.text = (stackedItems.Count).ToString();
+    }
+
+    public void ResetItemStack()
+    {
+        stackedItems.Clear();
+    }
+
+    public void RemoveFromStack(Item_SO item)
+    {
+        if (stackedItems.Count > 1)
+        {
+            stackedItems.RemoveAt(stackedItems.FindLastIndex(i => i == item));
+        }
+        else
+        {
+            stackedItems.Clear();
+            UpdateItem(null);
+        }
+        stackNumber.text = (stackedItems.Count).ToString();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -50,13 +90,25 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             else
             {
                 selectedItem.UpdateItem(this.item);
+                for (int i = 0; i < this.stackedItems.Count; i++)
+                {
+                    selectedItem.AddToStack(this.stackedItems[i]);
+                }
+                stackedItems.Clear();
                 UpdateItem(null);
             }
         }
         else if (selectedItem.item != null)
         {
             UpdateItem(selectedItem.item);
+            for (int i = 0; i < selectedItem.stackedItems.Count; i++)
+            {
+                AddToStack(selectedItem.stackedItems[i]);
+                //stackedItems.Add(selectedItem.stackedItems[i]);
+            }
+            selectedItem.stackedItems.Clear();
             selectedItem.UpdateItem(null);
+            
         }
     }
     

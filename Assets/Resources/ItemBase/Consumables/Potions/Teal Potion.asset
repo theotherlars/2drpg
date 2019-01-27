@@ -20,6 +20,7 @@ MonoBehaviour:
   category: 0
   rarity: 1
   isStackable: 1
+  maxStack: 16
   weaponArmor: 0
   attributes:
   - attribute: {fileID: 11400000, guid: 643e4f46e114d6d478556c5039742938, type: 2}
