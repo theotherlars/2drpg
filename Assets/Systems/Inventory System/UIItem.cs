@@ -35,6 +35,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             spriteImage.sprite = this.item.ItemSprite;
             if (item.IsStackable)
             {
+                
                 stackNumber.enabled = true;
             }
             else
@@ -84,23 +85,25 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             tooltip.GenerateTooltip(this.item);
         }
     }
-
+    /*
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (this.item != null)
+        if (this.item != null) // if slot is empty or not 
         {
             if (Input.GetKey(KeyCode.LeftShift) && item.IsStackable)
             {
-                if (selectedItem.item != null && selectedItem.item.IsStackable)
+                if (selectedItem.item != null) // if selected item is empty or not
                 {
-                    selectedItem.AddToStack(this.item);
-                    this.RemoveFromStack(this.item);
+                    if (selectedItem.item.IsStackable)
+                    {
+                        AddOneStackedItemToSelectedItem(); // adds one stacked item to selected and removes one from this stack
+                    }
                 }
                 else
                 {
-                    selectedItem.UpdateItem(this.item);
-                    selectedItem.AddToStack(this.item);
-                    this.RemoveFromStack(this.item);
+                    // if selected item is empty and the item is stackable
+                    selectedItem.UpdateItem(this.item); // update selectedItem with this item
+                    AddOneStackedItemToSelectedItem(); // adds one stacked item to selected and removes one from this stack
                 }
             }
             else
@@ -127,10 +130,116 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 }
             }
         }
-        else if (selectedItem.item != null)
+        else if (selectedItem.item != null) // if slot is empty, but selected is not
         {
-            Place();
+            if (Input.GetKey(KeyCode.LeftShift) && item.IsStackable)
+            {
+                
+            }
+            else
+            {
+                Place();
+            }
         }
+    }
+    */
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        /* METHODS:
+            - PickUp(); - Picks up a nonstackable item and updates both this item and selected item.
+            - PickUpOneItem(); - Picks up one item in stack list, adds to selected item and removes from this item stack
+            - PickUpAllItems(); - Picks up all items in stack list, adds them to selected items stack and removes from this item stack. Updates this and selected item with item
+            - Swap(); - Swaps if item.itemID is equal to selected.item.itemID
+            - Place(); - Places item and items in stack, updates this item and selected item
+            - AddStackFromSelected(); - Adds items from selected stack to this item stack, but stops if this item stack is full
+            - AddOneItemToStackFromSelected(); - Adds one item from selected list to this list
+         */
+
+        if (this.item != null) // if slot is empty or not 
+        {
+            if (selectedItem.item != null) // if selected slot is empty or not
+            {
+                if (this.item.IsStackable && selectedItem.item.IsStackable) // if both the selected item and item in slot is stackable
+                {
+                    if (this.item.ItemID == selectedItem.item.ItemID)
+                    {
+                        if (Input.GetKey(KeyCode.LeftShift))
+                        {
+                            if(selectedItem.stackedItems.Count < this.item.MaxStack)
+                            {
+                                PickUpOneItem(); // picks up one item until the stack is full
+                            }
+                        }
+                        else
+                        {
+                            PlaceItemsFromSelectedStack(); // Adds items to this item stack until its full
+                        }
+                    }
+                    else
+                    {
+                        Swap(); // Swaps items with selected items if doesn't match itemID
+                    }
+                }
+                else
+                {
+                    Swap(); // Swaps item with selected item, either if it stackable or not
+                }
+            }
+            else 
+            {
+                if (this.item.IsStackable) // if the item you are picking up is stackable
+                {
+                    if (Input.GetKey(KeyCode.LeftShift)) // If shift is pressed, then pick up one on each click
+                    {
+                        PickUpOneItem();
+                    }
+                    else // if shift is not detected, pick up all
+                    {
+                        PickUpAllItems(); // picks up all stacked items and clears this item stack
+                    }
+                }
+                else
+                {
+                    PickUp(); // picks up non stackable item
+                }
+            }
+        }
+        else if (selectedItem.item != null) // if slot is empty, but selected is not
+        {
+            if (selectedItem.item.IsStackable)
+            {
+                PlaceItemsFromSelectedStack(); // Places all selected items in this item
+            }
+            else
+            {
+                Place();
+            }
+        }
+    }
+
+    private void PlaceOneItemFromSelectedStack(int index)
+    {
+        if(this.stackedItems.Count < item.MaxStack)
+        {
+            this.AddToStack(selectedItem.stackedItems[index]);
+            selectedItem.RemoveFromStack(selectedItem.stackedItems[index]);
+        }
+    }
+
+    private void PlaceItemsFromSelectedStack()
+    {
+        UpdateItem(selectedItem.item);
+        
+        for (int i = 0; i < selectedItem.stackedItems.Count; i++)
+        {
+            this.AddToStack(selectedItem.stackedItems[i]);
+            //selectedItem.RemoveFromStack(selectedItem.stackedItems[i]);
+        }
+
+        UpdateItem(selectedItem.item);
+        selectedItem.ResetItemStack();
+        selectedItem.UpdateItem(null);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -138,14 +247,33 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         tooltip.gameObject.GetComponent<Image>().enabled = false;
     }
 
+    private void PickUpAllItems()
+    {
+        // Picks up all items in a stack, adds them to the selected item, removed from item stack.
+        
+        for (int i = 0; i < this.stackedItems.Count; i++)
+        {
+            selectedItem.AddToStack(this.stackedItems[i]);
+        }
+        selectedItem.UpdateItem(this.item);
+        this.stackedItems.Clear();
+        UpdateItem(null);
+    }
 
+    private void PickUpOneItem()
+    {
+        // picks up one item and adds to selected stack, removes one from this item stack.
+        if (selectedItem.stackedItems.Count < 1)
+        {
+            selectedItem.UpdateItem(this.item);
+        }
+        selectedItem.AddToStack(this.item);
+        this.RemoveFromStack(this.item);
+    }
+    
     private void Place() // Places the selected item to the selected slot
     {
         UpdateItem(selectedItem.item);
-        for (int i = 0; i < selectedItem.stackedItems.Count; i++)
-        {
-            AddToStack(selectedItem.stackedItems[i]);
-        }
         selectedItem.stackedItems.Clear();
         selectedItem.UpdateItem(null);
     }
@@ -153,11 +281,6 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     private void PickUp() // This will pick up selected item
     {
         selectedItem.UpdateItem(this.item);
-        for (int i = 0; i < this.stackedItems.Count; i++)
-        {
-            selectedItem.AddToStack(this.stackedItems[i]);
-        }
-        stackedItems.Clear();
         UpdateItem(null);
     }
 
