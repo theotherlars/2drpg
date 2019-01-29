@@ -5,15 +5,19 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Item_SO item;
+    private ShopItem shopItem;
 
     public List<Item_SO> stackedItems = new List<Item_SO>();
     private List<Item_SO> stackedItemsTemp = new List<Item_SO>();
 
     public TextMeshProUGUI stackNumber;
+    public TextMeshProUGUI text_itemPrice;
+    public TextMeshProUGUI text_itemName;
 
+    public int itemPrice;
     private Image spriteImage;
     private UIItem selectedItem;
     private Tooltip tooltip;
@@ -25,17 +29,32 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         tooltip = FindObjectOfType<Tooltip>();
     }
 
+    public void DeclearShopItem(ShopItem itemInput)
+    {
+        this.shopItem = itemInput;
+        UpdateItem(itemInput.shopItem);
+    }
+
     public void UpdateItem(Item_SO item)
     {
         this.item = item;
 
         if (item != null)
         {
+            // Sprite related
             spriteImage.color = Color.white;
             spriteImage.sprite = this.item.ItemSprite;
-            if (item.IsStackable)
-            {
-                
+            
+            // Item name related
+            text_itemName.GetComponent<Transform>().gameObject.SetActive(true);
+            text_itemName.text = this.item.ItemTitle;
+
+            // Item price related
+            text_itemPrice.GetComponent<Transform>().gameObject.SetActive(true);
+            text_itemPrice.text = this.shopItem.price.ToString();
+
+            if (this.item.IsStackable)
+            {    
                 stackNumber.enabled = true;
             }
             else
@@ -47,6 +66,8 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         {
             spriteImage.color = Color.clear;
             spriteImage.sprite = null;
+            text_itemName.GetComponent<Transform>().gameObject.SetActive(false);
+            text_itemPrice.GetComponent<Transform>().gameObject.SetActive(false);
             stackNumber.enabled = false;
         }
     }
@@ -191,14 +212,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             {
                 if (this.item.IsStackable) // if the item you are picking up is stackable
                 {
-                    if (Input.GetKey(KeyCode.LeftShift)) // If shift is pressed, then pick up one on each click
-                    {
-                        PickUpOneItem();
-                    }
-                    else // if shift is not detected, pick up all
-                    {
-                        PickUpAllItems(); // picks up all stacked items and clears this item stack
-                    }
+                    PickUpAllItems(); // picks up all stacked items and clears this item stack
                 }
                 else
                 {
@@ -250,6 +264,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         if (selectedItem.stackedItems.Count < 1)
         {
             selectedItem.ResetItemStack();
+            selectedItem.UpdateItem(null);
         }
         else
         {
@@ -258,7 +273,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 selectedItem.RemoveFromStack(selectedItem.stackedItems[selectedItem.stackedItems.Count -1]);
             }
 
-            if (selectedItem.stackedItems.Count < 1)
+            if (selectedItem.stackedItems.Count <= 0)
             {
                 selectedItem.ResetItemStack();
             }

@@ -21,7 +21,7 @@ public class ItemDatabase : MonoBehaviour
 
     public Item_SO GetItem(string itemTitle) // Returns Item from itemDatabase using itemTitle. Example: itemDatabase.GetItem("Sword of Fire");
     {
-        return items.Find(item => item.Title == itemTitle); // returns item if found in items list.
+        return items.Find(item => item.ItemTitle == itemTitle); // returns item if found in items list.
     }
 
     void BuildDatabase() // Loads all items which is stored under Assets/Resources/ItemBase/* and adds to items list.

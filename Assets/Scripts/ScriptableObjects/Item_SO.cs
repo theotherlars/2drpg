@@ -14,7 +14,7 @@ public class Item_SO : ScriptableObject
     [Header("Required:")]
     [SerializeField]
     private string title = "";
-    public string Title {get { return title;} } // Item_SO().Title;
+    public string ItemTitle {get { return title;} } // Item_SO().Title;
 
     [SerializeField]
     private int itemID = 0;

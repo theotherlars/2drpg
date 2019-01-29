@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour
 {
-    public List<UIItem> slotsInShop = new List<UIItem>();
+    public List<UIShopItem> slotsInShop = new List<UIShopItem>();
     public Transform slotsPanel;
 
-    public void AddNewItem(ShopItem item)
+    public void AddNewItem(ShopItem shopItem)
     {
-        UpdateShop(slotsInShop.FindIndex(i => i.item == null), item.shopItem);
+        UpdateShop(slotsInShop.FindIndex(i => i.item == null), shopItem);
     }
 
     /*public void RemoveItem(Item_SO item)
@@ -17,14 +17,14 @@ public class ShopController : MonoBehaviour
         UpdateShop(itemsInShop.FindIndex(i => i.item == item), null);
     }*/
 
-    public void UpdateShop(int slot, Item_SO shopItem)
+    public void UpdateShop(int slot, ShopItem shopItem)
     {
-        slotsInShop[slot].UpdateItem(shopItem);
+        slotsInShop[slot].DeclearShopItem(shopItem);
     }
 
     public void CleanShop()
     {
-        foreach (UIItem slot in slotsInShop)
+        foreach (UIShopItem slot in slotsInShop)
         {
             slot.UpdateItem(null);
         }
