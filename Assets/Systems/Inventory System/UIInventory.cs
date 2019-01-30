@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIInventory : MonoBehaviour
 {
     public List<UIItem> uiItems = new List<UIItem>();
-    
+
+    private Inventory inventory;
+
     public GameObject slotPrefab;
     public Transform slotPanel;
     public int numberOfSlots = 16;
 
     private Image backgroundImage;
+    private TextMeshProUGUI moneyText;
+    public GameObject currencyDisplay;
+    
 
     private void Awake()
     {
         backgroundImage = GetComponent<Image>();
         backgroundImage.enabled = false;
+        inventory = FindObjectOfType<Inventory>();
 
         for (int i = 0; i < numberOfSlots; i++)
         {
@@ -26,8 +33,15 @@ public class UIInventory : MonoBehaviour
             uiItems[i].UpdateItem(null);
         }
         backgroundImage.enabled = true;
+        currencyDisplay.SetActive(true);
+        moneyText = currencyDisplay.GetComponentInChildren<TextMeshProUGUI>();
+        inventory.IncreaseMoney(50);
     }
 
+    private void LateUpdate()
+    {
+        moneyText.text = inventory.characterMoney.ToString();
+    }
 
     public void UpdateSlot(int slot, Item_SO item)
     {
@@ -43,17 +57,6 @@ public class UIInventory : MonoBehaviour
     {
         uiItems[slot].RemoveFromStack(item);
     }
-    /*
-    public void AddNewItem(Item_SO item)
-    {
-        UpdateSlot(uiItems.FindIndex(i => i.item == null), item);
-    }
-
-    public void RemoveItem(Item_SO item)
-    {
-        UpdateSlot(uiItems.FindIndex(i => i.item == item), null);
-    }
-    */
 
     public void AddNewItem(Item_SO item)
     {

@@ -14,6 +14,8 @@ public class Inventory : MonoBehaviour
     public ItemDatabase itemDatabase;
     public UIInventory uiInventory; // This is controlling / displaying the items in Inventory
 
+    public int characterMoney;
+
     private void Start()
     {
         GiveItem(1); // FOR TESTING
@@ -23,6 +25,8 @@ public class Inventory : MonoBehaviour
         GiveItem(4); // FOR TESTING
         GiveItem(4); // FOR TESTING
         GiveItem(4); // FOR TESTING
+
+        IncreaseMoney(75);
     }
 
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id
@@ -49,10 +53,7 @@ public class Inventory : MonoBehaviour
     {
         return characterItems.Find(item => item.ItemID == id);
     }
-
-    //
-    // TODO Check if the characterList contains 2x of same item, how to handle that...
-    //
+    
     public void RemoveItem(int id) // If characterItem list contains item, removes it
     {
         Item_SO itemToRemove = CheckForItem(id);
@@ -61,5 +62,23 @@ public class Inventory : MonoBehaviour
             characterItems.Remove(itemToRemove);
             uiInventory.RemoveItem(itemToRemove);
         }
+    }
+
+    public void IncreaseMoney(int amount)
+    {
+        characterMoney += amount;
+    }
+
+    public void DecreaseMoney(int amount)
+    {
+        if(characterMoney > amount)
+        {
+            characterMoney -= amount;
+        }
+    }
+
+    public int CheckMoney()
+    {
+        return characterMoney;
     }
 }

@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // player_HealthPoints += Mathf.RoundToInt(player_Stamina * 1);
 
     }
 
