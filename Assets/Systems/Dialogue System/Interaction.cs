@@ -8,10 +8,11 @@ public class Interaction : MonoBehaviour
     [SerializeField]
     private GameObject interactionText; //Only Temp
 
-    private TextHandler textHandler;
+    //private TextHandler textHandler;
     public Dialogue dialogue;
-    public GameObject dialoguePanel;
-    public ShopController shopController;
+    UIController uIController;
+    //public GameObject dialoguePanel;
+    //public ShopController shopController;
 
     private bool isCollidingWithPlayer;
 
@@ -49,26 +50,29 @@ public class Interaction : MonoBehaviour
 
     private void Awake()
     {
-        dialoguePanel.SetActive(false);
-        textHandler = dialoguePanel.GetComponent<TextHandler>();
+        uIController = FindObjectOfType<UIController>();
     }
 
     public void InitiateDialogue()
     {
-        dialoguePanel.SetActive(true);
+        var dialoguePanel = FindObjectOfType<UIController>().OpenDialoguePanel();
+
+        var textHandler = dialoguePanel.GetComponent<TextHandler>();
         textHandler.LoadDialogue(dialogue);
     }
 
     public void InitiateShop()
     {
-        if (!shopController.gameObject.activeSelf)
+        GameObject shopController = uIController.OpenShop();
+        var shop = shopController.GetComponent<ShopController>();
+
+        if (!shopController.activeSelf)
         {
-            shopController.gameObject.SetActive(true);
-            shopController.OpenShop(gameObject.GetComponent<VendorController>());
+            shop.OpenShop(gameObject.GetComponent<VendorController>());
         }
         else
         {
-            shopController.CloseShop();
+            shop.CloseShop();
         }
         
     }

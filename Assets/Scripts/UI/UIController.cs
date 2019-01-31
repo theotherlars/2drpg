@@ -8,10 +8,14 @@ using System;
 public class UIController : MonoBehaviour
 {
     PlayerController playerController;
+    public GameObject shopController;
     public GameObject inventoryPanel;
     public GameObject inventorySlots;
     public GameObject characterPanel;
     public GameObject testButtons;
+    public GameObject confirmationDialogue;
+    public GameObject dialoguePanel;
+
     public Text playerHP;
 
     public GameObject deathMenu;
@@ -25,6 +29,9 @@ public class UIController : MonoBehaviour
         inventorySlots.SetActive(false);
         characterPanel.SetActive(false);
         testButtons.SetActive(false);
+        confirmationDialogue.SetActive(false);
+        dialoguePanel.SetActive(false);
+        shopController.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,6 +62,18 @@ public class UIController : MonoBehaviour
         testButtons.SetActive(!testButtons.activeSelf);
     }
 
+    public GameObject OpenDialoguePanel()
+    {
+        dialoguePanel.SetActive(true);
+        return dialoguePanel;
+    }
+
+    public GameObject OpenShop()
+    {
+        shopController.SetActive(true);
+        return shopController;
+    }
+
     private void FixedUpdate()
     {
         if (playerController.isDead)
@@ -63,9 +82,14 @@ public class UIController : MonoBehaviour
         }
     }
 
-
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadConfirmationDialouge(string dialougeInput)
+    {
+        confirmationDialogue.SetActive(true);
+        confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput);
     }
 }

@@ -51,7 +51,6 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         }
     }
 
-
     public void AddToStack(Item_SO item)
     {
         stackedItems.Add(item);

@@ -33,6 +33,10 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         this.shopItem = itemInput;
         UpdateItem(itemInput.shopItem);
+        for (int i = 0; i < itemInput.stackAmount; i++)
+        {
+            AddToStack(itemInput.shopItem);
+        }
     }
 
     public void UpdateItem(Item_SO item)
@@ -107,64 +111,6 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             tooltip.GenerateTooltip(this.item);
         }
     }
-    /*
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (this.item != null) // if slot is empty or not 
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && item.IsStackable)
-            {
-                if (selectedItem.item != null) // if selected item is empty or not
-                {
-                    if (selectedItem.item.IsStackable)
-                    {
-                        AddOneStackedItemToSelectedItem(); // adds one stacked item to selected and removes one from this stack
-                    }
-                }
-                else
-                {
-                    // if selected item is empty and the item is stackable
-                    selectedItem.UpdateItem(this.item); // update selectedItem with this item
-                    AddOneStackedItemToSelectedItem(); // adds one stacked item to selected and removes one from this stack
-                }
-            }
-            else
-            {
-                if (selectedItem.item != null)
-                {
-                    if (this.item.ItemID == selectedItem.item.ItemID && this.item.IsStackable)
-                    {
-                        for (int i = 0; i < selectedItem.stackedItems.Count; i++)
-                        {
-                            print(selectedItem.stackedItems.Count);
-                            this.AddToStack(selectedItem.stackedItems[i]);
-                            selectedItem.RemoveFromStack(selectedItem.stackedItems[i]);
-                        }
-                    }
-                    else
-                    {
-                        Swap();
-                    }
-                }
-                else
-                {
-                    PickUp();
-                }
-            }
-        }
-        else if (selectedItem.item != null) // if slot is empty, but selected is not
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && item.IsStackable)
-            {
-                
-            }
-            else
-            {
-                Place();
-            }
-        }
-    }
-    */
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -216,7 +162,12 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 }
                 else
                 {
-                    PickUp(); // picks up non stackable item
+                    string dialogue = "Do you want to buy: " + item.ItemTitle + " for " + shopItem.price + " credits ?";
+                    UIController uIController;
+                    uIController = FindObjectOfType<UIController>();
+                    uIController.LoadConfirmationDialouge(dialogue);
+
+                    //PickUp(); // picks up non stackable item
                 }
             }
         }

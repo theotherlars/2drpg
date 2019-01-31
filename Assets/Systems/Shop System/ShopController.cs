@@ -28,7 +28,6 @@ public class ShopController : MonoBehaviour
         {
             slot.UpdateItem(null);
         }
-        //slotsInShop.Clear();
     }
 
     public void OpenShop(VendorController vendorController)
