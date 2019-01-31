@@ -178,18 +178,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &248076903 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1232652341722225389, guid: 93efd255194d69c4c9d5334d655250aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 6418558052548081063}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dce737af3a55b64aabb541b937217ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &372412894
 GameObject:
   m_ObjectHideFlags: 0
@@ -23723,8 +23711,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 1430850301}
   dialogue: {fileID: 11400000, guid: edc2d5ff3db37b845b6f3f35eb1be926, type: 2}
-  dialoguePanel: {fileID: 1360493413}
-  shopController: {fileID: 248076903}
 --- !u!61 &1109377950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24888,12 +24874,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca5709a0b0be904799f9edd29c33eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1360493413 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6419209147465925455, guid: 93efd255194d69c4c9d5334d655250aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 6418558052548081063}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1430850301 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6418558053298274138, guid: 93efd255194d69c4c9d5334d655250aa,
@@ -24999,8 +24979,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 1430850301}
   dialogue: {fileID: 11400000, guid: 0245fa23433925143af3e87f1112967a, type: 2}
-  dialoguePanel: {fileID: 1360493413}
-  shopController: {fileID: 248076903}
 --- !u!61 &1977894731
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25166,8 +25144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 1430850301}
   dialogue: {fileID: 11400000, guid: 0245fa23433925143af3e87f1112967a, type: 2}
-  dialoguePanel: {fileID: 1360493413}
-  shopController: {fileID: 248076903}
 --- !u!61 &2113358476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25290,8 +25266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 1430850301}
   dialogue: {fileID: 11400000, guid: 0245fa23433925143af3e87f1112967a, type: 2}
-  dialoguePanel: {fileID: 1360493413}
-  shopController: {fileID: 248076903}
 --- !u!61 &2125011135
 BoxCollider2D:
   m_ObjectHideFlags: 0
