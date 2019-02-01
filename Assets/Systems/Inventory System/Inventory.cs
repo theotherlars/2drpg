@@ -25,8 +25,6 @@ public class Inventory : MonoBehaviour
         GiveItem(4); // FOR TESTING
         GiveItem(4); // FOR TESTING
         GiveItem(4); // FOR TESTING
-
-        IncreaseMoney(75);
     }
 
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id
@@ -71,7 +69,7 @@ public class Inventory : MonoBehaviour
 
     public void DecreaseMoney(int amount)
     {
-        if(characterMoney > amount)
+        if(characterMoney >= amount)
         {
             characterMoney -= amount;
         }

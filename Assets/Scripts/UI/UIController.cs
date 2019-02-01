@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 using System;
 
 public class UIController : MonoBehaviour
 {
     PlayerController playerController;
+    public GameObject errorText;
     public GameObject shopController;
     public GameObject inventoryPanel;
     public GameObject inventorySlots;
@@ -15,7 +17,6 @@ public class UIController : MonoBehaviour
     public GameObject testButtons;
     public GameObject confirmationDialogue;
     public GameObject dialoguePanel;
-
     public Text playerHP;
 
     public GameObject deathMenu;
@@ -68,11 +69,16 @@ public class UIController : MonoBehaviour
         return dialoguePanel;
     }
 
-    public GameObject OpenShop()
+    public void OpenShop(VendorController vendorController)
     {
-        shopController.SetActive(true);
-        return shopController;
+        if (!shopController.activeSelf)
+        {
+            shopController.SetActive(true);
+            shopController.GetComponent<ShopController>().OpenShop(vendorController);
+        }
     }
+
+
 
     private void FixedUpdate()
     {
@@ -87,9 +93,13 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void LoadConfirmationDialouge(string dialougeInput)
+    public void LoadConfirmationDialouge(string dialougeInput, UIShopItem shopItem)
     {
         confirmationDialogue.SetActive(true);
-        confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput);
+        confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput, shopItem);
+    }
+    public void LoadErrorText(string textInput)
+    {
+        errorText.GetComponent<ErrorText>().DisplayText(textInput);
     }
 }

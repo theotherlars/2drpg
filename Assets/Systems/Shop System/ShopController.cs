@@ -11,12 +11,7 @@ public class ShopController : MonoBehaviour
     {
         UpdateShop(slotsInShop.FindIndex(i => i.item == null), shopItem);
     }
-
-    /*public void RemoveItem(Item_SO item)
-    {
-        UpdateShop(itemsInShop.FindIndex(i => i.item == item), null);
-    }*/
-
+    
     public void UpdateShop(int slot, ShopItem shopItem)
     {
         slotsInShop[slot].DeclearShopItem(shopItem);
@@ -32,9 +27,17 @@ public class ShopController : MonoBehaviour
 
     public void OpenShop(VendorController vendorController)
     {
-        for (int i = 0; i < vendorController.shopInventory.Count; i++)
+        if (this.enabled)
         {
-            AddNewItem(vendorController.shopInventory[i]);
+            for (int i = 0; i < vendorController.shopInventory.Count; i++)
+            {
+                AddNewItem(vendorController.shopInventory[i]);
+            }
+        }
+        else
+        {
+            this.enabled = true;
+            OpenShop(vendorController);
         }
     }
 

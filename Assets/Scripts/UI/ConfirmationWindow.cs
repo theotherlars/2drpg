@@ -6,21 +6,30 @@ using TMPro;
 public class ConfirmationWindow : MonoBehaviour
 {
     public TextMeshProUGUI confirmationDialogue;
-    
-    public void ConfirmationDialogue(string input)
+
+    private UIShopItem shopItem;
+
+    public void ConfirmationDialogue(string input, UIShopItem shopItem = null)
     {
         confirmationDialogue.text = input;
+        if (shopItem != null)
+        {
+            this.shopItem = shopItem;
+        }
     }
 
     public void OK_Button()
     {
-        print("you bought the item");
+        if (shopItem != null)
+        {
+            shopItem.BuyItem();
+        }
         this.gameObject.SetActive(false);
     }
 
     public void Cancel_Button()
     {
-        print("you canceled");
+        shopItem = null;
         this.gameObject.SetActive(false);
     }
 }

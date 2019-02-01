@@ -63,18 +63,7 @@ public class Interaction : MonoBehaviour
 
     public void InitiateShop()
     {
-        GameObject shopController = uIController.OpenShop();
-        var shop = shopController.GetComponent<ShopController>();
-
-        if (!shopController.activeSelf)
-        {
-            shop.OpenShop(gameObject.GetComponent<VendorController>());
-        }
-        else
-        {
-            shop.CloseShop();
-        }
-        
+        uIController.OpenShop(this.GetComponent<VendorController>());
     }
 
     public void InitiateQuest()

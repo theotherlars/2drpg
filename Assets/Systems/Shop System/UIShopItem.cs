@@ -9,6 +9,9 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 {
     public Item_SO item;
     private ShopItem shopItem;
+    private UIController uIController;
+    private Inventory inventory;
+    private UIInventory uIInventory;
 
     public List<Item_SO> stackedItems = new List<Item_SO>();
     private List<Item_SO> stackedItemsTemp = new List<Item_SO>();
@@ -17,16 +20,21 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public TextMeshProUGUI text_itemPrice;
     public TextMeshProUGUI text_itemName;
 
-    public int itemPrice;
     private Image spriteImage;
     private UIItem selectedItem;
     private Tooltip tooltip;
+
+    // Item details
+    private int itemPrice;
 
     private void Awake()
     {
         spriteImage = GetComponent<Image>();
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         tooltip = FindObjectOfType<Tooltip>();
+        uIController = FindObjectOfType<UIController>();
+        inventory = FindObjectOfType<Inventory>();
+        uIInventory = FindObjectOfType<UIInventory>();
     }
 
     public void DeclearShopItem(ShopItem itemInput)
@@ -54,8 +62,9 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             text_itemName.text = this.item.ItemTitle;
 
             // Item price related
+            itemPrice = this.shopItem.price;
             text_itemPrice.GetComponent<Transform>().gameObject.SetActive(true);
-            text_itemPrice.text = this.shopItem.price.ToString();
+            text_itemPrice.text = itemPrice.ToString();
 
             if (this.item.IsStackable)
             {    
@@ -158,14 +167,14 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             {
                 if (this.item.IsStackable) // if the item you are picking up is stackable
                 {
-                    PickUpAllItems(); // picks up all stacked items and clears this item stack
+                    string dialogue = string.Format("Do you want to buy: {0} x{1} for {2} credits ?", item.ItemTitle,shopItem.stackAmount,itemPrice);
+                    uIController.LoadConfirmationDialouge(dialogue, this);
+                    //PickUpAllItems(); // picks up all stacked items and clears this item stack
                 }
                 else
                 {
-                    string dialogue = "Do you want to buy: " + item.ItemTitle + " for " + shopItem.price + " credits ?";
-                    UIController uIController;
-                    uIController = FindObjectOfType<UIController>();
-                    uIController.LoadConfirmationDialouge(dialogue);
+                    string dialogue = string.Format("Do you want to buy: {0} for {1} credits ?", item.ItemTitle,itemPrice);
+                    uIController.LoadConfirmationDialouge(dialogue, this);
 
                     //PickUp(); // picks up non stackable item
                 }
@@ -234,6 +243,31 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public void OnPointerExit(PointerEventData eventData)
     {
         tooltip.gameObject.GetComponent<Image>().enabled = false;
+    }
+
+    public void BuyItem()
+    {
+        if (inventory.CheckMoney() >= shopItem.price)
+        {
+            if (item.IsStackable)
+            {
+                for (int i = 0; i < shopItem.stackAmount; i++)
+                {
+                    inventory.GiveItem(item.ItemID);
+                    //uIInventory.AddNewItem(item);
+                }
+            }
+            else
+            {
+                inventory.GiveItem(item.ItemID);
+            }
+            inventory.DecreaseMoney(shopItem.price);
+        }
+        else
+        {
+            string text = "You don't have enough money...";
+            uIController.LoadErrorText(text);
+        }
     }
 
     private void PickUpAllItems()
