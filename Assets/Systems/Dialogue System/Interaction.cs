@@ -1,20 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-
+    UIController uIController;
     [SerializeField]
     private GameObject interactionText; //Only Temp
 
-    //private TextHandler textHandler;
     public Dialogue dialogue;
-    UIController uIController;
-    //public GameObject dialoguePanel;
-    //public ShopController shopController;
-
     private bool isCollidingWithPlayer;
+
 
     private void Update()
     {
@@ -48,6 +45,13 @@ public class Interaction : MonoBehaviour
         }
     }
 
+    private void CloseWindows()
+    {
+        uIController.CloseShop();
+        uIController.CloseDialoguePanel();
+        uIController.CloseQuest();
+    }
+
     private void Awake()
     {
         uIController = FindObjectOfType<UIController>();
@@ -56,7 +60,6 @@ public class Interaction : MonoBehaviour
     public void InitiateDialogue()
     {
         var dialoguePanel = FindObjectOfType<UIController>().OpenDialoguePanel();
-
         var textHandler = dialoguePanel.GetComponent<TextHandler>();
         textHandler.LoadDialogue(dialogue);
     }
@@ -85,6 +88,7 @@ public class Interaction : MonoBehaviour
         {
             interactionText.SetActive(false);
             isCollidingWithPlayer = false;
+            CloseWindows();
         }
     }
 }

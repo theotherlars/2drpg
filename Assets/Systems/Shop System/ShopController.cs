@@ -1,15 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour
 {
     public List<UIShopItem> slotsInShop = new List<UIShopItem>();
     public Transform slotsPanel;
+    private int pageDisplaying = 1;
+    private VendorController vendorController;
+    [SerializeField]
+    private Button nextButton;
+    [SerializeField]
+    private Button previousButton;
+
+    private void Update()
+    {
+        if (vendorController.shopInventory.Count > slotsInShop.Count * pageDisplaying)
+        {
+            nextButton.interactable = true;
+        }
+        else
+        {
+            nextButton.interactable = false;
+        }
+        if (pageDisplaying >= 2)
+        {
+            previousButton.interactable = true;
+        }
+        else
+        {
+            previousButton.interactable = false;
+        }
+    }
 
     public void AddNewItem(ShopItem shopItem)
     {
-        UpdateShop(slotsInShop.FindIndex(i => i.item == null), shopItem);
+        if (shopItem != null)
+        {
+            UpdateShop(slotsInShop.FindIndex(i => i.item == null), shopItem);
+        }
+        else
+        {
+            return;
+        }
+        
     }
     
     public void UpdateShop(int slot, ShopItem shopItem)
@@ -22,16 +57,35 @@ public class ShopController : MonoBehaviour
         foreach (UIShopItem slot in slotsInShop)
         {
             slot.UpdateItem(null);
+            slot.ResetItemStack();
         }
     }
 
     public void OpenShop(VendorController vendorController)
     {
+        this.vendorController = vendorController;
+        
         if (this.enabled)
         {
-            for (int i = 0; i < vendorController.shopInventory.Count; i++)
+            if (vendorController.shopInventory.Count <= 8)
             {
-                AddNewItem(vendorController.shopInventory[i]);
+                previousButton.interactable = false;
+                nextButton.interactable = false;
+                for (int i = 0; i < vendorController.shopInventory.Count; i++)
+                {
+                    AddNewItem(vendorController.shopInventory[i]);
+                }
+            }
+            else if (vendorController.shopInventory.Count > 8)
+            {
+                pageDisplaying = 1;
+                previousButton.interactable = false;
+                nextButton.interactable = true;
+
+                for (int i = 0; i < slotsInShop.Count; i++)
+                {
+                    AddNewItem(vendorController.shopInventory[i]);
+                }
             }
         }
         else
@@ -40,6 +94,53 @@ public class ShopController : MonoBehaviour
             OpenShop(vendorController);
         }
     }
+
+    public void NextPage()
+    {
+        if (vendorController.shopInventory.Count > slotsInShop.Count * pageDisplaying)
+        {
+            pageDisplaying++;
+            int itemRangeToDisplay = slotsInShop.Count * pageDisplaying;
+            CleanShop();
+            for (int i = 0; i < slotsInShop.Count; i++)
+            {
+                int itemToAdd = (itemRangeToDisplay - 8) + i;
+                if (itemToAdd < vendorController.shopInventory.Count)
+                {
+                    AddNewItem(vendorController.shopInventory[itemToAdd]);
+                }
+                else
+                { AddNewItem(null); }
+            }
+
+            previousButton.interactable = true;
+        }
+        else
+        {
+            //nextButton.interactable = false;
+            return;
+        }
+        
+    }
+    public void PreviousPage()
+    {
+        if (pageDisplaying >= 2)
+        {
+            CleanShop();
+            pageDisplaying--;
+            int itemRangeToDisplay = slotsInShop.Count * pageDisplaying;
+            for (int i = 0; i < slotsInShop.Count; i++)
+            {
+                AddNewItem(vendorController.shopInventory[(itemRangeToDisplay - 8) + i]);
+            }
+        }
+        else
+        {
+            //previousButton.interactable = false;
+            return;
+        }
+    }
+
 
     public void CloseShop()
     {

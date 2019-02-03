@@ -51,6 +51,14 @@ public class UIController : MonoBehaviour
         playerHP.text = "HP: " + playerController.player_HealthPoints.ToString();
     }
 
+    private void FixedUpdate()
+    {
+        if (playerController.isDead)
+        {
+            deathMenu.SetActive(true);
+        }
+    }
+
     private void ToggleCharacterPanel()
     {
         characterPanel.SetActive(!characterPanel.activeSelf);
@@ -63,10 +71,17 @@ public class UIController : MonoBehaviour
         testButtons.SetActive(!testButtons.activeSelf);
     }
 
+    //Open Dialogue method
     public GameObject OpenDialoguePanel()
     {
         dialoguePanel.SetActive(true);
         return dialoguePanel;
+    }
+
+    //Close Dialogue method
+    public void CloseDialoguePanel()
+    {
+        dialoguePanel.SetActive(false);
     }
 
     public void OpenShop(VendorController vendorController)
@@ -78,16 +93,20 @@ public class UIController : MonoBehaviour
         }
     }
 
-
-
-    private void FixedUpdate()
+    public void CloseShop()
     {
-        if (playerController.isDead)
+        if (shopController.activeSelf)
         {
-            deathMenu.SetActive(true);
+            shopController.GetComponent<ShopController>().CloseShop();
+            shopController.SetActive(false);
         }
     }
 
+    public void CloseQuest()
+    {
+        // Close Quest Window/ GameObject.SetActive(false);
+    }
+    
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -98,6 +117,7 @@ public class UIController : MonoBehaviour
         confirmationDialogue.SetActive(true);
         confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput, shopItem);
     }
+
     public void LoadErrorText(string textInput)
     {
         errorText.GetComponent<ErrorText>().DisplayText(textInput);

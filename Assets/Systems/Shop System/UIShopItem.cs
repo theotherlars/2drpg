@@ -35,6 +35,7 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         uIController = FindObjectOfType<UIController>();
         inventory = FindObjectOfType<Inventory>();
         uIInventory = FindObjectOfType<UIInventory>();
+        stackNumber.enabled = false;
     }
 
     public void DeclearShopItem(ShopItem itemInput)
