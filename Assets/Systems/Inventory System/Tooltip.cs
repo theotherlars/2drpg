@@ -19,6 +19,7 @@ public class Tooltip : MonoBehaviour
     public TextMeshProUGUI itemLevel;
 
     private Image image;
+    
 
     private void Update()
     {
@@ -87,8 +88,5 @@ public class Tooltip : MonoBehaviour
             }
         }
         itemAttributes.text = attributeText;
-
-        
-        //gameObject.SetActive(true);
     }
 }
