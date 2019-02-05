@@ -60,6 +60,16 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
                         player.UpdatePlayerAttributes(item_SO.Attributes[i].attribute.attributeName, item_SO.Attributes[i].amount);
                         break;
                     }
+                case "Spirit":
+                    {
+                        player.UpdatePlayerAttributes(item_SO.Attributes[i].attribute.attributeName, item_SO.Attributes[i].amount);
+                        break;
+                    }
+                case "Agility":
+                    {
+                        player.UpdatePlayerAttributes(item_SO.Attributes[i].attribute.attributeName, item_SO.Attributes[i].amount);
+                        break;
+                    }
                 default:
                 {
                     break;
@@ -85,6 +95,16 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
                         player.UpdatePlayerAttributes(item_SO.Attributes[i].attribute.attributeName, -item_SO.Attributes[i].amount);
                         break;
                     }
+                case "Spirit":
+                    {
+                        player.UpdatePlayerAttributes(item_SO.Attributes[i].attribute.attributeName, -item_SO.Attributes[i].amount);
+                        break;
+                    }
+                case "Agility":
+                    {
+                        player.UpdatePlayerAttributes(item_SO.Attributes[i].attribute.attributeName, -item_SO.Attributes[i].amount);
+                        break;
+                    }
                 default:
                     {
                         break;
@@ -94,7 +114,7 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    {
+    {   
         if (this.item != null)
         {
             if (selectedItem.item != null && this.tag.Replace("Slot", "") == selectedItem.item.ItemWeaponArmor.ToString())
@@ -104,7 +124,6 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
                 selectedItem.UpdateItem(this.item);
                 UpdateItem(clone);
-                
             }
             else
             {
@@ -112,7 +131,6 @@ public class CharacterSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
                 selectedItem.UpdateItem(this.item);
                 UpdateItem(null);
-
             }
         }
         else if (selectedItem.item != null && this.tag.Replace("Slot", "") == selectedItem.item.ItemWeaponArmor.ToString()) // Checks if the item selected is same category as itemslot

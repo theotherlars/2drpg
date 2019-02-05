@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
     public int player_Strength = 5;
     public int Player_Strength { get { return player_Strength; } set { player_Strength = value; } }
 
+    public int player_Spirit = 7;
+    public int Player_Spirit { get { return player_Spirit; } set { player_Spirit = value; } }
+
+    public int player_Agility = 12;
+    public int Player_Agility { get { return player_Agility; } set { player_Agility = value; } }
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +57,6 @@ public class PlayerController : MonoBehaviour
                         player_Stamina += attributeValue;
                         player_HealthPoints += Mathf.RoundToInt(attributeValue * 1);
                     }
-
                     break;
                 }
             case "Strength":
@@ -64,10 +69,33 @@ public class PlayerController : MonoBehaviour
                     {
                         player_Strength += attributeValue;
                     }
-
                     break;
                 }
-                default: { break; }
+            case "Spirit":
+                {
+                    if (attributeValue > 0)
+                    {
+                        player_Spirit += attributeValue;
+                    }
+                    else if (attributeValue < 0)
+                    {
+                        player_Spirit += attributeValue;
+                    }
+                    break;
+                }
+            case "Agility":
+                {
+                    if (attributeValue > 0)
+                    {
+                        player_Agility += attributeValue;
+                    }
+                    else if (attributeValue < 0)
+                    {
+                        player_Agility += attributeValue;
+                    }
+                    break;
+                }
+            default: { break; }
         }
     }
 

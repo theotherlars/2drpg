@@ -82,7 +82,7 @@ public class Item_SO : ScriptableObject
     }
     public enum WeaponArmor // Enums for what type of Weapon or Armor the item is, add or remove as needed
     {
-        None = 0, Chest = 1, Pants = 2, Gloves = 3, Boots = 4, Ring = 5, Neckless = 6, Gun = 7, Melee = 8, Shield = 9, Helmet = 10
+        None = 0, Chest = 1, Pants = 2, Gloves = 3, Boots = 4, Ring = 5, Neckless = 6, Ranged = 7, Melee = 8, Shield = 9, Helmet = 10
     }
 
 

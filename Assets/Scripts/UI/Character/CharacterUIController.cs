@@ -14,6 +14,12 @@ public class CharacterUIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI strengthText;
 
+    [SerializeField]
+    private TextMeshProUGUI spiritText;
+
+    [SerializeField]
+    private TextMeshProUGUI agilityText;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerController>();
@@ -23,6 +29,8 @@ public class CharacterUIController : MonoBehaviour
     {
         staminaText.text = "Stamina: " + player.Player_Stamina.ToString();
         strengthText.text = "Strength: " + player.Player_Strength.ToString();
+        spiritText.text = "Spirit: " + player.Player_Spirit.ToString();
+        agilityText.text = "Agility: " + player.Player_Agility.ToString();
     }
 
     public void AddPlayerStamina()
