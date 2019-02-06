@@ -27,12 +27,13 @@ public class RobotEnemyController : MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
         thePlayer = FindObjectOfType<PlayerController>(); //Finds player object
 
-        //Get max health from health manager
+
         //GameObject enemyRobot = GameObject.Find("EnemyRobot");
 
+        // Get max health from health manager
         enemyHealthManager = GetComponent<EnemyHealthManager>();
         maxHealth = enemyHealthManager.maxHealth;
-        currentHealth = enemyHealthManager.currentHealth;
+        
 
         timeBetweenHitsCounter = 0;
 
@@ -47,22 +48,31 @@ public class RobotEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Makes enemy always move towards player
-        transform.position = Vector2.MoveTowards(transform.position, thePlayer.transform.position, moveSpeed * Time.deltaTime);
-
-        //Gets current health from EnemyHealthManager
+        if (!enemyHealthManager.IsDead)
+        {
+            //Makes enemy always move towards player
+            transform.position = Vector2.MoveTowards(transform.position, thePlayer.transform.position, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            myRb.isKinematic = true;
+            moveSpeed = 0;
+        }
         
+        //Gets current health from EnemyHealthManager
+        currentHealth = enemyHealthManager.currentHealth;
+       
         //Increases speed at half health
         if (currentHealth <= (maxHealth/2))
         {
-            moveSpeed = 4;
+            moveSpeed = 2;
         }
     }
 
     void OnCollisionStay2D(Collision2D other)
     {
         //Deals damage to player
-        if (other.gameObject.CompareTag("Player") && (timeBetweenHitsCounter <= 0))
+        if (other.gameObject.CompareTag("Player") && (timeBetweenHitsCounter <= 0) && !enemyHealthManager.IsDead)
         {
             other.gameObject.GetComponent<PlayerController>().incomingDamage(damageToGive);
             timeBetweenHitsCounter = timeBetweenHits;

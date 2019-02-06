@@ -10,9 +10,13 @@ public class EnemyHealthManager : MonoBehaviour
     [HideInInspector]
     public int currentHealth;
 
+    private bool isDead;
+    public bool IsDead { get { return isDead; } }
+
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         currentHealth = maxHealth;
     }
 
@@ -22,13 +26,22 @@ public class EnemyHealthManager : MonoBehaviour
         //Kills enemy
         if (currentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            isDead = true;
+            //Destroy(this.gameObject);
         }
     }
 
     //Deals damage
     public void HurtEnemy(int damage)
     {
-        currentHealth -= damage;
+        if (!isDead)
+        {
+            if (GetComponent<EnemyAnimationController>() != null)
+            {
+                GetComponent<EnemyAnimationController>().DamageTaken();
+            }
+            currentHealth -= damage;
+        }
+        
     }
 }
