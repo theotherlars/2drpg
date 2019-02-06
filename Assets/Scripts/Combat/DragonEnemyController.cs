@@ -6,6 +6,7 @@ public class DragonEnemyController : MonoBehaviour
 {
 
     private Rigidbody2D myRb;
+    EnemyHealthManager dragonEnemyHealthManager;
     public float moveSpeed;
     private static int currentHealth;
     private static int maxHealth = 100;
@@ -16,8 +17,9 @@ public class DragonEnemyController : MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
 
         //Get max health from health manager
-        GameObject enemyDragon = GameObject.Find("EnemyDragon");
-        EnemyHealthManager dragonEnemyHealthManager = enemyDragon.GetComponent<EnemyHealthManager>();
+        //GameObject enemyDragon = GameObject.Find("EnemyDragon");
+
+        dragonEnemyHealthManager = GetComponent<EnemyHealthManager>();
         maxHealth = dragonEnemyHealthManager.maxHealth;
     }
 
@@ -34,7 +36,7 @@ public class DragonEnemyController : MonoBehaviour
         //transform.position = Vector2.MoveTowards(transform.position, thePlayer.transform.position, moveSpeed * Time.deltaTime);
 
         //Gets current health from EnemyHealthManager
-        currentHealth = EnemyHealthManager.currentHealth;
+        currentHealth = dragonEnemyHealthManager.currentHealth;
 
         //Increases speed at half health
         /*if (currentHealth <= (maxHealth / 2))

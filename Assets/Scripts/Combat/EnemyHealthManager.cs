@@ -6,7 +6,9 @@ public class EnemyHealthManager : MonoBehaviour
 {
 
     public int maxHealth;
-    public static int currentHealth;
+
+    [HideInInspector]
+    public int currentHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,7 @@ public class EnemyHealthManager : MonoBehaviour
         //Kills enemy
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
