@@ -16,16 +16,18 @@ MonoBehaviour:
   title: New Beginning New Adventures
   description: 'This is a strange place, everything is decaying around here!
 
-    Well, since the "accident" there is no wonder why it is so..
+    Well, since the "accident" there is no wonder why...
 
 
-    Could you help me find a weapon ?'
+    Anyway, I''ve seem to have run out of food, could you help me find some ?'
   type: 1
   pattern: 0
   status: 1
   itemsToGathers:
-  - itemToGather: {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
-    amountToGather: 1
+  - itemToGather: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+    amountToGather: 5
   NPCToKill: []
   creditReward: 25
-  itemReward: []
+  itemReward:
+  - {fileID: 11400000, guid: 1bfa59bb537113b44aaf0d65615fc74a, type: 2}
+  - {fileID: 11400000, guid: 0b9100c1ee09505478b26a430430586f, type: 2}

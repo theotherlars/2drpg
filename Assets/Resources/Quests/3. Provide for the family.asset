@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6166ca1ee05a94881fc6a53f6cf4bc, type: 3}
+  m_Name: 3. Provide for the family
+  m_EditorClassIdentifier: 
+  id: 3
+  title: Provide for the family
+  description: "Hi man,\nMe an my family has been living in these woods for 3-4 months
+    now and we are running out of food... \nWe do not have any weapons, but there
+    are some rabbits around here if you'd like to help us out?"
+  type: 0
+  pattern: 0
+  status: 1
+  itemsToGathers: []
+  NPCToKill:
+  - npcToKill: 4
+    amountToKill: 5
+  creditReward: 15
+  itemReward:
+  - {fileID: 11400000, guid: e033480c82c7eba40b2b2243e9b6c032, type: 2}
+  - {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}

@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 1501239265793286452}
   - component: {fileID: 1068861076}
   - component: {fileID: 8095149019859578897}
+  - component: {fileID: 3115873752108822320}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -311,6 +312,8 @@ MonoBehaviour:
   playerStaminaImpactOnHealth: 1
   player_Stamina: 10
   player_Strength: 5
+  player_Spirit: 7
+  player_Agility: 12
 --- !u!114 &8095149019859578897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,3 +329,19 @@ MonoBehaviour:
   characterItems: []
   itemDatabase: {fileID: 0}
   uiInventory: {fileID: 0}
+  characterMoney: 0
+--- !u!114 &3115873752108822320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630369916278642532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0799a278e4a50c741a10980b81ebda77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeQuests:
+  - {fileID: 11400000, guid: 2dd1fb1b294bda742b56c1b9d7ab698c, type: 2}
+  - {fileID: 11400000, guid: 4d1c35919ea499a4ebf1bf1baea4a99c, type: 2}

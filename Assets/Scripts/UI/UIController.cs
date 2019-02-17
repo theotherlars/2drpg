@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
     public GameObject confirmationDialogue;
     public GameObject dialoguePanel;
     public GameObject questActiveList;
-    public GameObject questDetails;
+    public GameObject uiQuestDetails;
     public Text playerHP;
 
     public GameObject deathMenu;
@@ -37,7 +37,7 @@ public class UIController : MonoBehaviour
         dialoguePanel.SetActive(false);
         shopController.SetActive(false);
         questActiveList.SetActive(false);
-        questDetails.SetActive(false);
+        uiQuestDetails.SetActive(false);
     }
 
     // Update is called once per frame
@@ -112,27 +112,34 @@ public class UIController : MonoBehaviour
             lastToggle = Time.time;
             if (questActiveList.activeInHierarchy)
             {
-                print("here");
                 questActiveList.SetActive(false);
-                questDetails.SetActive(false);
+                uiQuestDetails.SetActive(false);
             }
             else
             {
-                print("there");
                 questActiveList.SetActive(true);
             }
         }
     }
 
-    public void ToggleQuestDetails()
+    public void ToggleQuestDetails(Quest quest)
     {
-        if (!questDetails.activeInHierarchy)
+        UIQuestDetailsHandler uIQuestHandler = uiQuestDetails.GetComponent<UIQuestDetailsHandler>();
+        if (lastToggle != Time.time)
         {
-            questDetails.SetActive(true);
-        }
-        else
-        {
-            questDetails.SetActive(false);
+            lastToggle = Time.time;
+
+            if (!uiQuestDetails.activeInHierarchy)
+            {
+                uiQuestDetails.SetActive(true);
+                uiQuestDetails.GetComponent<Animator>().SetBool("Open", true);
+                uIQuestHandler.UpdateQuestDetails(quest);
+            }
+            else
+            {
+                uIQuestHandler.CloseWindow();
+                //uiQuestDetails.SetActive(false);
+            }
         }
     }
     
