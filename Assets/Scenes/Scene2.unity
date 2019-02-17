@@ -261,7 +261,7 @@ PrefabInstance:
     - target: {fileID: 8010339223839496421, guid: 42033e20bd35c6b45b07970d05e59d0a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010339223839496417, guid: 42033e20bd35c6b45b07970d05e59d0a,
         type: 3}
@@ -357,6 +357,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6418558052939814760, guid: 93efd255194d69c4c9d5334d655250aa,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 5426752896809087526, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -416,11 +421,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6418558052939814760, guid: 93efd255194d69c4c9d5334d655250aa,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 6418558052939814772, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}
@@ -712,11 +712,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8453214930988021549, guid: 93efd255194d69c4c9d5334d655250aa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6418558052535758832, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -776,6 +771,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453214930988021549, guid: 93efd255194d69c4c9d5334d655250aa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2662856468563693877, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}

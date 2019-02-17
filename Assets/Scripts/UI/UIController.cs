@@ -17,9 +17,12 @@ public class UIController : MonoBehaviour
     public GameObject testButtons;
     public GameObject confirmationDialogue;
     public GameObject dialoguePanel;
+    public GameObject questActiveList;
+    public GameObject questDetails;
     public Text playerHP;
 
     public GameObject deathMenu;
+    private float lastToggle;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,8 @@ public class UIController : MonoBehaviour
         confirmationDialogue.SetActive(false);
         dialoguePanel.SetActive(false);
         shopController.SetActive(false);
+        questActiveList.SetActive(false);
+        questDetails.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,14 +76,12 @@ public class UIController : MonoBehaviour
         testButtons.SetActive(!testButtons.activeSelf);
     }
 
-    //Open Dialogue method
     public GameObject OpenDialoguePanel()
     {
         dialoguePanel.SetActive(true);
         return dialoguePanel;
     }
 
-    //Close Dialogue method
     public void CloseDialoguePanel()
     {
         dialoguePanel.SetActive(false);
@@ -102,9 +105,35 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void CloseQuest()
+    public void ToggleQuestList()
     {
-        // Close Quest Window/ GameObject.SetActive(false);
+        if (lastToggle != Time.time)
+        {
+            lastToggle = Time.time;
+            if (questActiveList.activeInHierarchy)
+            {
+                print("here");
+                questActiveList.SetActive(false);
+                questDetails.SetActive(false);
+            }
+            else
+            {
+                print("there");
+                questActiveList.SetActive(true);
+            }
+        }
+    }
+
+    public void ToggleQuestDetails()
+    {
+        if (!questDetails.activeInHierarchy)
+        {
+            questDetails.SetActive(true);
+        }
+        else
+        {
+            questDetails.SetActive(false);
+        }
     }
     
     public void ReloadScene()

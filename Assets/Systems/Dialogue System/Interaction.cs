@@ -12,6 +12,10 @@ public class Interaction : MonoBehaviour
     public Dialogue dialogue;
     private bool isCollidingWithPlayer;
 
+    private void Start()
+    {
+        uIController = FindObjectOfType<UIController>();
+    }
 
     private void Update()
     {
@@ -23,12 +27,6 @@ public class Interaction : MonoBehaviour
                     {
                         interactionText.SetActive(false);
                         InitiateDialogue();
-                        break;
-                    }
-                case Dialogue.NPC_Category.Quest: // NPC with quest
-                    {
-                        interactionText.SetActive(false);
-                        InitiateQuest();
                         break;
                     }
                 case Dialogue.NPC_Category.Shop:
@@ -43,13 +41,22 @@ public class Interaction : MonoBehaviour
                     }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            uIController.ToggleQuestList();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 
     private void CloseWindows()
     {
         uIController.CloseShop();
         uIController.CloseDialoguePanel();
-        uIController.CloseQuest();
     }
 
     private void Awake()

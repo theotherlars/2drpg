@@ -17,6 +17,7 @@ public class RobotEnemyController : MonoBehaviour
     public int damageToGive;
     public float timeBetweenHits;
     private float timeBetweenHitsCounter;
+    public bool chasePlayer;
 
     
     
@@ -26,7 +27,7 @@ public class RobotEnemyController : MonoBehaviour
     {
         myRb = GetComponent<Rigidbody2D>();
         thePlayer = FindObjectOfType<PlayerController>(); //Finds player object
-
+        chasePlayer = false;
 
         //GameObject enemyRobot = GameObject.Find("EnemyRobot");
 
@@ -48,17 +49,7 @@ public class RobotEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!enemyHealthManager.IsDead)
-        {
-            //Makes enemy always move towards player
-            transform.position = Vector2.MoveTowards(transform.position, thePlayer.transform.position, moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            myRb.isKinematic = true;
-            moveSpeed = 0;
-        }
-        
+        ChasePlayer();
         //Gets current health from EnemyHealthManager
         currentHealth = enemyHealthManager.currentHealth;
        
@@ -66,6 +57,24 @@ public class RobotEnemyController : MonoBehaviour
         if (currentHealth <= (maxHealth/2))
         {
             moveSpeed = 2;
+        }
+    }
+
+
+    void ChasePlayer()
+    {
+        if (chasePlayer)
+        {
+            if (!enemyHealthManager.IsDead)
+            {
+                //Makes enemy always move towards player
+                transform.position = Vector2.MoveTowards(transform.position, thePlayer.transform.position, moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                myRb.isKinematic = true;
+                moveSpeed = 0;
+            }
         }
     }
 
