@@ -121,8 +121,7 @@ public class UIController : MonoBehaviour
             }
         }
     }
-
-    public void ToggleQuestDetails(Quest quest)
+    public void ToggleQuestDetailsWithoutAnimation(Quest quest)
     {
         UIQuestDetailsHandler uIQuestHandler = uiQuestDetails.GetComponent<UIQuestDetailsHandler>();
         if (lastToggle != Time.time)
@@ -132,12 +131,33 @@ public class UIController : MonoBehaviour
             if (!uiQuestDetails.activeInHierarchy)
             {
                 uiQuestDetails.SetActive(true);
-                uiQuestDetails.GetComponent<Animator>().SetBool("Open", true);
+                uIQuestHandler.OpenWithoutAnimation();
                 uIQuestHandler.UpdateQuestDetails(quest);
             }
             else
             {
-                uIQuestHandler.CloseWindow();
+                uIQuestHandler.CloseWithoutAnimation();
+                //uiQuestDetails.SetActive(false);
+            }
+        }
+    }
+
+    public void ToggleQuestDetailsWithAnimation(Quest quest)
+    {
+        UIQuestDetailsHandler uIQuestHandler = uiQuestDetails.GetComponent<UIQuestDetailsHandler>();
+        if (lastToggle != Time.time)
+        {
+            lastToggle = Time.time;
+
+            if (!uiQuestDetails.activeInHierarchy)
+            {
+                uiQuestDetails.SetActive(true);
+                uIQuestHandler.AnimateOpenWindow();
+                uIQuestHandler.UpdateQuestDetails(quest);
+            }
+            else
+            {
+                uIQuestHandler.CloseWithAnimation();
                 //uiQuestDetails.SetActive(false);
             }
         }

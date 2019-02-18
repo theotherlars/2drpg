@@ -16,7 +16,7 @@ public class TextHandler : MonoBehaviour
     [SerializeField]
     private GameObject responsPanel;
     [SerializeField]
-    private List<GameObject> responsButtons;
+    private List<ResponsButton> responsButtons = new List<ResponsButton>();
 
     public void LoadDialogue(Dialogue dialogue)
     {
@@ -37,13 +37,19 @@ public class TextHandler : MonoBehaviour
             {
                 for (int i = 0; i < cachedDialogue.sentences[textIndex].responses.Length; i++)
                 {
-                    responsButtons[i].SetActive(true); // Activates the necessary amount of buttons (max 5)
+                    responsButtons[i].gameObject.SetActive(true); // Activates the necessary amount of buttons (max 5)
 
                     TextMeshProUGUI buttonText = responsButtons[i].GetComponentInChildren<TextMeshProUGUI>();
                     buttonText.SetText(cachedDialogue.sentences[textIndex].responses[i].replyOptions);
 
-                    ResponsButton button = responsButtons[i].GetComponent<ResponsButton>();
-                    button.nextIndex = cachedDialogue.sentences[textIndex].responses[i].nextSentenceIndex;
+                    
+                    responsButtons[i].nextIndex = cachedDialogue.sentences[textIndex].responses[i].nextSentenceIndex;
+
+                    if (cachedDialogue.sentences[textIndex].responses[i].isQuest)
+                    {
+                        responsButtons[i].isQuest = true;
+                        responsButtons[i].questToGive = cachedDialogue.sentences[textIndex].responses[i].quest.id;
+                    }
                 }
             }
             else
@@ -63,7 +69,8 @@ public class TextHandler : MonoBehaviour
         npc_DialogueText.text = "";
         for (int i = 0; i < responsButtons.Count; i++)
         {
-            responsButtons[i].SetActive(false);
+            responsButtons[i].ResetButton();
+            responsButtons[i].gameObject.SetActive(false);
         }
     }
 }

@@ -33,8 +33,15 @@ public class UIQuestButton : MonoBehaviour
         }
     }
 
+    public void ResetUIQuestButton()
+    {
+        quest = null;
+        buttonText.text = "";
+        gameObject.SetActive(false);
+    }
+
     void HandleClick()
     {
-        uiController.ToggleQuestDetails(quest);
+        uiController.ToggleQuestDetailsWithAnimation(quest);
     }
 }

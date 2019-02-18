@@ -14,34 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc_ID: 1
   npc_Name: RoboBobo
+  npc_Category: 0
   sentences:
-  - text: Hello there stranger, what can I do for you?
+  - text: Hello there stranger, can you help me?
     responses:
-    - replyOptions: I'm looking for a robot called Tim, do you know him?
+    - replyOptions: No sorry, I'm looking for a robot called Tim, do you know him?
       nextSentenceIndex: 1
       prerequsite: 
-      trigger: {fileID: 0}
-    - replyOptions: 'Ops, wrong robot...
-
-        *Rush away , but not too fast so it doesn''t get suspicious*'
+      isQuest: 0
+      quest: {fileID: 0}
+    - replyOptions: Yes of course dude!
       nextSentenceIndex: -1
       prerequsite: 
-      trigger: {fileID: 0}
+      isQuest: 1
+      quest: {fileID: 11400000, guid: 99841bf60c4b8b54aa675914ae3cb9c1, type: 2}
   - text: Oh Tim, I've known him since we were assembled at the robot factory. Why
       are you looking for him?
     responses:
     - replyOptions: He stole my girlfriend...
       nextSentenceIndex: 2
       prerequsite: 
-      trigger: {fileID: 0}
+      isQuest: 0
+      quest: {fileID: 0}
     - replyOptions: He owes me some money from a poker game we had a few weeks ago
       nextSentenceIndex: 2
       prerequsite: 
-      trigger: {fileID: 0}
+      isQuest: 0
+      quest: {fileID: 0}
     - replyOptions: Non of your business... I'll see if I'll find someone less chatty.
       nextSentenceIndex: 3
       prerequsite: 
-      trigger: {fileID: 0}
+      isQuest: 0
+      quest: {fileID: 0}
   - text: Oh my, he has done it again has he... Well I'll see if I can find him on
       my radar 100101110101...
     responses:
@@ -49,15 +53,18 @@ MonoBehaviour:
         I'll come back later to see if you've found him.
       nextSentenceIndex: -1
       prerequsite: 
-      trigger: {fileID: 0}
+      isQuest: 0
+      quest: {fileID: 0}
     - replyOptions: Nah thats not neccessary, I'll just have a look around for that
         bastard...
       nextSentenceIndex: -1
       prerequsite: 
-      trigger: {fileID: 0}
+      isQuest: 0
+      quest: {fileID: 0}
   - text: Very well then. I've been known to be chatty... See you around.
     responses:
     - replyOptions: '*Leave*'
       nextSentenceIndex: -1
       prerequsite: 
-      trigger: {fileID: 0}
+      isQuest: 0
+      quest: {fileID: 0}

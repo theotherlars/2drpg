@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UIQuestHandler : MonoBehaviour
 {
@@ -26,10 +25,23 @@ public class UIQuestHandler : MonoBehaviour
         }
     }
 
-    void UpdateQuestButton(Quest quest)
+    public void UpdateQuestButton(Quest quest)
     {
-        int slot = FindAvailableButton();
-        uiQuestButtons[slot].GetComponentInChildren<UIQuestButton>().UpdateUIQuestButton(quest);
+        if (quest != null)
+        {
+            int slot = FindAvailableButton();
+            print(slot);
+            uiQuestButtons[slot].GetComponentInChildren<UIQuestButton>().UpdateUIQuestButton(quest);
+        }
+    }
+
+    public void ResetQuestButton(Quest quest)
+    {
+        if (quest != null)
+        {
+            int slot = FindQuestButton(quest);
+            uiQuestButtons[slot].GetComponent<UIQuestButton>().ResetUIQuestButton();
+        }
     }
 
     void ResetUIQuestButtons()
@@ -40,8 +52,13 @@ public class UIQuestHandler : MonoBehaviour
         }
     }
 
+    int FindQuestButton(Quest quest)
+    {
+        return uiQuestButtons.FindIndex(i => i.GetComponent<UIQuestButton>().quest.id == quest.id);
+    }
+
     int FindAvailableButton()
     {
-        return uiQuestButtons.FindIndex(i => i.IsActive() == false);
+        return uiQuestButtons.FindIndex(i => i.GetComponent<UIQuestButton>().quest == null);
     }
 }

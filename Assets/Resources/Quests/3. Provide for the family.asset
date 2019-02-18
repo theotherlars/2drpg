@@ -19,7 +19,7 @@ MonoBehaviour:
     are some rabbits around here if you'd like to help us out?"
   type: 0
   pattern: 0
-  status: 1
+  status: 2
   itemsToGathers: []
   NPCToKill:
   - npcToKill: 4

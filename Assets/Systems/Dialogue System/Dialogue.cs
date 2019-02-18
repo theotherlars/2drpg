@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue/New Dialogue")]
 public class Dialogue : ScriptableObject
 {
+    [Header("NPC Information:")]
     public int npc_ID;
     public string npc_Name;
     [SerializeField]
@@ -36,5 +37,6 @@ public class Response
     [Tooltip("Type in the array indext of the Message the dialogue should go to if the player chooses this. Remeber -1 is for exit.")]
     public int nextSentenceIndex;
     public string prerequsite;
-    public Object trigger;
+    public bool isQuest;
+    public Quest quest;
 }

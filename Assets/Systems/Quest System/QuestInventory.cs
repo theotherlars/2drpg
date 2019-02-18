@@ -6,6 +6,7 @@ public class QuestInventory : MonoBehaviour
 {
     public List<Quest> activeQuests = new List<Quest>();
     QuestDatabase questDatabase;
+    UIQuestHandler uiQuestHandler;
 
     private void Start()
     {
@@ -14,43 +15,60 @@ public class QuestInventory : MonoBehaviour
 
     public void ReceiveQuest(Quest questToAdd)
     {
+        uiQuestHandler = FindObjectOfType<UIQuestHandler>();
         Quest questObject = questDatabase.GetQuest(questToAdd.id);
-        if (questObject != null && questObject.status == Quest.Quest_status.Waiting && CheckActiveQuest(questObject) != null)
+
+        bool alreadyHave = CheckActiveQuest(questObject);
+        if (questObject != null && questObject.status == Quest.Quest_status.Waiting && CheckActiveQuest(questObject) == false)
         {
             activeQuests.Add(questObject);
+            uiQuestHandler.UpdateQuestButton(questToAdd);
             questObject.status = Quest.Quest_status.InProgress;
         }
     }
 
     public void ReceiveQuest(int questIdToAdd)
     {
-        Quest questObject = questDatabase.GetQuest(questIdToAdd);
-        if (questObject != null && questObject.status == Quest.Quest_status.Waiting && CheckActiveQuest(questObject) != null)
+        uiQuestHandler = FindObjectOfType<UIQuestHandler>();
+        Quest questToAdd = questDatabase.GetQuest(questIdToAdd);
+        if (questToAdd != null && questToAdd.status == Quest.Quest_status.Waiting && CheckActiveQuest(questToAdd) == false)
         {
-            activeQuests.Add(questObject);
-            questObject.status = Quest.Quest_status.InProgress;
+            activeQuests.Add(questToAdd);
+            uiQuestHandler.UpdateQuestButton(questToAdd);
+            questToAdd.status = Quest.Quest_status.InProgress;
         }
     }
 
     public void RemoveQuest(Quest questToRemove)
     {
-        if (questToRemove != null && CheckActiveQuest(questToRemove) != null)
+        uiQuestHandler = FindObjectOfType<UIQuestHandler>();
+
+        if (questToRemove != null && CheckActiveQuest(questToRemove) == true)
         {
-            activeQuests.Remove(questToRemove);
+
+            uiQuestHandler.ResetQuestButton(questToRemove);
+
+            int slot = FindIndexOfQuest(questToRemove);
+            activeQuests.RemoveAt(slot);
+            
             if (questToRemove.status == Quest.Quest_status.InProgress || questToRemove.status == Quest.Quest_status.ReadyToDeliver)
             {
                 questToRemove.status = Quest.Quest_status.Waiting;
             }
+           
         }
     }
 
     public void RemoveQuest(int questIdToRemove)
     {
-        Quest questToRemove = CheckActiveQuest(questIdToRemove);
+        uiQuestHandler = FindObjectOfType<UIQuestHandler>();
+        Quest questToRemove = questDatabase.GetQuest(questIdToRemove);
 
-        if (questToRemove != null)
+        if (questToRemove != null && CheckActiveQuest(questIdToRemove) == true)
         {
-            activeQuests.Remove(questToRemove);
+            int slot = FindIndexOfQuest(questToRemove);
+            activeQuests.RemoveAt(slot);
+            uiQuestHandler.ResetQuestButton(questToRemove);
             if (questToRemove.status == Quest.Quest_status.InProgress || questToRemove.status == Quest.Quest_status.ReadyToDeliver)
             {
                 questToRemove.status = Quest.Quest_status.Waiting;
@@ -58,13 +76,46 @@ public class QuestInventory : MonoBehaviour
         }
     }
 
-    public Quest CheckActiveQuest(Quest questToCheck)
+    int FindIndexOfQuest(Quest quest)
     {
-        return activeQuests.Find(questObject => questObject.id == questToCheck.id);
+        return activeQuests.FindIndex(item => item.id == quest.id);
     }
 
-    public Quest CheckActiveQuest(int questIdToCheck)
+    public bool CheckActiveQuest(Quest questToCheck)
     {
-        return activeQuests.Find(questObject => questObject.id == questIdToCheck);
+        try
+        {
+            Quest quest = activeQuests.Find(questObject => questObject.id == questToCheck.id);
+            if (quest != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public bool CheckActiveQuest(int questIdToCheck)
+    {
+        try
+        {
+            Quest quest = activeQuests.Find(questObject => questObject.id == questIdToCheck);
+            if (quest != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch { return false; }
+        
     }
 }

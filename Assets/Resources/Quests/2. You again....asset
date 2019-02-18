@@ -19,7 +19,7 @@ MonoBehaviour:
     ago in this wood and I can't seem to find it, could you help me out?"
   type: 1
   pattern: 0
-  status: 1
+  status: 2
   itemsToGathers:
   - itemToGather: {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
     amountToGather: 1
