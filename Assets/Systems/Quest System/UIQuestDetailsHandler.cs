@@ -9,12 +9,14 @@ public class UIQuestDetailsHandler : MonoBehaviour
     private Quest thisQuest;
     private Animator animator;
     private QuestInventory questInventory;
+    private QuestObjectiveHandler questObjectiveHandler;
 
     [Header("Quest Details:")]
     public TextMeshProUGUI questTitle;
     public TextMeshProUGUI questDescription;
     public TextMeshProUGUI questRewardCredit;
     public List<GameObject> questRewardItems = new List<GameObject>();
+    public List<GameObject> questObjectives = new List<GameObject>();
 
     [Header("Action Buttons:")]
     public Button leftButton;
@@ -26,6 +28,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         questInventory = FindObjectOfType<QuestInventory>();
+        questObjectiveHandler = FindObjectOfType<QuestObjectiveHandler>();
     }
     
     public void UpdateQuestDetails(Quest quest)
@@ -37,6 +40,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
             questTitle.text = quest.title;
             questDescription.text = quest.description;
             questRewardCredit.text = quest.creditReward.ToString();
+            questObjectiveHandler.UpdateObjectives(quest);
 
             for (int i = 0; i < quest.itemReward.Count; i++)
             {
@@ -55,14 +59,10 @@ public class UIQuestDetailsHandler : MonoBehaviour
             {
                 DisplayComplete();
             }
-            
         }
     }
 
-    public Quest CurrentlyDisplaying()
-    {
-        return thisQuest;
-    }
+
 
     void DisplayReadyToAccept() // State 1: Player gets to choose if he wants to accept quest or not
     {
@@ -168,5 +168,10 @@ public class UIQuestDetailsHandler : MonoBehaviour
     {
         animator.SetBool("Open", false);
         gameObject.SetActive(false);
+    }
+
+    public Quest CurrentlyDisplaying()
+    {
+        return thisQuest;
     }
 }

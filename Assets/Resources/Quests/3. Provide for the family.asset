@@ -20,9 +20,13 @@ MonoBehaviour:
   type: 0
   pattern: 0
   status: 2
-  itemsToGathers: []
+  itemsToGather: []
   NPCToKill:
   - npcToKill: 4
+    amountToKill: 5
+  - npcToKill: 2
+    amountToKill: 5
+  - npcToKill: 5
     amountToKill: 5
   creditReward: 15
   itemReward:

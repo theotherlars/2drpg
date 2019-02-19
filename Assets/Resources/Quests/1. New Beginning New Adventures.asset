@@ -22,7 +22,7 @@ MonoBehaviour:
     Anyway, I''ve seem to have run out of food, could you help me find some ?'
   type: 1
   pattern: 0
-  status: 1
+  status: 2
   itemsToGathers:
   - itemToGather: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
     amountToGather: 5

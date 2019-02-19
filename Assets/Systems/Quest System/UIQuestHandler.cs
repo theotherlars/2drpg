@@ -30,7 +30,6 @@ public class UIQuestHandler : MonoBehaviour
         if (quest != null)
         {
             int slot = FindAvailableButton();
-            print(slot);
             uiQuestButtons[slot].GetComponentInChildren<UIQuestButton>().UpdateUIQuestButton(quest);
         }
     }
@@ -40,7 +39,10 @@ public class UIQuestHandler : MonoBehaviour
         if (quest != null)
         {
             int slot = FindQuestButton(quest);
-            uiQuestButtons[slot].GetComponent<UIQuestButton>().ResetUIQuestButton();
+            if(slot != -1)
+            {
+                uiQuestButtons[slot].GetComponent<UIQuestButton>().ResetUIQuestButton();
+            }
         }
     }
 
@@ -54,7 +56,19 @@ public class UIQuestHandler : MonoBehaviour
 
     int FindQuestButton(Quest quest)
     {
-        return uiQuestButtons.FindIndex(i => i.GetComponent<UIQuestButton>().quest.id == quest.id);
+        for (int i = 0; i < uiQuestButtons.Count; i++)
+        {
+            if(uiQuestButtons[i].GetComponent<UIQuestButton>().quest != null)
+            {
+                if (uiQuestButtons[i].GetComponent<UIQuestButton>().quest.id == quest.id)
+                {
+                    return i;
+                }
+            }
+            
+        }
+        return -1;
+        //return uiQuestButtons.FindIndex(i => i.GetComponent<UIQuestButton>().quest.id == quest.id);
     }
 
     int FindAvailableButton()

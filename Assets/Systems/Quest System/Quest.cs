@@ -13,7 +13,7 @@ public class Quest : ScriptableObject
     public Quest_type type;
     public Quest_pattern pattern;
     public Quest_status status;
-    public List<ItemsToGather> itemsToGathers = new List<ItemsToGather>();
+    public List<ItemsToGather> itemsToGather = new List<ItemsToGather>();
     public List<NPCsToKill> NPCToKill = new List<NPCsToKill>();
 
     [Header("Rewards (no more than 5 items):")]
