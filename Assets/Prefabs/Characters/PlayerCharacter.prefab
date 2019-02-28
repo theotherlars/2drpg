@@ -329,7 +329,7 @@ MonoBehaviour:
   characterItems: []
   itemDatabase: {fileID: 0}
   uiInventory: {fileID: 0}
-  characterMoney: 0
+  characterMoney: 225
 --- !u!114 &3115873752108822320
 MonoBehaviour:
   m_ObjectHideFlags: 0

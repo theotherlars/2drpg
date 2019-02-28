@@ -19,15 +19,17 @@ MonoBehaviour:
     are some rabbits around here if you'd like to help us out?"
   type: 0
   pattern: 0
-  status: 2
+  status: 1
   itemsToGather: []
   NPCToKill:
-  - npcToKill: 4
-    amountToKill: 5
-  - npcToKill: 2
-    amountToKill: 5
-  - npcToKill: 5
-    amountToKill: 5
+  - npcToKill: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4, type: 2}
+    amountToKill: 3
+    currentKill: 0
+    finished: 0
+  - npcToKill: {fileID: 11400000, guid: bf4767f6606ae9442a1f03d6a2e15b1a, type: 2}
+    amountToKill: 3
+    currentKill: 0
+    finished: 0
   creditReward: 15
   itemReward:
   - {fileID: 11400000, guid: e033480c82c7eba40b2b2243e9b6c032, type: 2}

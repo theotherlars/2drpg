@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Quest",menuName = "Quest System/ Create New Quest",order = 60)]
+[CreateAssetMenu(fileName = "New Quest",menuName = "Own Menu/Quest/ Create New Quest",order = 10)]
 public class Quest : ScriptableObject
 {
     [Header("Quest Information:")]
@@ -44,12 +44,16 @@ public class ItemsToGather
 [System.Serializable]
 public class NPCsToKill
 {
-    public int npcToKill;
+    public NPC npcToKill;
     public int amountToKill;
+    public int currentKill;
+    public bool finished;
 
-    public NPCsToKill(int npc, int amount)
+    public NPCsToKill(NPC npc, int amount, int currentAmount, bool finished)
     {
         npcToKill = npc;
         amountToKill = amount;
+        currentKill = currentAmount;
+        this.finished = finished;
     }
 }

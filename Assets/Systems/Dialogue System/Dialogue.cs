@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue/New Dialogue")]
+[CreateAssetMenu(fileName = "New Dialogue", menuName = "Own Menu/Dialogue/New Dialogue", order = 20)]
 public class Dialogue : ScriptableObject
 {
     [Header("NPC Information:")]

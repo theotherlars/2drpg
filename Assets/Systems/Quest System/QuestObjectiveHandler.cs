@@ -98,11 +98,17 @@ public class QuestObjectiveHandler : MonoBehaviour
             int slot = FindObjective();
 
             // Fix the NPCToKill name when a database of all npcs are made
-            string npcToKill = thisQuest.NPCToKill[i].npcToKill.ToString();
+            string npcToKill = thisQuest.NPCToKill[i].npcToKill.name;
             int amountToKill = thisQuest.NPCToKill[i].amountToKill;
-            string text = String.Format("Kill {0} : {1} / {2}",npcToKill ,"0" ,amountToKill);
+            int currentKill = thisQuest.NPCToKill[i].currentKill;
+            string text = String.Format("Kill {0} : {1} / {2}",npcToKill ,currentKill ,amountToKill);
             objectives[i].SetActive(true);
             objectives[i].GetComponentInChildren<TextMeshProUGUI>().text = text;
+
+            if (thisQuest.NPCToKill[i].finished)
+            {
+                objectives[i].GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Bold;
+            }
         }
     }
 

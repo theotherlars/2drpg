@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class AggroDetection : MonoBehaviour
 {
-    RobotEnemyController parent;
+    EnemyController parent;
     // Start is called before the first frame update
     void Start()
     {
-        parent = GetComponentInParent<RobotEnemyController>();
+        parent = GetComponentInParent<EnemyController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+
+        if (player != null && parent.idle)
         {
-            parent.chasePlayer = true;
+            parent.InitiateChase(collision.gameObject);
         }
     }
 }

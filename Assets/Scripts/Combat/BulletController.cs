@@ -45,10 +45,11 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
         //Deals damage to enemy and destroys bullet
-        if (other.gameObject.CompareTag("Hostile"))
+        if (enemy != null)
         {
-            other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
+            enemy.TakeDamage(damageToGive);
             Destroy(gameObject);
         }
     }

@@ -5,12 +5,13 @@ using UnityEngine;
 public class RobotEnemyController : MonoBehaviour
 {
     private PlayerController thePlayer;
+    public NPC npc;
 
     private Rigidbody2D myRb;
     private EnemyHealthManager enemyHealthManager;
 
-    private static int currentHealth;
-    private static int maxHealth = 100;
+    private static float currentHealth;
+    private static float maxHealth = 100;
 
     public float moveSpeed;
     
@@ -29,13 +30,12 @@ public class RobotEnemyController : MonoBehaviour
         thePlayer = FindObjectOfType<PlayerController>(); //Finds player object
         chasePlayer = false;
 
-        //GameObject enemyRobot = GameObject.Find("EnemyRobot");
-
         // Get max health from health manager
         enemyHealthManager = GetComponent<EnemyHealthManager>();
-        maxHealth = enemyHealthManager.maxHealth;
+        //maxHealth = enemyHealthManager.maxHealth;
+        maxHealth = npc.maxHealth;
         
-
+        moveSpeed = npc.walkingSpeed;
         timeBetweenHitsCounter = 0;
 
     }
@@ -56,7 +56,7 @@ public class RobotEnemyController : MonoBehaviour
         //Increases speed at half health
         if (currentHealth <= (maxHealth/2))
         {
-            moveSpeed = 2;
+            moveSpeed = npc.runningSpeed;
         }
     }
 

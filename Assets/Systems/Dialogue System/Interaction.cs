@@ -42,10 +42,10 @@ public class Interaction : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        /*if (Input.GetKeyDown(KeyCode.O))
         {
             uIController.ToggleQuestList();
-        }
+        }*/
     }
 
     private void LateUpdate()

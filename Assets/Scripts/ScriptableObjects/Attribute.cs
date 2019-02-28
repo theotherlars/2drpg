@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Attribute",menuName = "New Attribute",order = 52)]
+[CreateAssetMenu(fileName = "New Attribute",menuName = "Own Menu/Items/New Attribute",order = 41)]
 
 public class Attribute: ScriptableObject
 {

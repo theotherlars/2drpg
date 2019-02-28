@@ -53,6 +53,11 @@ public class UIController : MonoBehaviour
             ToggleCharacterPanel();
         }
 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            this.ToggleQuestList();
+        }
+
         playerHP.text = "HP: " + playerController.player_HealthPoints.ToString();
     }
 

@@ -48,9 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbcfb3f9e1c3c34994426daba1a5226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  errorText: {fileID: 0}
+  shopController: {fileID: 0}
   inventoryPanel: {fileID: 0}
   inventorySlots: {fileID: 0}
   characterPanel: {fileID: 0}
   testButtons: {fileID: 0}
+  confirmationDialogue: {fileID: 0}
+  dialoguePanel: {fileID: 0}
+  questActiveList: {fileID: 0}
+  uiQuestDetails: {fileID: 0}
   playerHP: {fileID: 0}
   deathMenu: {fileID: 0}

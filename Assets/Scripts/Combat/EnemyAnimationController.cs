@@ -11,7 +11,7 @@ public class EnemyAnimationController : MonoBehaviour
     Vector2 positionLastFrame;
     public ParticleSystem lootParticles;
     public ParticleSystem damageTakenParticles;
-    EnemyHealthManager enemyHealthManager;
+    EnemyController enemyController;
     
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class EnemyAnimationController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         lootParticles.gameObject.SetActive(false);
-        enemyHealthManager = GetComponent<EnemyHealthManager>();
+        enemyController = GetComponent<EnemyController>();
     }
     
     // Update is called once per frame
@@ -32,13 +32,13 @@ public class EnemyAnimationController : MonoBehaviour
     private void AnimateMovement()
     {
         velocity = rigidbody2D.velocity;
-        if (velocity != Vector2.zero && !enemyHealthManager.IsDead)
+        if (velocity != Vector2.zero && !enemyController.isDead)
         {
             animator.SetBool("IsWalking", true);
             animator.SetFloat("WalkingHorizontal", velocity.x);
             animator.SetFloat("WalkingVertical", velocity.y);
         }
-        else if (enemyHealthManager.IsDead)
+        else if (enemyController.isDead)
         {
             animator.SetBool("IsWalking", false);
             animator.SetBool("Dead", true);

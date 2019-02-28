@@ -8,7 +8,7 @@ using UnityEngine;
 // Every item is its own file with variables and reference to a sprite icon
 // Here we need to add more field if we want more details per item
 
-[CreateAssetMenu(fileName = "New Item",menuName = "New Game Item",order =51)]
+[CreateAssetMenu(fileName = "New Item",menuName = "Own Menu/Items/New Game Item",order = 40)]
 public class Item_SO : ScriptableObject
 {
     [Header("Required:")]

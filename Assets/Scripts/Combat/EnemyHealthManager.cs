@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour
 {
-
+    GameObjectEvent onDeath;
     public int maxHealth;
-
-    [HideInInspector]
     public int currentHealth;
 
     private bool isDead;
@@ -23,12 +21,6 @@ public class EnemyHealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Kills enemy
-        if (currentHealth <= 0)
-        {
-            isDead = true;
-            //Destroy(this.gameObject);
-        }
     }
 
     //Deals damage
@@ -40,8 +32,24 @@ public class EnemyHealthManager : MonoBehaviour
             {
                 GetComponent<EnemyAnimationController>().DamageTaken();
             }
-            currentHealth -= damage;
+
+            if (currentHealth > 0)
+            {
+                currentHealth -= damage;
+            }
+
+            if (currentHealth <= 0)
+            {
+                Died();
+            }
+            
         }
         
+    }
+
+    public void Died()
+    {
+        isDead = true;
+        onDeath.Raise(this.gameObject);
     }
 }

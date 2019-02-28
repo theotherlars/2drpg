@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class WeaponController : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButton("Fire1"))
+
+        if (Input.GetButton("Fire1") && !IsPointerOverUIObject())
         {
             isFiring = true;
         }
@@ -43,5 +45,16 @@ public class WeaponController : MonoBehaviour
        
         //...instantiating the bullet from the firepoint
         BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
+    }
+
+    private bool IsPointerOverUIObject()
+    {
+        var eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+        {
+            position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
+        };
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }
