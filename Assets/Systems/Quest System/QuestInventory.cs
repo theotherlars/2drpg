@@ -76,6 +76,26 @@ public class QuestInventory : MonoBehaviour
         }
     }
 
+    public void ResetQuest(Quest quest)
+    {
+        int slot = FindIndexOfQuest(quest);
+        if (slot >= 0)
+        {
+            for (int i = 0; i < quest.itemsToGather.Count; i++)
+            {
+                quest.itemsToGather[i].currentGathered = 0;
+            }
+
+            for (int i = 0; i < quest.NPCToKill.Count; i++)
+            {
+                quest.NPCToKill[i].finished = false;
+                quest.NPCToKill[i].currentKill = 0;
+            }
+
+            quest.status = Quest.Quest_status.Waiting;
+        }
+    }
+
     int FindIndexOfQuest(Quest quest)
     {
         return activeQuests.FindIndex(item => item.id == quest.id);

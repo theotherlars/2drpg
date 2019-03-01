@@ -33,11 +33,15 @@ public class ItemsToGather
 {
     public Item_SO itemToGather;
     public int amountToGather;
+    public int currentGathered;
+    public bool finished;
 
-    public ItemsToGather(Item_SO item, int amount)
+    public ItemsToGather(Item_SO item, int amount, int current, bool finished)
     {
         itemToGather = item;
         amountToGather = amount;
+        currentGathered = current;
+        this.finished = finished;
     }
 }
 

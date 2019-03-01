@@ -1168,6 +1168,8 @@ MonoBehaviour:
   slotPanel: {fileID: 3733094825352036154}
   numberOfSlots: 16
   currencyDisplay: {fileID: 6508121853562064330}
+  OnItemAdd: {fileID: 11400000, guid: 929c1c7848e3fc7448a8a63fa030014f, type: 2}
+  OnItemRemove: {fileID: 11400000, guid: a2df1372596ae234a86bc2df2e3a200e, type: 2}
 --- !u!1 &6508121853562064330
 GameObject:
   m_ObjectHideFlags: 0

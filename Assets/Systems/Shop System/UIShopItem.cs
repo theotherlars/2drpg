@@ -250,23 +250,46 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         if (inventory.CheckMoney() >= shopItem.price)
         {
+            bool successfull = false;
+
             if (item.IsStackable)
             {
                 for (int i = 0; i < shopItem.stackAmount; i++)
                 {
-                    inventory.GiveItem(item.ItemID);
-                    //uIInventory.AddNewItem(item);
+                    if (uIInventory.CheckIfFreeSpaceForStack(shopItem.shopItem, shopItem.stackAmount))
+                    {
+                        inventory.GiveItem(item.ItemID);
+                        successfull = true;
+                    }
+                    else
+                    {
+                        uIController.LoadErrorText("Inventory is full");
+                        successfull = false;
+                    }
                 }
             }
             else
             {
-                inventory.GiveItem(item.ItemID);
+                if (!uIInventory.CheckIfInventoryIsFull())
+                {
+                    inventory.GiveItem(item.ItemID);
+                    successfull = true;
+                }
+                else
+                {
+                    uIController.LoadErrorText("Inventory is full");
+                    successfull = false;
+                }
             }
-            inventory.DecreaseMoney(shopItem.price);
+
+            if (successfull)
+            {
+                inventory.DecreaseMoney(shopItem.price);
+            }
         }
         else
         {
-            string text = "You don't have enough money...";
+            string text = "You don't have enough credit...";
             uIController.LoadErrorText(text);
         }
     }

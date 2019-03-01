@@ -330,6 +330,8 @@ MonoBehaviour:
   itemDatabase: {fileID: 0}
   uiInventory: {fileID: 0}
   characterMoney: 225
+  OnItemAdd: {fileID: 11400000, guid: 929c1c7848e3fc7448a8a63fa030014f, type: 2}
+  OnItemRemove: {fileID: 11400000, guid: a2df1372596ae234a86bc2df2e3a200e, type: 2}
 --- !u!114 &3115873752108822320
 MonoBehaviour:
   m_ObjectHideFlags: 0

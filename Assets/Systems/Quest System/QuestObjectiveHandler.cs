@@ -82,12 +82,16 @@ public class QuestObjectiveHandler : MonoBehaviour
             ItemDatabase itemDatabase = FindObjectOfType<ItemDatabase>();
             Item_SO itemToGather = itemDatabase.GetItem(thisQuest.itemsToGather[i].itemToGather.ItemID);
             int amountToGather = thisQuest.itemsToGather[i].amountToGather;
-            int progress = 0;
+            int currentGathered = thisQuest.itemsToGather[i].currentGathered;
 
-            string text = String.Format("Gather {0} : {1} / {2}", itemToGather.ItemTitle, progress, amountToGather);
+            string text = String.Format("Gather {0} : {1} / {2}", itemToGather.ItemTitle, currentGathered, amountToGather);
 
             objectives[i].SetActive(true);
             objectives[i].GetComponentInChildren<TextMeshProUGUI>().text = text;
+            if (thisQuest.itemsToGather[i].finished)
+            {
+                objectives[i].GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Bold;
+            }
         }
     }
 
@@ -117,6 +121,7 @@ public class QuestObjectiveHandler : MonoBehaviour
         for (int i = 0; i < objectives.Count; i++)
         {
             objectives[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+            objectives[i].GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Normal;
             objectives[i].SetActive(false);
         }
     }

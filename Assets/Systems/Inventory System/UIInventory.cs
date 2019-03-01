@@ -17,7 +17,6 @@ public class UIInventory : MonoBehaviour
     private Image backgroundImage;
     private TextMeshProUGUI moneyText;
     public GameObject currencyDisplay;
-    
 
     private void Awake()
     {
@@ -85,6 +84,7 @@ public class UIInventory : MonoBehaviour
             UpdateSlot(uiItems.FindIndex(i => i.item == null), item);
         }
     }
+
     public void RemoveItem(Item_SO item)
     {
         if (item.IsStackable)
@@ -95,5 +95,54 @@ public class UIInventory : MonoBehaviour
         {
             UpdateSlot(uiItems.FindIndex(i => i.item == item), null);
         }
+    }
+
+    public bool CheckIfFreeSpaceForStack(Item_SO item, int amount)
+    {
+        if (item.IsStackable)
+        {
+            for (int i = 0; i < uiItems.Count; i++)
+            {
+                if (uiItems[i].item == item)
+                {
+                    if ((uiItems[i].stackedItems.Count + amount) <= item.MaxStack)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (uiItems[i].item == null) { return true; }
+                }
+            }
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CheckIfInventoryIsFull()
+    {
+        int freeSlots = 0;
+
+        for (int i = 0; i < uiItems.Count; i++)
+        {
+            if (uiItems[i].item == null)
+            {
+                freeSlots++;
+            }
+        }
+
+        if (freeSlots > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
     }
 }

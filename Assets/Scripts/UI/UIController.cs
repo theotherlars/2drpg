@@ -160,6 +160,11 @@ public class UIController : MonoBehaviour
                 uIQuestHandler.AnimateOpenWindow();
                 uIQuestHandler.UpdateQuestDetails(quest);
             }
+            else if (uiQuestDetails.activeInHierarchy && quest.id != uIQuestHandler.thisQuest.id)
+            {
+                uIQuestHandler.AnimateOpenWindow();
+                uIQuestHandler.UpdateQuestDetails(quest);
+            }
             else
             {
                 uIQuestHandler.CloseWithAnimation();

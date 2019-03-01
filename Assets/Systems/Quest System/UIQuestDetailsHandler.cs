@@ -6,7 +6,7 @@ using TMPro;
 
 public class UIQuestDetailsHandler : MonoBehaviour
 {
-    private Quest thisQuest;
+    public Quest thisQuest;
     private Animator animator;
     private QuestInventory questInventory;
     private QuestObjectiveHandler questObjectiveHandler;
@@ -39,7 +39,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
             ResetRewardItems();
             questTitle.text = quest.title;
             questDescription.text = quest.description;
-            questRewardCredit.text = quest.creditReward.ToString();
+            questRewardCredit.text = string.Format("Credits: {0}",quest.creditReward.ToString());
             questObjectiveHandler.UpdateObjectives(quest);
 
             for (int i = 0; i < quest.itemReward.Count; i++)
@@ -132,11 +132,13 @@ public class UIQuestDetailsHandler : MonoBehaviour
         }
         else if (currentQuest.status == Quest.Quest_status.InProgress)
         {
+            questInventory.ResetQuest(currentQuest);
             questInventory.RemoveQuest(currentQuest);
             DisableWindow();
         }
         else if (currentQuest.status == Quest.Quest_status.ReadyToDeliver)
         {
+            questInventory.ResetQuest(currentQuest);
             questInventory.RemoveQuest(currentQuest);
             DisableWindow();
         }

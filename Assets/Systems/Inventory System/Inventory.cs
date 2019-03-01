@@ -16,8 +16,12 @@ public class Inventory : MonoBehaviour
 
     public int characterMoney;
 
+    public GameEvent OnItemAdd;
+    public GameEvent OnItemRemove;
+
     private void Start()
     {
+        
         GiveItem(1); // FOR TESTING
         GiveItem(2); // FOR TESTING
         GiveItem(3); // FOR TESTING
@@ -30,20 +34,32 @@ public class Inventory : MonoBehaviour
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id
     {
         Item_SO itemToAdd = itemDatabase.GetItem(id);
-        if (itemToAdd != null)
+        if (itemToAdd != null && !uiInventory.CheckIfInventoryIsFull())
         {
             characterItems.Add(itemToAdd);
             uiInventory.AddNewItem(itemToAdd);
+            OnItemAdd.Raised();
+        }
+        else if (uiInventory.CheckIfInventoryIsFull())
+        {
+            UIController uiController = FindObjectOfType<UIController>();
+            uiController.LoadErrorText("Inventory is full");
         }
     }
 
     public void GiveItem(string itemTitle) // Adds item from ItemDatabase to characterItems list by title
     {
         Item_SO itemToAdd = itemDatabase.GetItem(itemTitle);
-        if (itemToAdd != null)
+        if (itemToAdd != null && !uiInventory.CheckIfInventoryIsFull())
         {
             characterItems.Add(itemToAdd);
             uiInventory.AddNewItem(itemToAdd);
+            OnItemAdd.Raised();
+        }
+        else if (uiInventory.CheckIfInventoryIsFull())
+        {
+            UIController uiController = FindObjectOfType<UIController>();
+            uiController.LoadErrorText("Inventory is full");
         }
     }
 
@@ -59,6 +75,7 @@ public class Inventory : MonoBehaviour
         {
             characterItems.Remove(itemToRemove);
             uiInventory.RemoveItem(itemToRemove);
+            OnItemRemove.Raised();
         }
     }
 

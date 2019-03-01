@@ -37,7 +37,7 @@ public class ResponsButton : MonoBehaviour
             Quest quest = FindObjectOfType<QuestDatabase>().GetQuest(questToGive);
             if (quest != null)
             {
-                if (quest.status == Quest.Quest_status.Waiting)
+                if (quest.status == Quest.Quest_status.Waiting || quest.status == Quest.Quest_status.InProgress || quest.status == Quest.Quest_status.ReadyToDeliver)
                 {
                     FindObjectOfType<UIController>().ToggleQuestDetailsWithAnimation(quest);
                 }
