@@ -254,18 +254,18 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
             if (item.IsStackable)
             {
-                for (int i = 0; i < shopItem.stackAmount; i++)
+                if (uIInventory.CheckIfFreeSpaceForStack(shopItem.shopItem, shopItem.stackAmount))
                 {
-                    if (uIInventory.CheckIfFreeSpaceForStack(shopItem.shopItem, shopItem.stackAmount))
+                    for (int i = 0; i < shopItem.stackAmount; i++)
                     {
-                        inventory.GiveItem(item.ItemID);
-                        successfull = true;
+                            inventory.GiveItem(item.ItemID);
+                            successfull = true;
                     }
-                    else
-                    {
-                        uIController.LoadErrorText("Inventory is full");
-                        successfull = false;
-                    }
+                }
+                else
+                {
+                    uIController.LoadErrorText("Inventory is full");
+                    successfull = false;
                 }
             }
             else
