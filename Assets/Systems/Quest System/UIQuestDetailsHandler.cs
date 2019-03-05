@@ -91,6 +91,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
     void UpdateItemReward(Item_SO item, int slot)
     {
         questRewardItems[slot].GetComponentInChildren<QuestItemReward>().UpdateReward(item);
+        questRewardItems[slot].GetComponent<QuestItemRewardSelection>().ResetSelection();
         questRewardItems[slot].SetActive(true);
     }
 

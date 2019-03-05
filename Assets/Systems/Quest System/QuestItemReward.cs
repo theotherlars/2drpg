@@ -14,10 +14,13 @@ public class QuestItemReward : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public TextMeshProUGUI stackText;
     
     private Tooltip tooltip;
+    private Outline outline;
 
     private void Awake()
     {
         tooltip = FindObjectOfType<Tooltip>();
+        outline = GetComponentInParent<Outline>();
+        outline.enabled = false; 
     }
 
     public void UpdateReward(Item_SO item)
@@ -85,4 +88,6 @@ public class QuestItemReward : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         tooltip.gameObject.GetComponent<Image>().enabled = false;
     }
+
+
 }
