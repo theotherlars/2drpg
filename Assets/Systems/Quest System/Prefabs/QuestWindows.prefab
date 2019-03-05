@@ -4153,9 +4153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c52781203243b49aa4335b8fe369f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisQuest: {fileID: 0}
   questTitle: {fileID: 6942708667726297819}
   questDescription: {fileID: 1948325176906669146}
   questRewardCredit: {fileID: 4910397310356373013}
+  questRewardOption: {fileID: 8765631731944682304}
   questRewardItems:
   - {fileID: 1554095128860527736}
   - {fileID: 5160755403155493502}

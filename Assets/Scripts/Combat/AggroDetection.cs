@@ -15,7 +15,7 @@ public class AggroDetection : MonoBehaviour
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
 
-        if (player != null && parent.idle)
+        if (player != null && parent.idle && !parent.isDead)
         {
             parent.InitiateChase(collision.gameObject);
         }

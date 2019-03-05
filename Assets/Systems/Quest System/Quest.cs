@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Quest",menuName = "Own Menu/Quest/ Create New Quest",order = 10)]
+[CreateAssetMenu(fileName = "New Quest", menuName = "Own Menu/Quest/ Create New Quest", order = 10)]
 public class Quest : ScriptableObject
 {
     [Header("Quest Information:")]
@@ -18,16 +18,16 @@ public class Quest : ScriptableObject
 
     [Header("Rewards (no more than 5 items):")]
     public int creditReward;
-    public List<Item_SO> itemReward = new List<Item_SO>();
+    [Tooltip("'Get All Rewards' = Player gets all items, 'ChooseOne' = Player gets to choose one item")]
+    public Quest_Reward_Decision itemRewardOptions;
+    public List<ItemReward> itemReward = new List<ItemReward>();
 
-    //
     // Enums
-    //
     public enum Quest_type { Kill, Gather, FedEx, Defend, Activate, Escort }
     public enum Quest_pattern { Single, Chain, SideQuest, Dilemma, ChooseOne }
     public enum Quest_status { NotEligible, Waiting, InProgress, ReadyToDeliver, Completed }
+    public enum Quest_Reward_Decision { GetAllRewards, ChooseOne }
 }
-
 [System.Serializable]
 public class ItemsToGather
 {
@@ -59,5 +59,18 @@ public class NPCsToKill
         amountToKill = amount;
         currentKill = currentAmount;
         this.finished = finished;
+    }
+}
+
+[System.Serializable]
+public class ItemReward
+{
+    public Item_SO itemReward;
+    public int itemStack;
+
+    public ItemReward(Item_SO item, int stackAmount)
+    {
+        itemReward = item;
+        itemStack = stackAmount;
     }
 }

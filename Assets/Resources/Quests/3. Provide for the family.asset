@@ -19,18 +19,27 @@ MonoBehaviour:
     are some rabbits around here if you'd like to help us out?"
   type: 0
   pattern: 0
-  status: 1
+  status: 4
   itemsToGather: []
   NPCToKill:
   - npcToKill: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4, type: 2}
     amountToKill: 3
-    currentKill: 0
-    finished: 0
+    currentKill: 3
+    finished: 1
   - npcToKill: {fileID: 11400000, guid: bf4767f6606ae9442a1f03d6a2e15b1a, type: 2}
     amountToKill: 3
-    currentKill: 0
-    finished: 0
+    currentKill: 3
+    finished: 1
   creditReward: 15
+  itemRewardOptions: 0
   itemReward:
-  - {fileID: 11400000, guid: e033480c82c7eba40b2b2243e9b6c032, type: 2}
-  - {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+  - itemReward: {fileID: 11400000, guid: 0b9100c1ee09505478b26a430430586f, type: 2}
+    itemStack: 0
+  - itemReward: {fileID: 11400000, guid: 7661f72a5aca194449918494a49da75d, type: 2}
+    itemStack: 0
+  - itemReward: {fileID: 11400000, guid: a8a1467eeca20994fb8ee89eeae44000, type: 2}
+    itemStack: 0
+  - itemReward: {fileID: 11400000, guid: 1bfa59bb537113b44aaf0d65615fc74a, type: 2}
+    itemStack: 0
+  - itemReward: {fileID: 11400000, guid: 44dd7a9646f47824c832f3b936269bf5, type: 2}
+    itemStack: 0

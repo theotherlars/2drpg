@@ -85,12 +85,12 @@ public class EnemyController : MonoBehaviour
 
     private void Chase()
     {
-        if (currentHealth > (npc.maxHealth / 2) && chase)
+        if (currentHealth > (npc.maxHealth / 2) && chase && !isDead)
         {
             movementSpeed = npc.walkingSpeed;
             transform.position = Vector2.MoveTowards(transform.position, chaseObject.position, movementSpeed * Time.deltaTime);
         }
-        else if (currentHealth <= (npc.maxHealth / 2) && chase)
+        else if (currentHealth <= (npc.maxHealth / 2) && chase && !isDead)
         {
             movementSpeed = npc.runningSpeed;
             transform.position = Vector2.MoveTowards(transform.position, chaseObject.position, movementSpeed * Time.deltaTime);

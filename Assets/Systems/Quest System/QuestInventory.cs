@@ -96,6 +96,17 @@ public class QuestInventory : MonoBehaviour
         }
     }
 
+    public void CompleteQuest(Quest quest)
+    {
+        int slot = FindIndexOfQuest(quest);
+        if (slot >= 0)
+        {
+            activeQuests.RemoveAt(slot);
+            uiQuestHandler.ResetQuestButton(quest);
+            quest.status = Quest.Quest_status.Completed;
+        }
+    }
+
     int FindIndexOfQuest(Quest quest)
     {
         return activeQuests.FindIndex(item => item.id == quest.id);
