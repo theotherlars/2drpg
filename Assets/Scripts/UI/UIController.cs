@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         deathMenu.SetActive(false);
-        inventoryPanel.SetActive(false);
+        //inventoryPanel.SetActive(false);
         inventorySlots.SetActive(false);
         characterPanel.SetActive(false);
         testButtons.SetActive(false);
@@ -76,7 +76,10 @@ public class UIController : MonoBehaviour
 
     public void ToggleInventoryUI()
     {
-        inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
+        UIInventory uiInventory = FindObjectOfType<UIInventory>();
+        uiInventory.backgroundImage.enabled = !uiInventory.backgroundImage.enabled;
+        uiInventory.currencyDisplay.SetActive(!uiInventory.currencyDisplay.activeSelf);
+        //inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
         inventorySlots.SetActive(!inventorySlots.activeSelf);
         testButtons.SetActive(!testButtons.activeSelf);
     }

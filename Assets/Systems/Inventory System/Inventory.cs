@@ -96,4 +96,6 @@ public class Inventory : MonoBehaviour
     {
         return characterMoney;
     }
+
+
 }

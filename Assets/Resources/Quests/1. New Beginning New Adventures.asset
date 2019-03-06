@@ -26,14 +26,17 @@ MonoBehaviour:
   itemsToGather:
   - itemToGather: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
     amountToGather: 5
-    currentGathered: 0
-    finished: 1
+    currentGathered: 4
+    finished: 0
   - itemToGather: {fileID: 11400000, guid: cc02d8a7e06460d469cfc2f528865500, type: 2}
     amountToGather: 8
-    currentGathered: 0
+    currentGathered: 4
     finished: 0
   NPCToKill: []
   creditReward: 25
+  itemRewardOptions: 0
   itemReward:
-  - {fileID: 11400000, guid: 1bfa59bb537113b44aaf0d65615fc74a, type: 2}
-  - {fileID: 11400000, guid: 0b9100c1ee09505478b26a430430586f, type: 2}
+  - itemReward: {fileID: 11400000, guid: e033480c82c7eba40b2b2243e9b6c032, type: 2}
+    itemStack: 0
+  - itemReward: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+    itemStack: 0

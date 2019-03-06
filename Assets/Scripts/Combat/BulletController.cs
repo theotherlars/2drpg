@@ -9,15 +9,15 @@ public class BulletController : MonoBehaviour
     public Rigidbody2D rb;
     public float lifetime;
     public int damageToGive;
-
-    public PlayerController thePlayer;
+    Animator animator;
+    PlayerController thePlayer;
 
     // Start is called before the first frame update
     void Start()
     {
 
         thePlayer = FindObjectOfType<PlayerController>();
-
+        animator = GetComponent<Animator>();
         //...setting shoot direction
         Vector3 shootDirection;
         shootDirection = Input.mousePosition;
@@ -39,7 +39,7 @@ public class BulletController : MonoBehaviour
 
         if (lifetime <= 0)
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
     }
 
@@ -50,9 +50,13 @@ public class BulletController : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(damageToGive);
-            Destroy(gameObject);
+            animator.SetBool("explode",true);
+            
+            //Destroy(gameObject);
         }
     }
+
+    public void DestroyBullet() { Destroy(gameObject); }
 }
 
 

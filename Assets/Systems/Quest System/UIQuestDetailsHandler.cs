@@ -106,6 +106,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
 
     void UpdateItemReward(Item_SO item, int stack, int slot)
     {
+
         questRewardItems[slot].GetComponentInChildren<QuestItemReward>().UpdateReward(item, stack); // update the itemreward slot, stack is default 0 but changes if stack is > 0
         questRewardItems[slot].GetComponent<QuestItemRewardSelection>().ResetSelection(); // Resets the item reward selection so that it dosn't show from last time window was open
         questRewardItems[slot].SetActive(true); // sets the "slot" active in the correct spot
@@ -169,11 +170,6 @@ public class UIQuestDetailsHandler : MonoBehaviour
 
                     FindObjectOfType<UIController>().LoadErrorText(text); // Write error message if there is not chosen a reward
                 }
-                // TODO
-                // If the quest has reward items, then make a condition to continue that the player
-                // selectes a reward.
-                // If reward is chosen, then give the reward(s), change status to Completed, 
-                // If not, write error message "Please choose a reward" and return null.
             }
             else if (currentQuest.itemRewardOptions == Quest.Quest_Reward_Decision.GetAllRewards && currentQuest.itemReward.Count != 0) // if the item reward decision is correct and item reward is not null
             {

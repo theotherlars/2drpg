@@ -347,3 +347,5 @@ MonoBehaviour:
   activeQuests:
   - {fileID: 11400000, guid: 2dd1fb1b294bda742b56c1b9d7ab698c, type: 2}
   - {fileID: 11400000, guid: 4d1c35919ea499a4ebf1bf1baea4a99c, type: 2}
+  questInventoryStorage: {fileID: 11400000, guid: abeee3d6f82b08c4fb432f89866a6e28,
+    type: 2}

@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.02922988, g: 1, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 0, b: 0.931026, a: 1}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!114 &3670144876710695533
@@ -110,6 +110,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  rewardSelected: 0
+  rewardSelectedStack: 0
 --- !u!1 &5644756037115610876
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,8 +201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   image: {fileID: 8494995704112233205}
-  itemStack: []
   stackText: {fileID: 5227810844925211946}
+  stackCount: 0
 --- !u!1 &7342835910898055129
 GameObject:
   m_ObjectHideFlags: 0

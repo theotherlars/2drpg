@@ -7,11 +7,26 @@ public class NPC : ScriptableObject
 {
     public int id;
     public string name;
+    public NPC_Type type;
     public bool killable;
     public float maxHealth;
     public float walkingSpeed;
     public float runningSpeed;
-    public NPC_Type type;
-    
-    public enum NPC_Type{Shop,Dialogue,QuestGiver,Enemy,Other}
+    public List<NPCAbility> abilities = new List<NPCAbility>();
+
+
+    public enum NPC_Type{Enemy,Dialogue,QuestGiver,Shop,Other}
+}
+
+[System.Serializable]
+public class NPCAbility
+{
+    public Ability ability;
+    public Animation animation;
+
+    public NPCAbility(Ability ability, Animation animation)
+    {
+        this.ability = ability;
+        this.animation = animation;
+    }
 }

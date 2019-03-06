@@ -19,13 +19,19 @@ MonoBehaviour:
     ago in this wood and I can't seem to find it, could you help me out?"
   type: 1
   pattern: 0
-  status: 1
+  status: 2
   itemsToGather:
   - itemToGather: {fileID: 11400000, guid: bc11cbbf6515f6f43a88e7f3b190afaa, type: 2}
     amountToGather: 5
+    currentGathered: 0
+    finished: 0
   - itemToGather: {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
     amountToGather: 1
+    currentGathered: 0
+    finished: 0
   NPCToKill: []
   creditReward: 25
+  itemRewardOptions: 0
   itemReward:
-  - {fileID: 11400000, guid: 7661f72a5aca194449918494a49da75d, type: 2}
+  - itemReward: {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
+    itemStack: 0

@@ -14,7 +14,7 @@ public class UIInventory : MonoBehaviour
     public Transform slotPanel;
     public int numberOfSlots = 16;
 
-    private Image backgroundImage;
+    public Image backgroundImage;
     private TextMeshProUGUI moneyText;
     public GameObject currencyDisplay;
 
@@ -22,6 +22,7 @@ public class UIInventory : MonoBehaviour
     {
         backgroundImage = GetComponent<Image>();
         backgroundImage.enabled = false;
+        currencyDisplay.SetActive(false);
         inventory = FindObjectOfType<Inventory>();
 
         for (int i = 0; i < numberOfSlots; i++)
@@ -31,10 +32,12 @@ public class UIInventory : MonoBehaviour
             uiItems.Add(instance.GetComponentInChildren<UIItem>());
             uiItems[i].UpdateItem(null);
         }
-        backgroundImage.enabled = true;
-        currencyDisplay.SetActive(true);
+        //backgroundImage.enabled = true;
+        //currencyDisplay.SetActive(true);
+
         moneyText = currencyDisplay.GetComponentInChildren<TextMeshProUGUI>();
-        inventory.IncreaseMoney(50);
+
+        inventory.IncreaseMoney(50); // This is just for TESTING!!
     }
 
     private void LateUpdate()
@@ -144,5 +147,22 @@ public class UIInventory : MonoBehaviour
             return true;
         }
         
+    }
+
+    public bool SpaceLeftInInventory(Item_SO itemToCheck, int stackAmount = 0)
+    {
+        // Return true if there is space left in inventory
+        // Return false if there isn't anymore space in inventory
+        // 1 - Handle nonStackable items (check if there is one slot free)
+        // 2 - Handle stacable items (check if there is any free slot, if there is one, put the itemstack there, if not, check through all the
+        //      stackable items that matches the item ID, and see if there is stack place left.)
+        //      example: if slot1 has four potions, and slot2 has one potion, the maxStack is 8 and you want to put in 10 potions. Add four to slot1 and 6 to slot2
+
+        if (stackAmount == 0 && !itemToCheck.IsStackable)
+        {
+            return true;
+        }
+
+        return true;
     }
 }
