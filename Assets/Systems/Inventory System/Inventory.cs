@@ -6,7 +6,7 @@ using UnityEngine;
 
     // TODO:
     // - Save and Load items that player has.
-    // - Implement money
+    // - Implement credit
 
 public class Inventory : MonoBehaviour
 {
@@ -34,32 +34,22 @@ public class Inventory : MonoBehaviour
     public void GiveItem(int id) // Adds item from ItemDatabase to characterItems list by id
     {
         Item_SO itemToAdd = itemDatabase.GetItem(id);
-        if (itemToAdd != null && !uiInventory.CheckIfInventoryIsFull())
+        if (itemToAdd != null)
         {
             characterItems.Add(itemToAdd);
             uiInventory.AddNewItem(itemToAdd);
             OnItemAdd.Raised();
-        }
-        else if (uiInventory.CheckIfInventoryIsFull())
-        {
-            UIController uiController = FindObjectOfType<UIController>();
-            uiController.LoadErrorText("Inventory is full");
         }
     }
 
     public void GiveItem(string itemTitle) // Adds item from ItemDatabase to characterItems list by title
     {
         Item_SO itemToAdd = itemDatabase.GetItem(itemTitle);
-        if (itemToAdd != null && !uiInventory.CheckIfInventoryIsFull())
+        if (itemToAdd != null)
         {
             characterItems.Add(itemToAdd);
             uiInventory.AddNewItem(itemToAdd);
             OnItemAdd.Raised();
-        }
-        else if (uiInventory.CheckIfInventoryIsFull())
-        {
-            UIController uiController = FindObjectOfType<UIController>();
-            uiController.LoadErrorText("Inventory is full");
         }
     }
 
@@ -68,14 +58,27 @@ public class Inventory : MonoBehaviour
         return characterItems.Find(item => item.ItemID == id);
     }
     
-    public void RemoveItem(int id) // If characterItem list contains item, removes it
+    public void RemoveItem(int id, int amount = 0) // If characterItem list contains item, removes it
     {
         Item_SO itemToRemove = CheckForItem(id);
         if (itemToRemove != null)
         {
-            characterItems.Remove(itemToRemove);
-            uiInventory.RemoveItem(itemToRemove);
-            OnItemRemove.Raised();
+            if (amount <= 0)
+            {
+                characterItems.Remove(itemToRemove);
+                uiInventory.RemoveItem(itemToRemove);
+                OnItemRemove.Raised();
+            }
+            else
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    characterItems.Remove(itemToRemove);
+                    uiInventory.RemoveItem(itemToRemove);
+                    OnItemRemove.Raised();
+                }
+            }
+            
         }
     }
 

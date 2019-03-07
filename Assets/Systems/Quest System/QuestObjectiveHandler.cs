@@ -69,7 +69,11 @@ public class QuestObjectiveHandler : MonoBehaviour
 
     private void DisplayFedEx()
     {
-        
+        Item_SO itemToDeliver = thisQuest.itemToDeliver;
+        string text = String.Format("Deliver {0} to {1}", itemToDeliver.ItemTitle, this.thisQuest.npcToDeliverItemTo.name);
+        int slot = FindObjective();
+        objectives[slot].SetActive(true);
+        objectives[slot].GetComponentInChildren<TextMeshProUGUI>().text = text;
     }
 
     private void DisplayGather()

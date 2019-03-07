@@ -12,6 +12,11 @@ public class NPC : ScriptableObject
     public float maxHealth;
     public float walkingSpeed;
     public float runningSpeed;
+    
+    [Header("Items this NPC will drop:")]
+    public List<NPCInventory> inventory = new List<NPCInventory>();
+
+    [Header("NPCs abilities:")]
     public List<NPCAbility> abilities = new List<NPCAbility>();
 
 
@@ -28,5 +33,19 @@ public class NPCAbility
     {
         this.ability = ability;
         this.animation = animation;
+    }
+}
+
+[System.Serializable]
+public class NPCInventory
+{
+    public Item_SO item;
+    [Tooltip("Drop rate in percentage %")]
+    public float dropRate;
+
+    public NPCInventory(Item_SO item, float dropRate)
+    {
+        this.item = item;
+        this.dropRate = dropRate;
     }
 }

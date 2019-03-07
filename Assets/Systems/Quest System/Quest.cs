@@ -13,8 +13,13 @@ public class Quest : ScriptableObject
     public Quest_type type;
     public Quest_pattern pattern;
     public Quest_status status;
+    [Header("If Quest is: Gather")]
     public List<ItemsToGather> itemsToGather = new List<ItemsToGather>();
+    [Header("If Quest is: Kill")]
     public List<NPCsToKill> NPCToKill = new List<NPCsToKill>();
+    [Header("If Quest is: FedEx")]
+    public Item_SO itemToDeliver;
+    public NPC npcToDeliverItemTo;
 
     [Header("Rewards (no more than 5 items):")]
     public int creditReward;

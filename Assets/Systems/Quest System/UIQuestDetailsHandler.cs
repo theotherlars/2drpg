@@ -126,8 +126,54 @@ public class UIQuestDetailsHandler : MonoBehaviour
         Quest currentQuest = CurrentlyDisplaying();
         if (currentQuest.status == Quest.Quest_status.Waiting)
         {
-            questInventory.ReceiveQuest(currentQuest);
-            CloseWithoutAnimation();
+            switch (currentQuest.type)
+            {
+                case Quest.Quest_type.Kill:
+                    {
+                        questInventory.ReceiveQuest(currentQuest);
+                        CloseWithoutAnimation();
+                        break;
+                    }
+                case Quest.Quest_type.Gather:
+                    {
+                        questInventory.ReceiveQuest(currentQuest);
+                        CloseWithoutAnimation();
+                        break;
+                    }
+                case Quest.Quest_type.FedEx:
+                    {
+                        if (FindObjectOfType<UIInventory>().SpaceLeftInInventory(currentQuest.itemToDeliver))
+                        {
+                            Inventory inventory = FindObjectOfType<Inventory>();
+                            inventory.GiveItem(currentQuest.itemToDeliver.ItemID);
+
+                            if (inventory.CheckForItem(currentQuest.itemToDeliver.ItemID) != null)
+                            {
+                                questInventory.ReceiveQuest(currentQuest);
+                                CloseWithoutAnimation();
+                                break;
+                            }
+                            else
+                            {
+                                FindObjectOfType<UIController>().LoadErrorText("Something went wrong, you didn't receive the item to deliver...");
+                            }
+                        }
+                        else
+                        {
+                            FindObjectOfType<UIController>().LoadErrorText("Inventory is full");
+                        }
+                        
+                        break;
+                    }
+                case Quest.Quest_type.Defend:
+                    { break; }
+                case Quest.Quest_type.Activate:
+                    { break; }
+                case Quest.Quest_type.Escort:
+                    { break; }
+                default:
+                    { break; }
+            }
         }
         else if (currentQuest.status == Quest.Quest_status.ReadyToDeliver)
         {
@@ -176,6 +222,10 @@ public class UIQuestDetailsHandler : MonoBehaviour
 
                 for (int i = 0; i < currentQuest.itemReward.Count; i++)
                 {
+                    // for each item, check if inventory is not full, if it returns false, then prompt error message do not give the player any items...
+                    // Also stop the "complete quest method"
+                    // first check, then give, then complete
+
                     int item = questRewardItems[i].GetComponentInChildren<QuestItemReward>().item.ItemID; // for each reward item store itemID
                     int itemStack = questRewardItems[i].GetComponentInChildren<QuestItemReward>().stackCount; // for each reward item store StackCount
 

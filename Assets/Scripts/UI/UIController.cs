@@ -14,7 +14,6 @@ public class UIController : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject inventorySlots;
     public GameObject characterPanel;
-    public GameObject testButtons;
     public GameObject confirmationDialogue;
     public GameObject dialoguePanel;
     public GameObject questActiveList;
@@ -32,7 +31,6 @@ public class UIController : MonoBehaviour
         //inventoryPanel.SetActive(false);
         inventorySlots.SetActive(false);
         characterPanel.SetActive(false);
-        testButtons.SetActive(false);
         confirmationDialogue.SetActive(false);
         dialoguePanel.SetActive(false);
         shopController.SetActive(false);
@@ -81,7 +79,6 @@ public class UIController : MonoBehaviour
         uiInventory.currencyDisplay.SetActive(!uiInventory.currencyDisplay.activeSelf);
         //inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
         inventorySlots.SetActive(!inventorySlots.activeSelf);
-        testButtons.SetActive(!testButtons.activeSelf);
     }
 
     public GameObject OpenDialoguePanel()
@@ -185,6 +182,12 @@ public class UIController : MonoBehaviour
     {
         confirmationDialogue.SetActive(true);
         confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput, shopItem);
+    }
+
+    public void LoadConfirmationDialouge(string dialougeInput, Item_SO item, int amount)
+    {
+        confirmationDialogue.SetActive(true);
+        confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput, item, amount);
     }
 
     public void LoadErrorText(string textInput)

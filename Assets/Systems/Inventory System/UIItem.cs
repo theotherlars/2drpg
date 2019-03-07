@@ -188,20 +188,27 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             }
             else 
             {
-                if (this.item.IsStackable) // if the item you are picking up is stackable
+                if (eventData.button == PointerEventData.InputButton.Middle)
                 {
-                    if (Input.GetKey(KeyCode.LeftShift)) // If shift is pressed, then pick up one on each click
-                    {
-                        PickUpOneItem();
-                    }
-                    else // if shift is not detected, pick up all
-                    {
-                        PickUpAllItems(); // picks up all stacked items and clears this item stack
-                    }
+                    PromptForDeletion();
                 }
                 else
                 {
-                    PickUp(); // picks up non stackable item
+                    if (this.item.IsStackable) // if the item you are picking up is stackable
+                    {
+                        if (Input.GetKey(KeyCode.LeftShift)) // If shift is pressed, then pick up one on each click
+                        {
+                            PickUpOneItem();
+                        }
+                        else // if shift is not detected, pick up all
+                        {
+                            PickUpAllItems(); // picks up all stacked items and clears this item stack
+                        }
+                    }
+                    else
+                    {
+                        PickUp(); // picks up non stackable item
+                    }
                 }
             }
         }
@@ -215,7 +222,24 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             {
                 Place(); // Places the single item in empty slot
             }
+
+            
         }
+
+        
+    }
+
+    private void PromptForDeletion()
+    {
+        UIController uiController = FindObjectOfType<UIController>();
+        string text = null;
+
+        if (item.IsStackable)
+        { text = string.Format("Are you sure you want to delete \n {0} x {1} ?",stackedItems.Count, item.ItemTitle); }
+        else
+        { text = string.Format("Are you sure you want to delete \n {0} ?", item.ItemTitle); }
+        
+        uiController.LoadConfirmationDialouge(text, item, stackedItems.Count);
     }
 
     private void PlaceOneItemFromSelectedStack(int index)
@@ -337,5 +361,14 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         this.stackedItemsTemp.Clear(); // Empties the temp item stack
     }
 
-
+    private bool IsPointerOverUIObject()
+    {
+        var eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+        {
+            position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
+        };
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
 }

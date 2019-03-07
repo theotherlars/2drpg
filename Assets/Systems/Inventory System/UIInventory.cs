@@ -97,36 +97,11 @@ public class UIInventory : MonoBehaviour
         else
         {
             UpdateSlot(uiItems.FindIndex(i => i.item == item), null);
+
         }
     }
 
-    public bool CheckIfFreeSpaceForStack(Item_SO item, int amount)
-    {
-        if (item.IsStackable)
-        {
-            for (int i = 0; i < uiItems.Count; i++)
-            {
-                if (uiItems[i].item == item)
-                {
-                    if ((uiItems[i].stackedItems.Count + amount) <= item.MaxStack)
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    if (uiItems[i].item == null) { return true; }
-                }
-            }
-            return false;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool CheckIfInventoryIsFull()
+    /*public bool CheckIfInventoryIsFull()
     {
         int freeSlots = 0;
 
@@ -147,7 +122,7 @@ public class UIInventory : MonoBehaviour
             return true;
         }
         
-    }
+    }*/
 
     public bool SpaceLeftInInventory(Item_SO itemToCheck, int stackAmount = 0)
     {
@@ -160,9 +135,60 @@ public class UIInventory : MonoBehaviour
 
         if (stackAmount == 0 && !itemToCheck.IsStackable)
         {
-            return true;
-        }
+            // Handles the "nonstackable" items, returns true if there is space left, false if not.
+            int freeslots = 0;
+            for (int i = 0; i < uiItems.Count; i++)
+            {
+                if (uiItems[i].item == null) { freeslots++; }
+            }
 
-        return true;
+            if (freeslots > 0)
+            { return true; }
+            else
+            { return false; }
+        }
+        else if (stackAmount > 0 && itemToCheck.IsStackable)
+        {
+            // Handles stackable items, returns true if there is a whole slot free or if inventory has the same item, but not full stacks
+            int freeslots = 0;
+            int stackSlotsAvailable = 0;
+            for (int i = 0; i < uiItems.Count; i++)
+            {
+                if (uiItems[i].item == null)
+                {
+                    freeslots++;
+                }
+                else
+                {
+                    if (uiItems[i].item.ItemID == itemToCheck.ItemID)
+                    {
+                        stackSlotsAvailable += uiItems[i].item.MaxStack - uiItems[i].stackedItems.Count;
+                    }
+                }
+
+                
+                
+            }
+
+            if (freeslots > 0)
+            { return true; }
+            else
+            {
+                if (stackSlotsAvailable >= stackAmount)
+                { return true; }
+                else
+                {
+                    UIController uiController = FindObjectOfType<UIController>();
+                    uiController.LoadErrorText("Inventory is full");
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            UIController uiController = FindObjectOfType<UIController>();
+            uiController.LoadErrorText("Inventory is full");
+            return false;
+        }
     }
 }

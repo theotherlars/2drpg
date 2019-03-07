@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -190,7 +191,7 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             else
             {
                 Place(); // Places the single item in empty slot
-            }
+            }    
         }
     }
 
@@ -254,7 +255,7 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
             if (item.IsStackable)
             {
-                if (uIInventory.CheckIfFreeSpaceForStack(shopItem.shopItem, shopItem.stackAmount))
+                if (uIInventory.SpaceLeftInInventory(shopItem.shopItem, shopItem.stackAmount))
                 {
                     for (int i = 0; i < shopItem.stackAmount; i++)
                     {
@@ -263,23 +264,17 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     }
                 }
                 else
-                {
-                    uIController.LoadErrorText("Inventory is full");
-                    successfull = false;
-                }
+                {   successfull = false;    }
             }
             else
             {
-                if (!uIInventory.CheckIfInventoryIsFull())
+                if (uIInventory.SpaceLeftInInventory(item))
                 {
                     inventory.GiveItem(item.ItemID);
                     successfull = true;
                 }
                 else
-                {
-                    uIController.LoadErrorText("Inventory is full");
-                    successfull = false;
-                }
+                {   successfull = false;    }
             }
 
             if (successfull)
@@ -361,6 +356,5 @@ public class UIShopItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
         this.stackedItemsTemp.Clear(); // Empties the temp item stack
     }
-
 
 }

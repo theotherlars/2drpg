@@ -21,6 +21,9 @@ public class Ability : ScriptableObject
     [Tooltip("How fast the object moves from dealer to receiver, in seconds")]
     public float movementSpeed;
 
+    [Tooltip("Is this ability a part of the global cooldown?")]
+    public bool globalCooldown;
+
     [Tooltip("How long it takes to cast this ability, in seconds")]
     public float castTime;
 
