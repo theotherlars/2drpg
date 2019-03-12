@@ -7,18 +7,10 @@ using UnityEngine;
 public class Dialogue : ScriptableObject
 {
     [Header("NPC Information:")]
-    public int npc_ID;
-    public string npc_Name;
-    [SerializeField]
-    private NPC_Category npc_Category;
-    public NPC_Category NPCCategory { get { return npc_Category; } }
-
+    public NPC npc;
+    [Header("Conversations:")]
     public Sentence[] sentences;
     
-    public enum NPC_Category
-    {
-        Dialogue = 0, Quest = 1, Shop = 2 // , Other = 3
-    }
 }
 [System.Serializable]
 public class Sentence
@@ -37,6 +29,8 @@ public class Response
     [Tooltip("Type in the array indext of the Message the dialogue should go to if the player chooses this. Remeber -1 is for exit.")]
     public int nextSentenceIndex;
     public string prerequsite;
+    [Header("If quest giver, gives this quest:")]
     public bool isQuest;
     public Quest quest;
+    
 }

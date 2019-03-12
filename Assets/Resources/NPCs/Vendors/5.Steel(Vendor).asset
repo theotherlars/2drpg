@@ -9,8 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf4587439b9f194cbb1bbbfecbc9556, type: 3}
-  m_Name: Vendor
+  m_Script: {fileID: 11500000, guid: 80b59a1b069c8a54c9ce57febcf57056, type: 3}
+  m_Name: 5.Steel(Vendor)
   m_EditorClassIdentifier: 
-  npc: {fileID: 11400000, guid: 973be9a8c1bab9f4e86a02bdc66d7d8f, type: 2}
-  sentences: []
+  id: 5
+  name: Vendor
+  type: 3
+  killable: 0
+  maxHealth: 100
+  walkingSpeed: 5
+  runningSpeed: 5
+  inventory: []
+  abilities: []

@@ -30,7 +30,7 @@ public class TextHandler : MonoBehaviour
 
         if (textIndex >= 0)
         {
-            npc_NameText.text = cachedDialogue.npc_Name; // Name of NPC
+            npc_NameText.text = cachedDialogue.npc.name; // Name of NPC
             npc_DialogueText.text = cachedDialogue.sentences[textIndex].text; // NPC's dialogue text
 
             if (cachedDialogue.sentences[textIndex].responses.Length > 0) // If there are more than 0 responses available the it will start adding buttons for responses

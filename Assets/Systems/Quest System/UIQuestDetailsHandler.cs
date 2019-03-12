@@ -150,6 +150,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
                             if (inventory.CheckForItem(currentQuest.itemToDeliver.ItemID) != null)
                             {
                                 questInventory.ReceiveQuest(currentQuest);
+                                currentQuest.status = Quest.Quest_status.ReadyToDeliver;
                                 CloseWithoutAnimation();
                                 break;
                             }

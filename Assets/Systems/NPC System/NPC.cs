@@ -14,13 +14,15 @@ public class NPC : ScriptableObject
     public float runningSpeed;
     
     [Header("Items this NPC will drop:")]
-    public List<NPCInventory> inventory = new List<NPCInventory>();
+    public List<NPCLootTable> lootTable = new List<NPCLootTable>();
 
     [Header("NPCs abilities:")]
     public List<NPCAbility> abilities = new List<NPCAbility>();
+    
+    [Header("NPCs Animations:")]
+    public List<NPCAnimations> animations = new List<NPCAnimations>();
 
-
-    public enum NPC_Type{Enemy,Dialogue,QuestGiver,Shop,Other}
+    public enum NPC_Type{Enemy,Boss,QuestStart,QuestEnd,Vendor,DialogueNPC,Other}
 }
 
 [System.Serializable]
@@ -37,15 +39,39 @@ public class NPCAbility
 }
 
 [System.Serializable]
-public class NPCInventory
+public class NPCLootTable
 {
     public Item_SO item;
     [Tooltip("Drop rate in percentage %")]
     public float dropRate;
 
-    public NPCInventory(Item_SO item, float dropRate)
+    public NPCLootTable(Item_SO item, float dropRate)
     {
         this.item = item;
         this.dropRate = dropRate;
     }
+}
+
+[System.Serializable]
+public class NPCAnimations
+{
+    public AnimationType animationType;
+    public Animation animation;
+
+    public enum AnimationType
+    {
+        Idle,
+        WalkingLeft, WalkingRight, WalkingUp, WalkingDown,
+        RunningLeft, RunningRight, RunningUp, RunningDown,
+        StrikeLeft, StrikeRight, StrikeUp, StrikeDown,
+        TakeDamage, Death
+    }
+
+    public NPCAnimations(AnimationType type, Animation animation)
+    {
+        animationType = type;
+        this.animation = animation;
+    }
+
+    
 }

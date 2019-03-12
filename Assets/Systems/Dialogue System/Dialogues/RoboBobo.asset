@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf4587439b9f194cbb1bbbfecbc9556, type: 3}
   m_Name: RoboBobo
   m_EditorClassIdentifier: 
-  npc_ID: 1
-  npc_Name: RoboBobo
-  npc_Category: 0
+  npc: {fileID: 11400000, guid: 973be9a8c1bab9f4e86a02bdc66d7d8f, type: 2}
   sentences:
   - text: Hello there stranger, can you help me?
     responses:

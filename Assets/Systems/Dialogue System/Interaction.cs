@@ -21,15 +21,15 @@ public class Interaction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && isCollidingWithPlayer)
         {
-            switch (dialogue.NPCCategory)
+            switch (dialogue.npc.type)
             {
-                case Dialogue.NPC_Category.Dialogue: // NPC with dialogue
+                case NPC.NPC_Type.DialogueNPC: // NPC with dialogue
                     {
                         interactionText.SetActive(false);
                         InitiateDialogue();
                         break;
                     }
-                case Dialogue.NPC_Category.Shop:
+                case NPC.NPC_Type.Vendor:
                     {
                         interactionText.SetActive(false);
                         InitiateShop();

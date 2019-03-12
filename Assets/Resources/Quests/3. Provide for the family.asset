@@ -19,7 +19,7 @@ MonoBehaviour:
     are some rabbits around here if you'd like to help us out?"
   type: 2
   pattern: 0
-  status: 2
+  status: 1
   itemsToGather: []
   NPCToKill:
   - npcToKill: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4, type: 2}
@@ -31,7 +31,7 @@ MonoBehaviour:
     currentKill: 0
     finished: 0
   itemToDeliver: {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
-  npcToDeliverItemTo: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4, type: 2}
+  npcToDeliverItemTo: {fileID: 11400000, guid: d1efc18d075048f4c826e675365c7048, type: 2}
   creditReward: 15
   itemRewardOptions: 0
   itemReward:

@@ -84,4 +84,9 @@ public class QuestTracker : MonoBehaviour
             }
         }
     }
+
+    public void FedExDelivered()
+    {
+
+    }
 }

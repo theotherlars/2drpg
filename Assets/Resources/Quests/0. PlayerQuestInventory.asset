@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d845418e7ed0b4eb018224a67dbfa2, type: 3}
-  m_Name: PlayerQuestInventory
+  m_Name: 0. PlayerQuestInventory
   m_EditorClassIdentifier: 
   PlayerQuestInventory:
   - {fileID: 11400000, guid: 2dd1fb1b294bda742b56c1b9d7ab698c, type: 2}
   - {fileID: 11400000, guid: 4d1c35919ea499a4ebf1bf1baea4a99c, type: 2}
-  - {fileID: 11400000, guid: 99841bf60c4b8b54aa675914ae3cb9c1, type: 2}

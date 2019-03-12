@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf4587439b9f194cbb1bbbfecbc9556, type: 3}
+  m_Name: 3.Tommy
+  m_EditorClassIdentifier: 
+  npc: {fileID: 11400000, guid: d1efc18d075048f4c826e675365c7048, type: 2}
+  sentences:
+  - text: Hi there, do you have something for me?
+    responses:
+    - replyOptions: Yes! *Hand over quest item*
+      nextSentenceIndex: 1
+      prerequsite: 
+      isQuest: 1
+      quest: {fileID: 11400000, guid: 99841bf60c4b8b54aa675914ae3cb9c1, type: 2}
+    - replyOptions: No, I have nothing... Sorry..
+      nextSentenceIndex: -1
+      prerequsite: 
+      isQuest: 0
+      quest: {fileID: 0}
+  - text: Wow, thanks! See you around buddy!
+    responses: []
