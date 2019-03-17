@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4323821101848262281}
   - component: {fileID: 4323821101848262390}
   - component: {fileID: 4323821101848262391}
-  - component: {fileID: 4323821101848262283}
+  - component: {fileID: 5534891555637160225}
   m_Layer: 0
   m_Name: Vendor
   m_TagString: Untagged
@@ -121,8 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: {fileID: 0}
-  dialogue: {fileID: 11400000, guid: 0245fa23433925143af3e87f1112967a, type: 2}
---- !u!114 &4323821101848262283
+--- !u!114 &5534891555637160225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,85 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4323821101848262388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44544bab805aa184a875b326ced6c745, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b7e74e882c1a814eb847b2478b6fea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopInventory:
-  - shopItem: {fileID: 11400000, guid: e033480c82c7eba40b2b2243e9b6c032, type: 2}
-    price: 15
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: 2b6e3fdefdf1e9347a36f0ce9a604ada, type: 2}
-    price: 10
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: f0546666f0c28bf4494a0c60e115ea74, type: 2}
-    price: 25
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: cc02d8a7e06460d469cfc2f528865500, type: 2}
-    price: 5
-    stackAmount: 5
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: e033480c82c7eba40b2b2243e9b6c032, type: 2}
-    price: 45
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: 2b6e3fdefdf1e9347a36f0ce9a604ada, type: 2}
-    price: 15
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: bc11cbbf6515f6f43a88e7f3b190afaa, type: 2}
-    price: 25
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: cc02d8a7e06460d469cfc2f528865500, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: 2b6e3fdefdf1e9347a36f0ce9a604ada, type: 2}
-    price: 99
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: cc02d8a7e06460d469cfc2f528865500, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: f0546666f0c28bf4494a0c60e115ea74, type: 2}
-    price: 10
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: cc02d8a7e06460d469cfc2f528865500, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: bc11cbbf6515f6f43a88e7f3b190afaa, type: 2}
-    price: 10
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: cc02d8a7e06460d469cfc2f528865500, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: 2b6e3fdefdf1e9347a36f0ce9a604ada, type: 2}
-    price: 10
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
-    price: 10
-    stackAmount: 8
-  - shopItem: {fileID: 11400000, guid: bc11cbbf6515f6f43a88e7f3b190afaa, type: 2}
-    price: 10
-    stackAmount: 0
-  - shopItem: {fileID: 11400000, guid: f0546666f0c28bf4494a0c60e115ea74, type: 2}
-    price: 10
-    stackAmount: 0
+  npc: {fileID: 0}

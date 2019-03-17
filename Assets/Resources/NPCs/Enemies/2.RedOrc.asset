@@ -14,8 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   name: Red Orc
+  type: 0
+  allies: 0
   killable: 1
   maxHealth: 100
-  walkingSpeed: 1
-  runningSpeed: 2
-  type: 3
+  maxEnergy: 100
+  addMoreStats: 0
+  attackSpeed: 0
+  walkingSpeed: 2
+  runningSpeed: 3
+  dialogue: {fileID: 0}
+  shopItems: []
+  lootTable:
+  - {fileID: 11400000, guid: e04740c5ac435fe479171b7e19186c9a, type: 2}
+  - {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
+  - {fileID: 11400000, guid: 64690ad5ba7526047b35496366054f24, type: 2}
+  - {fileID: 11400000, guid: 72325f07ffbb0024f95658d78f0b05ed, type: 2}
+  - {fileID: 11400000, guid: 81c0da27b0dca17428240315ac42620b, type: 2}
+  - {fileID: 11400000, guid: b6a3073de5eeae44394a08e64580f43d, type: 2}
+  - {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+  - {fileID: 11400000, guid: c936bd6099215b3418a55f76ee56b049, type: 2}
+  - {fileID: 11400000, guid: 07b92ede5a7b1a64f88ae2e81e689378, type: 2}
+  - {fileID: 11400000, guid: f0546666f0c28bf4494a0c60e115ea74, type: 2}
+  minCredit: 3
+  maxCredit: 13
+  abilities: []
+  animations: []
+  sounds: []
+  gameObjectEvents: []

@@ -13,16 +13,24 @@ MonoBehaviour:
   m_Name: 4.RoboBobo
   m_EditorClassIdentifier: 
   id: 4
-  name: RoboBobo
-  type: 5
+  name: RoboPurk
+  type: 4
+  allies: 0
   killable: 0
   maxHealth: 100
+  maxEnergy: 100
+  addMoreStats: 0
+  attackSpeed: 1
   walkingSpeed: 5
   runningSpeed: 7
+  dialogue: {fileID: 11400000, guid: 08966c3e3be551a4085a98552cd8dbf7, type: 2}
+  shopItems: []
   lootTable: []
+  minCredit: 0
+  maxCredit: 0
   abilities:
   - ability: {fileID: 11400000, guid: 0968d39d929556347b2350c0172a1e80, type: 2}
-    animation: {fileID: 0}
   - ability: {fileID: 11400000, guid: 0968d39d929556347b2350c0172a1e80, type: 2}
-    animation: {fileID: 0}
   animations: []
+  sounds: []
+  gameObjectEvents: []

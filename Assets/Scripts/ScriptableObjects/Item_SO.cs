@@ -37,6 +37,11 @@ public class Item_SO : ScriptableObject
     private Category category = 0;
     public Category ItemCategory { get { return category; } } // Item_SO().ItemCategory;
 
+    [Tooltip("Drop rate in percentage %")]
+    [SerializeField]
+    private float dropRate;
+    public float ItemDropRate { get { return dropRate; } } // Item_SO().ItemDropRate
+
     [SerializeField]
     private Rarity rarity = 0;
     public Rarity ItemRarity { get { return rarity; } } // Item_SO().ItemRarity;

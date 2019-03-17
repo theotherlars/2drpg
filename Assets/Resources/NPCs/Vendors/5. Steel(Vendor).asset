@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b59a1b069c8a54c9ce57febcf57056, type: 3}
+  m_Name: 5. Steel(Vendor)
+  m_EditorClassIdentifier: 
+  id: 5
+  name: Steel
+  type: 5
+  allies: 0
+  killable: 0
+  maxHealth: 100
+  maxEnergy: 100
+  addMoreStats: 0
+  attackSpeed: 1
+  walkingSpeed: 5
+  runningSpeed: 5
+  dialogue: {fileID: 0}
+  shopItems:
+  - shopItem: {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
+    price: 76
+    stackAmount: 0
+  - shopItem: {fileID: 11400000, guid: e033480c82c7eba40b2b2243e9b6c032, type: 2}
+    price: 12
+    stackAmount: 0
+  - shopItem: {fileID: 11400000, guid: 1bfa59bb537113b44aaf0d65615fc74a, type: 2}
+    price: 9
+    stackAmount: 0
+  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+    price: 10
+    stackAmount: 5
+  - shopItem: {fileID: 11400000, guid: c936bd6099215b3418a55f76ee56b049, type: 2}
+    price: 55
+    stackAmount: 0
+  - shopItem: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+    price: 16
+    stackAmount: 8
+  - shopItem: {fileID: 11400000, guid: b6a3073de5eeae44394a08e64580f43d, type: 2}
+    price: 12
+    stackAmount: 0
+  - shopItem: {fileID: 11400000, guid: 64690ad5ba7526047b35496366054f24, type: 2}
+    price: 35
+    stackAmount: 4
+  - shopItem: {fileID: 11400000, guid: e04740c5ac435fe479171b7e19186c9a, type: 2}
+    price: 80
+    stackAmount: 0
+  - shopItem: {fileID: 11400000, guid: 81c0da27b0dca17428240315ac42620b, type: 2}
+    price: 67
+    stackAmount: 0
+  lootTable: []
+  minCredit: 0
+  maxCredit: 0
+  abilities: []
+  animations: []
+  sounds: []
+  gameObjectEvents: []

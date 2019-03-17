@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 193315388598954074}
   - component: {fileID: 193315388598954075}
   - component: {fileID: 193315388598954072}
+  - component: {fileID: 4029608484146298707}
   m_Layer: 0
   m_Name: RobotNPC
   m_TagString: Untagged
@@ -120,4 +121,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: {fileID: 0}
-  dialogue: {fileID: 11400000, guid: 08966c3e3be551a4085a98552cd8dbf7, type: 2}
+--- !u!114 &4029608484146298707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193315388598954073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7e74e882c1a814eb847b2478b6fea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 11400000, guid: 973be9a8c1bab9f4e86a02bdc66d7d8f, type: 2}

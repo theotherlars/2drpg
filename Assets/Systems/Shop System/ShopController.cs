@@ -8,7 +8,8 @@ public class ShopController : MonoBehaviour
     public List<UIShopItem> slotsInShop = new List<UIShopItem>();
     public Transform slotsPanel;
     private int pageDisplaying = 1;
-    private VendorController vendorController;
+    //private VendorController vendorController;
+    private NPCInformation npcInfo;
     [SerializeField]
     private Button nextButton;
     [SerializeField]
@@ -16,7 +17,7 @@ public class ShopController : MonoBehaviour
 
     private void Update()
     {
-        if (vendorController.shopInventory.Count > slotsInShop.Count * pageDisplaying)
+        if (npcInfo.npc.shopItems.Count > slotsInShop.Count * pageDisplaying)
         {
             nextButton.interactable = true;
         }
@@ -61,7 +62,7 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    public void OpenShop(VendorController vendorController)
+    /*public void OpenShop(VendorController vendorController)
     {
         this.vendorController = vendorController;
         
@@ -93,11 +94,45 @@ public class ShopController : MonoBehaviour
             this.enabled = true;
             OpenShop(vendorController);
         }
+    }*/
+
+    public void OpenShop(NPCInformation npcInformation)
+    {
+        npcInfo = npcInformation;
+
+        if (this.enabled)
+        {
+            if (npcInfo.npc.shopItems.Count <= 8)
+            {
+                previousButton.interactable = false;
+                nextButton.interactable = false;
+                for (int i = 0; i < npcInfo.npc.shopItems.Count; i++)
+                {
+                    AddNewItem(npcInfo.npc.shopItems[i]);
+                }
+            }
+            else if (npcInfo.npc.shopItems.Count > 8)
+            {
+                pageDisplaying = 1;
+                previousButton.interactable = false;
+                nextButton.interactable = true;
+
+                for (int i = 0; i < slotsInShop.Count; i++)
+                {
+                    AddNewItem(npcInfo.npc.shopItems[i]);
+                }
+            }
+        }
+        else
+        {
+            this.enabled = true;
+            OpenShop(npcInformation);
+        }
     }
 
     public void NextPage()
     {
-        if (vendorController.shopInventory.Count > slotsInShop.Count * pageDisplaying)
+        if (npcInfo.npc.shopItems.Count > slotsInShop.Count * pageDisplaying)
         {
             pageDisplaying++;
             int itemRangeToDisplay = slotsInShop.Count * pageDisplaying;
@@ -105,9 +140,9 @@ public class ShopController : MonoBehaviour
             for (int i = 0; i < slotsInShop.Count; i++)
             {
                 int itemToAdd = (itemRangeToDisplay - 8) + i;
-                if (itemToAdd < vendorController.shopInventory.Count)
+                if (itemToAdd < npcInfo.npc.shopItems.Count)
                 {
-                    AddNewItem(vendorController.shopInventory[itemToAdd]);
+                    AddNewItem(npcInfo.npc.shopItems[itemToAdd]);
                 }
                 else
                 { AddNewItem(null); }
@@ -122,6 +157,7 @@ public class ShopController : MonoBehaviour
         }
         
     }
+
     public void PreviousPage()
     {
         if (pageDisplaying >= 2)
@@ -131,21 +167,18 @@ public class ShopController : MonoBehaviour
             int itemRangeToDisplay = slotsInShop.Count * pageDisplaying;
             for (int i = 0; i < slotsInShop.Count; i++)
             {
-                AddNewItem(vendorController.shopInventory[(itemRangeToDisplay - 8) + i]);
+                AddNewItem(npcInfo.npc.shopItems[(itemRangeToDisplay - 8) + i]);
             }
         }
         else
         {
-            //previousButton.interactable = false;
             return;
         }
     }
-
 
     public void CloseShop()
     {
         CleanShop();
         this.gameObject.SetActive(false);
     }
-
 }

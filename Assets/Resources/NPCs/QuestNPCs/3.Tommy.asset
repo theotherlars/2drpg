@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   name: Tommy
-  type: 3
-  killable: 0
+  type: 1
+  killable: 1
   maxHealth: 100
   walkingSpeed: 5
   runningSpeed: 7
+  OnDeath: {fileID: 11400000, guid: f675224d19491bd45a672dd4d1ebbc08, type: 2}
+  dialogue: {fileID: 11400000, guid: 08966c3e3be551a4085a98552cd8dbf7, type: 2}
   lootTable: []
+  shopItems: []
   abilities: []
   animations:
   - animationType: 14
@@ -30,3 +33,4 @@ MonoBehaviour:
     animation: {fileID: 0}
   - animationType: 0
     animation: {fileID: 0}
+  sounds: []

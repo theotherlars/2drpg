@@ -14,8 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   name: Green Orc
+  type: 0
+  allies: 0
   killable: 1
   maxHealth: 100
+  maxEnergy: 100
+  addMoreStats: 0
+  attackSpeed: 0
   walkingSpeed: 1
   runningSpeed: 2
-  type: 3
+  dialogue: {fileID: 0}
+  shopItems: []
+  lootTable:
+  - {fileID: 11400000, guid: 2b6e3fdefdf1e9347a36f0ce9a604ada, type: 2}
+  - {fileID: 11400000, guid: cc02d8a7e06460d469cfc2f528865500, type: 2}
+  - {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+  - {fileID: 11400000, guid: 7661f72a5aca194449918494a49da75d, type: 2}
+  - {fileID: 11400000, guid: 07b92ede5a7b1a64f88ae2e81e689378, type: 2}
+  - {fileID: 11400000, guid: 81c0da27b0dca17428240315ac42620b, type: 2}
+  minCredit: 1
+  maxCredit: 10
+  abilities: []
+  animations: []
+  sounds: []
+  gameObjectEvents:
+  - gameObjectEvent: {fileID: 11400000, guid: f675224d19491bd45a672dd4d1ebbc08, type: 2}
+    events: 0

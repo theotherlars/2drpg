@@ -7,7 +7,7 @@ public class QuestTracker : MonoBehaviour
     QuestInventory questInventory;
     Inventory inventory;
 
-    private void Start()
+    private void Awake()
     {
         questInventory = FindObjectOfType<QuestInventory>();
         inventory = FindObjectOfType<Inventory>();
@@ -18,31 +18,31 @@ public class QuestTracker : MonoBehaviour
         EnemyController enemy = go.GetComponent<EnemyController>();
         if (enemy != null)
         {
-            for (int i = 0; i < questInventory.activeQuests.Count; i++)
+            for (int i = 0; i < questInventory.questInventoryStorage.PlayerQuestInventory.Count; i++)
             {
-                if (questInventory.activeQuests[i].type == Quest.Quest_type.Kill && questInventory.activeQuests[i].status == Quest.Quest_status.InProgress)
+                if (questInventory.questInventoryStorage.PlayerQuestInventory[i].type == Quest.Quest_type.Kill && questInventory.questInventoryStorage.PlayerQuestInventory[i].status == Quest.Quest_status.InProgress)
                 {
-                    for (int j = 0; j < questInventory.activeQuests[i].NPCToKill.Count; j++)
+                    for (int j = 0; j < questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill.Count; j++)
                     {
-                        if (questInventory.activeQuests[i].NPCToKill[j].npcToKill.id == enemy.npc.id)
+                        if (questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].npcToKill.id == enemy.GetComponent<NPCInformation>().npc.id)
                         {
-                            if (questInventory.activeQuests[i].NPCToKill[j].currentKill < questInventory.activeQuests[i].NPCToKill[j].amountToKill)
+                            if (questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].currentKill < questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].amountToKill)
                             {
-                                questInventory.activeQuests[i].NPCToKill[j].currentKill++;
+                                questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].currentKill++;
 
-                                if (questInventory.activeQuests[i].NPCToKill[j].currentKill >= questInventory.activeQuests[i].NPCToKill[j].amountToKill)
+                                if (questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].currentKill >= questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].amountToKill)
                                 {
-                                    questInventory.activeQuests[i].NPCToKill[j].currentKill = questInventory.activeQuests[i].NPCToKill[j].amountToKill;
-                                    questInventory.activeQuests[i].NPCToKill[j].finished = true;
+                                    questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].currentKill = questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].amountToKill;
+                                    questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[j].finished = true;
 
-                                    for (int k = 0; k < questInventory.activeQuests[i].NPCToKill.Count; k++)
+                                    for (int k = 0; k < questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill.Count; k++)
                                     {
-                                        if (!questInventory.activeQuests[i].NPCToKill[k].finished)
+                                        if (!questInventory.questInventoryStorage.PlayerQuestInventory[i].NPCToKill[k].finished)
                                         {
                                             return;
                                         }
                                     }
-                                    questInventory.activeQuests[i].status = Quest.Quest_status.ReadyToDeliver;
+                                    questInventory.questInventoryStorage.PlayerQuestInventory[i].status = Quest.Quest_status.ReadyToDeliver;
                                     break;
                                 }
                                 
@@ -57,11 +57,11 @@ public class QuestTracker : MonoBehaviour
 
     public void GatherProgress()
     {
-        for (int i = 0; i < questInventory.activeQuests.Count; i++)
+        for (int i = 0; i < questInventory.questInventoryStorage.PlayerQuestInventory.Count; i++)
         {
-            if (questInventory.activeQuests[i].type == Quest.Quest_type.Gather)
+            if (questInventory.questInventoryStorage.PlayerQuestInventory[i].type == Quest.Quest_type.Gather)
             {
-                for (int j = 0; j < questInventory.activeQuests[i].itemsToGather.Count; j++)
+                for (int j = 0; j < questInventory.questInventoryStorage.PlayerQuestInventory[i].itemsToGather.Count; j++)
                 {
                     //List<Item_SO> itemCount = new List<Item_SO>();
                     int itemCount = 0;
@@ -69,16 +69,16 @@ public class QuestTracker : MonoBehaviour
                     for (int k = 0; k < inventory.characterItems.Count; k++)
                     {
                         
-                        if (inventory.characterItems[k].ItemID == questInventory.activeQuests[i].itemsToGather[j].itemToGather.ItemID)
+                        if (inventory.characterItems[k].ItemID == questInventory.questInventoryStorage.PlayerQuestInventory[i].itemsToGather[j].itemToGather.ItemID)
                         {
                             itemCount++;
-                            questInventory.activeQuests[i].itemsToGather[j].currentGathered = itemCount;
+                            questInventory.questInventoryStorage.PlayerQuestInventory[i].itemsToGather[j].currentGathered = itemCount;
                         }
                     }
                     
-                    if (questInventory.activeQuests[i].itemsToGather[j].currentGathered >= questInventory.activeQuests[i].itemsToGather[j].amountToGather)
+                    if (questInventory.questInventoryStorage.PlayerQuestInventory[i].itemsToGather[j].currentGathered >= questInventory.questInventoryStorage.PlayerQuestInventory[i].itemsToGather[j].amountToGather)
                     {
-                        questInventory.activeQuests[i].itemsToGather[j].finished = true;
+                        questInventory.questInventoryStorage.PlayerQuestInventory[i].itemsToGather[j].finished = true;
                     }
                 }
             }

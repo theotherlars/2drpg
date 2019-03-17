@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553e639e352de8149abbe65d50937447, type: 3}
+  m_Name: 13.3000-XRT
+  m_EditorClassIdentifier: 
+  title: 3000-XRT
+  itemID: 13
+  itemSprite: {fileID: 21300000, guid: a471b2eb9296ace4481e7e68359d46a6, type: 3}
+  itemLevel: 15
+  description: Not your ordinary gun
+  category: 1
+  dropRate: 2
+  rarity: 2
+  isStackable: 0
+  maxStack: 0
+  weaponArmor: 7
+  attributes:
+  - attribute: {fileID: 11400000, guid: 24ca82d948b95d2408c2d1d7ca89646d, type: 2}
+    amount: 75
+  - attribute: {fileID: 11400000, guid: 643e4f46e114d6d478556c5039742938, type: 2}
+    amount: 15
+  - attribute: {fileID: 11400000, guid: 3a711fef16db1984cb0ecbab9d283594, type: 2}
+    amount: 3

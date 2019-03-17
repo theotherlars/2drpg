@@ -8,7 +8,8 @@ using System;
 public class TextHandler : MonoBehaviour
 {
     private Dialogue cachedDialogue;
-    
+    private GameObject cachedSender;
+
     [SerializeField]
     private TextMeshProUGUI npc_NameText;
     [SerializeField]
@@ -18,9 +19,10 @@ public class TextHandler : MonoBehaviour
     [SerializeField]
     private List<ResponsButton> responsButtons = new List<ResponsButton>();
 
-    public void LoadDialogue(Dialogue dialogue)
+    public void LoadDialogue(Dialogue dialogue, GameObject sender)
     {
         cachedDialogue = dialogue;
+        cachedSender = sender;
         LoadText(0);
     }
 
@@ -30,7 +32,7 @@ public class TextHandler : MonoBehaviour
 
         if (textIndex >= 0)
         {
-            npc_NameText.text = cachedDialogue.npc.name; // Name of NPC
+            npc_NameText.text = cachedSender.GetComponent<NPCInformation>().npc.name; // Name of NPC
             npc_DialogueText.text = cachedDialogue.sentences[textIndex].text; // NPC's dialogue text
 
             if (cachedDialogue.sentences[textIndex].responses.Length > 0) // If there are more than 0 responses available the it will start adding buttons for responses

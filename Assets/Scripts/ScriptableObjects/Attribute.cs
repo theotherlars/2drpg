@@ -18,6 +18,7 @@ public class Attribute: ScriptableObject
     public float critPoints;
     public float blockingPoints;
     public float attackSpeed;
+    public float slowness;
 }
 
 

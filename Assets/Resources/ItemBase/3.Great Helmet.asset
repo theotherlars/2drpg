@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553e639e352de8149abbe65d50937447, type: 3}
+  m_Name: 3.Great Helmet
+  m_EditorClassIdentifier: 
+  title: Great Helmet
+  itemID: 3
+  itemSprite: {fileID: 21300000, guid: f645b9ffe45a2a846a61f6bff41fe97c, type: 3}
+  itemLevel: 14
+  description: This helmet was worn by no one. It's new.
+  category: 1
+  dropRate: 15
+  rarity: 0
+  isStackable: 0
+  maxStack: 0
+  weaponArmor: 10
+  attributes:
+  - attribute: {fileID: 11400000, guid: 643e4f46e114d6d478556c5039742938, type: 2}
+    amount: 3
+  - attribute: {fileID: 11400000, guid: 3e9f8b75ea7a75c4b8688123467198ab, type: 2}
+    amount: 5
+  - attribute: {fileID: 11400000, guid: c896bcf41734d0742ba8b1f2db91267b, type: 2}
+    amount: 4

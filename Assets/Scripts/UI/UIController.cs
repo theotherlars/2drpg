@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
 {
     PlayerController playerController;
     public GameObject errorText;
+    public GameObject interactionText;
     public GameObject shopController;
     public GameObject inventoryPanel;
     public GameObject inventorySlots;
@@ -18,6 +19,8 @@ public class UIController : MonoBehaviour
     public GameObject dialoguePanel;
     public GameObject questActiveList;
     public GameObject uiQuestDetails;
+    public GameObject lootWindow;
+    public bool isLootWindowOpen { get { return lootWindow.activeInHierarchy; } }
     public Text playerHP;
 
     public GameObject deathMenu;
@@ -28,6 +31,7 @@ public class UIController : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         deathMenu.SetActive(false);
+        interactionText.SetActive(false);
         //inventoryPanel.SetActive(false);
         inventorySlots.SetActive(false);
         characterPanel.SetActive(false);
@@ -36,6 +40,7 @@ public class UIController : MonoBehaviour
         shopController.SetActive(false);
         questActiveList.SetActive(false);
         uiQuestDetails.SetActive(false);
+        lootWindow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,6 +86,11 @@ public class UIController : MonoBehaviour
         inventorySlots.SetActive(!inventorySlots.activeSelf);
     }
 
+    public void ToggleInteractionTextOn(bool i = true)
+    {
+        interactionText.SetActive(i);
+    }
+
     public GameObject OpenDialoguePanel()
     {
         dialoguePanel.SetActive(true);
@@ -92,12 +102,24 @@ public class UIController : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
-    public void OpenShop(VendorController vendorController)
+    public void OpenLootWindow(GameObject go)
+    {
+        lootWindow.SetActive(true);
+        ToggleInteractionTextOn(false);
+        lootWindow.GetComponent<UILootWindowHandler>().UpdateLootTable(go);
+    }
+
+    public void CloseLootWindow()
+    {
+        lootWindow.SetActive(false);
+    }
+
+    public void OpenShop(NPCInformation npcInfo)
     {
         if (!shopController.activeSelf)
         {
             shopController.SetActive(true);
-            shopController.GetComponent<ShopController>().OpenShop(vendorController);
+            shopController.GetComponent<ShopController>().OpenShop(npcInfo);
         }
     }
 

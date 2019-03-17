@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEditor;
 
-[CustomPropertyDrawer(typeof(ScriptableObject), true)]
+//[CustomPropertyDrawer(typeof(ScriptableObject), true)]
+
 public class ScriptableObjectDrawer : PropertyDrawer
 {
+    /*
     // Cached scriptable object editor
     private Editor editor = null;
 
@@ -23,20 +26,20 @@ public class ScriptableObjectDrawer : PropertyDrawer
         {
             // Make child fields be indented
             EditorGUI.indentLevel++;
-            
+           
             // Draw object properties
             if (!editor)
                 Editor.CreateCachedEditor(property.objectReferenceValue, null, ref editor);
-            editor.OnInspectorGUI();
-            /*
+                editor.OnInspectorGUI();
+            
             MonoBehaviour mono = property.serializedObject.targetObject as MonoBehaviour;
             if (mono != null)
             {
                 mono.Invoke("OnValidate", 0);
-            }*/
+            }
 
             // Set indent back to what it was
             EditorGUI.indentLevel--;
         }
-    }
+    }*/
 }

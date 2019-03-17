@@ -6,8 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Dialogue", menuName = "Own Menu/Dialogue/New Dialogue", order = 20)]
 public class Dialogue : ScriptableObject
 {
-    [Header("NPC Information:")]
-    public NPC npc;
     [Header("Conversations:")]
     public Sentence[] sentences;
     

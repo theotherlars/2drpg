@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553e639e352de8149abbe65d50937447, type: 3}
+  m_Name: 12.Circle of Death
+  m_EditorClassIdentifier: 
+  title: Circle of Death
+  itemID: 12
+  itemSprite: {fileID: 21300152, guid: c598d32a2fb002144ba4910161bf7f98, type: 3}
+  itemLevel: 12
+  description: Brings death and destruction
+  category: 2
+  dropRate: 5
+  rarity: 2
+  isStackable: 0
+  maxStack: 0
+  weaponArmor: 5
+  attributes:
+  - attribute: {fileID: 11400000, guid: 3e9f8b75ea7a75c4b8688123467198ab, type: 2}
+    amount: 15
+  - attribute: {fileID: 11400000, guid: c896bcf41734d0742ba8b1f2db91267b, type: 2}
+    amount: 16

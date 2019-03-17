@@ -85,6 +85,12 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
             tooltip.GenerateTooltip(this.item);
         }
     }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tooltip.gameObject.GetComponent<Image>().enabled = false;
+    }
+    
     /*
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -286,11 +292,6 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
                 selectedItem.ResetItemStack();
             }
         }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        tooltip.gameObject.GetComponent<Image>().enabled = false;
     }
 
     private void PickUpAllItems()

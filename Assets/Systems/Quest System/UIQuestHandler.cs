@@ -19,9 +19,9 @@ public class UIQuestHandler : MonoBehaviour
     
     public void UpdateActiveQuestList()
     {
-        for (int i = 0; i < questInventory.activeQuests.Count; i++)
+        for (int i = 0; i < questInventory.questInventoryStorage.PlayerQuestInventory.Count; i++)
         {
-            UpdateQuestButton(questInventory.activeQuests[i]);
+            UpdateQuestButton(questInventory.questInventoryStorage.PlayerQuestInventory[i]);
         }
     }
 

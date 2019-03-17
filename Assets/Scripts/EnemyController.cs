@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 // This will be these aspects of the enemy:
@@ -11,11 +10,18 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public NPC npc;
-    public GameObjectEvent onDeath;
-    public event Action<float> OnHealthPercentChanged = delegate { };
+    //public NPC npc;
+    //public GameObjectEvent onDeath;
+    public event System.Action<float> OnHealthPercentChanged = delegate { };
+    private NPCInformation npcInformation;
+    private NPC npc;
+    public NPCLootHandler lootHandler;
+    public List<Item_SO> availableLoot = new List<Item_SO>();
+    [HideInInspector]
+    public int creditLoot;
 
     public float currentHealth;
+    public float currentEnergy;
     public bool isDead;
 
     private float movementSpeed;
@@ -31,16 +37,19 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        npcInformation = GetComponent<NPCInformation>();
+        npc = npcInformation.npc;
 
-        currentHealth = npc.maxHealth;
         isDead = false;
-
-        movementSpeed = npc.walkingSpeed;
-
         chase = false;
         idle = true;
     }
-
+    public void Start()
+    {
+        currentHealth = npc.maxHealth;
+        currentEnergy = npc.maxEnergy;
+        movementSpeed = npc.walkingSpeed;
+    }
     private void Update()
     {
         Chase();
@@ -69,7 +78,18 @@ public class EnemyController : MonoBehaviour
             chase = false;
             movementSpeed = 0;
             rigidbody.velocity = Vector2.zero;
-            onDeath.Raise(this.gameObject);
+
+            lootHandler.gameObject.SetActive(true);
+            GenerateLoot();
+            
+            for (int i = 0; i < npc.gameObjectEvents.Count; i++)
+            {
+                if (npc.gameObjectEvents[i].events == NPCEvents.Events.OnDeath)
+                {
+                    npc.gameObjectEvents[i].gameObjectEvent.Raise(this.gameObject);
+                    break;
+                }
+            }
         }
     }
 
@@ -94,6 +114,23 @@ public class EnemyController : MonoBehaviour
         {
             movementSpeed = npc.runningSpeed;
             transform.position = Vector2.MoveTowards(transform.position, chaseObject.position, movementSpeed * Time.deltaTime);
+        }
+    }
+
+    private void GenerateLoot()
+    {
+        creditLoot = Random.Range(npc.minCredit, npc.maxCredit);
+        
+        int amountOfItemsToDrop = Random.Range(0, npc.lootTable.Count); // How many items that dropped
+        
+        for (int i = 0; i < amountOfItemsToDrop; i++)
+        {
+            float roll = (float)Random.Range(0f, 100f);
+
+            if (roll <= npc.lootTable[i].ItemDropRate)
+            {
+                availableLoot.Add(npc.lootTable[i]);
+            }
         }
     }
 }

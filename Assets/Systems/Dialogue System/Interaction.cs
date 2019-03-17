@@ -9,29 +9,50 @@ public class Interaction : MonoBehaviour
     [SerializeField]
     private GameObject interactionText; //Only Temp
 
-    public Dialogue dialogue;
+    //public Dialogue dialogue;
+    private NPCInformation npcInformation;
     private bool isCollidingWithPlayer;
 
     private void Start()
     {
         uIController = FindObjectOfType<UIController>();
+        npcInformation = GetComponent<NPCInformation>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && isCollidingWithPlayer)
         {
-            switch (dialogue.npc.type)
+            switch(npcInformation.npc.type)
+            //switch (dialogue.npc.type)
             {
-                case NPC.NPC_Type.DialogueNPC: // NPC with dialogue
+                case NPC.NPC_Type.Dialogue: // NPC with dialogue
                     {
-                        interactionText.SetActive(false);
+                        uIController.ToggleInteractionTextOn(false);
+                        InitiateDialogue();
+                        break;
+                    }
+                case NPC.NPC_Type.QuestStart:
+                    {
+                        uIController.ToggleInteractionTextOn(false);
+                        InitiateDialogue();
+                        break;
+                    }
+                case NPC.NPC_Type.QuestEnd:
+                    {
+                        uIController.ToggleInteractionTextOn(false);
+                        InitiateDialogue();
+                        break;
+                    }
+                case NPC.NPC_Type.QuestBoth:
+                    {
+                        uIController.ToggleInteractionTextOn(false);
                         InitiateDialogue();
                         break;
                     }
                 case NPC.NPC_Type.Vendor:
                     {
-                        interactionText.SetActive(false);
+                        uIController.ToggleInteractionTextOn(false);
                         InitiateShop();
                         break;
                     }
@@ -41,16 +62,6 @@ public class Interaction : MonoBehaviour
                     }
             }
         }
-
-        /*if (Input.GetKeyDown(KeyCode.O))
-        {
-            uIController.ToggleQuestList();
-        }*/
-    }
-
-    private void LateUpdate()
-    {
-        
     }
 
     private void CloseWindows()
@@ -68,24 +79,21 @@ public class Interaction : MonoBehaviour
     {
         var dialoguePanel = FindObjectOfType<UIController>().OpenDialoguePanel();
         var textHandler = dialoguePanel.GetComponent<TextHandler>();
-        textHandler.LoadDialogue(dialogue);
+        
+        // Load the NPC's dialogue into the UI
+        textHandler.LoadDialogue(npcInformation.npc.dialogue,this.gameObject);
     }
 
     public void InitiateShop()
     {
-        uIController.OpenShop(this.GetComponent<VendorController>());
+        uIController.OpenShop(npcInformation);
     }
-
-    public void InitiateQuest()
-    {
-        print("Opens quest window");
-    }
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            interactionText.SetActive(true);
+            uIController.ToggleInteractionTextOn();
             isCollidingWithPlayer = true;
         }
     }
@@ -93,7 +101,8 @@ public class Interaction : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            interactionText.SetActive(false);
+            uIController.ToggleInteractionTextOn(false);
+            
             isCollidingWithPlayer = false;
             CloseWindows();
         }
