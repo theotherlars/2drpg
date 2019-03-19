@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 12
   description: This axe has seen many wars
   category: 1
+  sellPrice: 5
   dropRate: 7
   rarity: 2
   isStackable: 0

@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 7
   description: These boots are slippery and full of green slime
   category: 2
+  sellPrice: 12
   dropRate: 25
   rarity: 0
   isStackable: 0

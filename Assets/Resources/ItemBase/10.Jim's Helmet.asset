@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 5
   description: This belonged to Jim
   category: 2
+  sellPrice: 6
   dropRate: 7
   rarity: 0
   isStackable: 0

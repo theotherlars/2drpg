@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 1
   description: Refreshing water to clear your head
   category: 0
+  sellPrice: 1
   dropRate: 65
   rarity: 0
   isStackable: 1

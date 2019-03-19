@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 1
   description: This oil can be used to light fires, but also cure magic
   category: 0
+  sellPrice: 3
   dropRate: 11.5
   rarity: 1
   isStackable: 1

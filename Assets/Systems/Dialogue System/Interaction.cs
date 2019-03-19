@@ -68,6 +68,7 @@ public class Interaction : MonoBehaviour
     {
         uIController.CloseShop();
         uIController.CloseDialoguePanel();
+        uIController.CloseConfirmationDialogue();
     }
 
     private void Awake()

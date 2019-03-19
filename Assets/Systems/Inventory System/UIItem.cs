@@ -245,7 +245,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         else
         { text = string.Format("Are you sure you want to delete \n {0} ?", item.ItemTitle); }
         
-        uiController.LoadConfirmationDialouge(text, item, stackedItems.Count);
+        uiController.LoadConfirmationDialouge(ConfirmationWindow.ConfirmationType.DeleteItem, text, item, stackedItems.Count);
     }
 
     private void PlaceOneItemFromSelectedStack(int index)

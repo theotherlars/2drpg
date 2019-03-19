@@ -78,7 +78,29 @@ public class Inventory : MonoBehaviour
                     OnItemRemove.Raised();
                 }
             }
-            
+        }
+    }
+
+    public void SellItem(int id, int amount = 0)
+    {
+        Item_SO itemToRemove = CheckForItem(id);
+        if (itemToRemove != null)
+        {
+            if (amount <= 0)
+            {
+                characterItems.Remove(itemToRemove);
+                //uiInventory.RemoveItem(itemToRemove);
+                OnItemRemove.Raised();
+            }
+            else
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    characterItems.Remove(itemToRemove);
+                    //uiInventory.RemoveItem(itemToRemove);
+                    OnItemRemove.Raised();
+                }
+            }
         }
     }
 
@@ -99,6 +121,4 @@ public class Inventory : MonoBehaviour
     {
         return characterMoney;
     }
-
-
 }

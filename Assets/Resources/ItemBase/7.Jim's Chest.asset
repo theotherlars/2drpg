@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 5
   description: This was Jims
   category: 2
+  sellPrice: 9
   dropRate: 7
   rarity: 0
   isStackable: 0

@@ -37,10 +37,15 @@ public class Item_SO : ScriptableObject
     private Category category = 0;
     public Category ItemCategory { get { return category; } } // Item_SO().ItemCategory;
 
+    [Tooltip("The price the item is sold to vendor for")]
+    [SerializeField]
+    private int sellPrice;
+    public int ItemSellPrice { get { return sellPrice; } } // Item_SO().ItemSellPrice;
+
     [Tooltip("Drop rate in percentage %")]
     [SerializeField]
     private float dropRate;
-    public float ItemDropRate { get { return dropRate; } } // Item_SO().ItemDropRate
+    public float ItemDropRate { get { return dropRate; } } // Item_SO().ItemDropRate;
 
     [SerializeField]
     private Rarity rarity = 0;

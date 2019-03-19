@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 14
   description: This helmet was worn by no one. It's new.
   category: 1
+  sellPrice: 6
   dropRate: 15
   rarity: 0
   isStackable: 0

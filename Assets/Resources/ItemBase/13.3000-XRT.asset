@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 15
   description: Not your ordinary gun
   category: 1
+  sellPrice: 35
   dropRate: 2
   rarity: 2
   isStackable: 0

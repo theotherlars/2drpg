@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 13
   description: 
   category: 1
+  sellPrice: 14
   dropRate: 12
   rarity: 3
   isStackable: 0

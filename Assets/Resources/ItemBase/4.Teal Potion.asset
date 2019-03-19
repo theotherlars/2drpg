@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 10
   description: This potion tastes like spearmint, nothing else..
   category: 0
+  sellPrice: 2
   dropRate: 55
   rarity: 0
   isStackable: 1

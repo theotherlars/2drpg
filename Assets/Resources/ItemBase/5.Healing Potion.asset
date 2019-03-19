@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 10
   description: This potion gives you health, that is about it.
   category: 0
+  sellPrice: 1
   dropRate: 60
   rarity: 0
   isStackable: 1

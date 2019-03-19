@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 1
   description: "Tree of Life is more than just a tree, its more than life\t"
   category: 3
+  sellPrice: 6
   dropRate: 4
   rarity: 0
   isStackable: 0

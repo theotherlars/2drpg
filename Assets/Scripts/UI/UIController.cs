@@ -206,10 +206,15 @@ public class UIController : MonoBehaviour
         confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput, shopItem);
     }
 
-    public void LoadConfirmationDialouge(string dialougeInput, Item_SO item, int amount)
-    {
+    public void LoadConfirmationDialouge(ConfirmationWindow.ConfirmationType type, string dialougeInput, Item_SO item, int amount)
+    {   
         confirmationDialogue.SetActive(true);
-        confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(dialougeInput, item, amount);
+        confirmationDialogue.GetComponent<ConfirmationWindow>().ConfirmationDialogue(type, dialougeInput, item, amount);
+    }
+
+    public void CloseConfirmationDialogue()
+    {
+        confirmationDialogue.SetActive(false);
     }
 
     public void LoadErrorText(string textInput)

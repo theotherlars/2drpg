@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 12
   description: This spiked club is a "hand-me-down" your mother
   category: 1
+  sellPrice: 4
   dropRate: 13
   rarity: 1
   isStackable: 0

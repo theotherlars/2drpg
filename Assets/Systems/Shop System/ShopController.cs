@@ -14,6 +14,8 @@ public class ShopController : MonoBehaviour
     private Button nextButton;
     [SerializeField]
     private Button previousButton;
+    [SerializeField]
+    private UISellItem sellSlot;
 
     private void Update()
     {
@@ -180,5 +182,10 @@ public class ShopController : MonoBehaviour
     {
         CleanShop();
         this.gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        sellSlot.Disable();
     }
 }

@@ -97,7 +97,6 @@ public class UIInventory : MonoBehaviour
         else
         {
             UpdateSlot(uiItems.FindIndex(i => i.item == item), null);
-
         }
     }
 

@@ -18,6 +18,7 @@ MonoBehaviour:
   itemLevel: 12
   description: Brings death and destruction
   category: 2
+  sellPrice: 7
   dropRate: 5
   rarity: 2
   isStackable: 0
