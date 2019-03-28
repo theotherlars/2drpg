@@ -11,12 +11,13 @@ public class ResponsButton : MonoBehaviour
     public int nextIndex;
     public bool isQuest;
     public int questToGive;
-
+    private UIController uiController;
     private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        uiController = FindObjectOfType<UIController>();
         animator = GetComponent<Animator>();
         Button button = GetComponent<Button>();
         button.onClick.AddListener(HandleClick);
@@ -37,9 +38,28 @@ public class ResponsButton : MonoBehaviour
             Quest quest = FindObjectOfType<QuestDatabase>().GetQuest(questToGive);
             if (quest != null)
             {
-                if (quest.status == Quest.Quest_status.Waiting || quest.status == Quest.Quest_status.InProgress || quest.status == Quest.Quest_status.ReadyToDeliver)
+                switch (quest.status)
                 {
-                    FindObjectOfType<UIController>().ToggleQuestDetailsWithAnimation(quest);
+                    case Quest.Quest_status.NotEligible:
+                        break;
+                    case Quest.Quest_status.Waiting:
+
+                        uiController.ToggleQuestDetailsWithAnimation(quest);
+                        break;
+                    case Quest.Quest_status.InProgress:
+                        if (quest.type == Quest.Quest_type.FedEx && FindObjectOfType<QuestInventory>().CheckActiveQuest(quest).npcToDeliverItemTo.id == quest.npcToDeliverItemTo.id)
+                        {
+                            quest.status = Quest.Quest_status.ReadyToDeliver;
+                            uiController.ToggleQuestDetailsWithAnimation(quest);
+                        }
+                        break;
+                    case Quest.Quest_status.ReadyToDeliver:
+                        uiController.ToggleQuestDetailsWithAnimation(quest);
+                        break;
+                    case Quest.Quest_status.Completed:
+                        break;
+                    default:
+                        break;
                 }
             }
         }

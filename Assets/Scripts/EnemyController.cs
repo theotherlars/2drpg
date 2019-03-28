@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         Chase();
+
     }
 
     public void TakeDamage(float damage)

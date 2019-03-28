@@ -78,11 +78,13 @@ public class Interaction : MonoBehaviour
 
     public void InitiateDialogue()
     {
-        var dialoguePanel = FindObjectOfType<UIController>().OpenDialoguePanel();
-        var textHandler = dialoguePanel.GetComponent<TextHandler>();
-        
+        uIController.OpenDialoguePanel(npcInformation.npc.dialogue, this.gameObject);
+
+        //var dialoguePanel = FindObjectOfType<UIController>().OpenDialoguePanel();
+        //var textHandler = dialoguePanel.GetComponent<TextHandler>();
+
         // Load the NPC's dialogue into the UI
-        textHandler.LoadDialogue(npcInformation.npc.dialogue,this.gameObject);
+        //textHandler.LoadDialogue(npcInformation.npc.dialogue,this.gameObject);
     }
 
     public void InitiateShop()

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class NPCLootHandler : MonoBehaviour
 {
-    private CircleCollider2D circleCollider2D;
+    private CircleCollider2D lootTrigger;
+    private EnemyController parent;
     UIController uiController;
     bool isCollidingWithPlayer;
 
     private void OnEnable()
     {
-        circleCollider2D = GetComponent<CircleCollider2D>();
+        parent = GetComponentInParent<EnemyController>();
+        lootTrigger = GetComponent<CircleCollider2D>();
         uiController = FindObjectOfType<UIController>();
         isCollidingWithPlayer = false;
     }
@@ -18,8 +20,13 @@ public class NPCLootHandler : MonoBehaviour
     private void Update()
     {
         if (isCollidingWithPlayer && Input.GetKeyDown(KeyCode.E) && !uiController.isLootWindowOpen)
+        {    
+            uiController.OpenLootWindow(parent.gameObject);
+        }
+
+        if (parent.availableLoot.Count <= 0)
         {
-            uiController.OpenLootWindow(GetComponentInParent<EnemyController>().gameObject);
+            lootTrigger.enabled = false;
         }
     }
 

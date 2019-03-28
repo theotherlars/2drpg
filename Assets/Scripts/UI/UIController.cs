@@ -96,6 +96,11 @@ public class UIController : MonoBehaviour
         dialoguePanel.SetActive(true);
         return dialoguePanel;
     }
+    public void OpenDialoguePanel(Dialogue dialogue, GameObject go)
+    {
+        dialoguePanel.SetActive(true);
+        dialoguePanel.GetComponent<TextHandler>().LoadDialogue(dialogue, go);
+    }
 
     public void CloseDialoguePanel()
     {

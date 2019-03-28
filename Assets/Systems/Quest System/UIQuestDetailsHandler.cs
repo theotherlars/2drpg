@@ -68,7 +68,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
                 DisplayReadyToAccept(); // if the quest is in waiting (waiting to be accepted)
             }
             else if (quest.status == Quest.Quest_status.InProgress)
-            {
+            {                 
                 DisplayInProgress(); // if the quest is InProgress (already picked up and in players questinventory
             }
             else if (quest.status == Quest.Quest_status.ReadyToDeliver)
@@ -150,7 +150,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
                             if (inventory.CheckForItem(currentQuest.itemToDeliver.ItemID) != null)
                             {
                                 questInventory.ReceiveQuest(currentQuest);
-                                currentQuest.status = Quest.Quest_status.ReadyToDeliver;
+                                currentQuest.status = Quest.Quest_status.InProgress;
                                 CloseWithoutAnimation();
                                 break;
                             }
@@ -163,7 +163,7 @@ public class UIQuestDetailsHandler : MonoBehaviour
                         {
                             FindObjectOfType<UIController>().LoadErrorText("Inventory is full");
                         }
-                        
+
                         break;
                     }
                 case Quest.Quest_type.Defend:
@@ -179,7 +179,6 @@ public class UIQuestDetailsHandler : MonoBehaviour
         else if (currentQuest.status == Quest.Quest_status.ReadyToDeliver)
         {
             Inventory inventory = FindObjectOfType<Inventory>(); // Finds and stores the inventory to a variable
-
             if (currentQuest.itemRewardOptions == Quest.Quest_Reward_Decision.ChooseOne && currentQuest.itemReward.Count != 0) // if the quest_reward_decision is correct and quest has item rewards
             {
                 int selectedItem = 0;

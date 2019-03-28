@@ -13,13 +13,6 @@ public class QuestInventory : MonoBehaviour
     {
         questDatabase = FindObjectOfType<QuestDatabase>();
         uiQuestHandler = FindObjectOfType<UIQuestHandler>();
-        
-        /*
-        for (int i = 0; i < questInventoryStorage.PlayerQuestInventory.Count; i++)
-        {
-            activeQuests.Add(questInventoryStorage.PlayerQuestInventory[i]);
-        }
-        */
     }
 
     public void ReceiveQuest(Quest questToAdd)
@@ -125,7 +118,7 @@ public class QuestInventory : MonoBehaviour
         //return activeQuests.FindIndex(item => item.id == quest.id);
     }
 
-    public bool CheckActiveQuest(Quest questToCheck)
+    public Quest CheckActiveQuest(Quest questToCheck)
     {
         try
         {
@@ -133,20 +126,20 @@ public class QuestInventory : MonoBehaviour
             //Quest quest = activeQuests.Find(questObject => questObject.id == questToCheck.id);
             if (quest != null)
             {
-                return true;
+                return quest;
             }
             else
             {
-                return false;
+                return null;
             }
         }
         catch
         {
-            return false;
+            return null;
         }
     }
 
-    public bool CheckActiveQuest(int questIdToCheck)
+    public Quest CheckActiveQuest(int questIdToCheck)
     {
         try
         {
@@ -154,14 +147,14 @@ public class QuestInventory : MonoBehaviour
             //Quest quest = activeQuests.Find(questObject => questObject.id == questIdToCheck);
             if (quest != null)
             {
-                return true;
+                return quest;
             }
             else
             {
-                return false;
+                return null;
             }
         }
-        catch { return false; }
+        catch { return null; }
         
     }
 }
