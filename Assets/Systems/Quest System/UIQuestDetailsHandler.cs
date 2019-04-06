@@ -179,6 +179,11 @@ public class UIQuestDetailsHandler : MonoBehaviour
         else if (currentQuest.status == Quest.Quest_status.ReadyToDeliver)
         {
             Inventory inventory = FindObjectOfType<Inventory>(); // Finds and stores the inventory to a variable
+            if (inventory.CheckForItem(currentQuest.itemToDeliver.ItemID))
+            {
+                inventory.RemoveItem(currentQuest.itemToDeliver.ItemID);
+            }
+
             if (currentQuest.itemRewardOptions == Quest.Quest_Reward_Decision.ChooseOne && currentQuest.itemReward.Count != 0) // if the quest_reward_decision is correct and quest has item rewards
             {
                 int selectedItem = 0;

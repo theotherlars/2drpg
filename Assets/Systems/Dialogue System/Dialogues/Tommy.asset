@@ -16,14 +16,9 @@ MonoBehaviour:
   - text: 'Is there anything I can help you with ? '
     responses:
     - replyOptions: Well actually, I'm here to help you
-      nextSentenceIndex: 0
+      nextSentenceIndex: 1
       prerequsite: 
       isQuest: 1
       quest: {fileID: 11400000, guid: 99841bf60c4b8b54aa675914ae3cb9c1, type: 2}
   - text: Oh thanks!
-    responses:
-    - replyOptions: No worries, see you around
-      nextSentenceIndex: 0
-      prerequsite: 
-      isQuest: 0
-      quest: {fileID: 0}
+    responses: []
