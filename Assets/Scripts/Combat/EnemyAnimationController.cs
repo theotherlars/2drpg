@@ -42,7 +42,6 @@ public class EnemyAnimationController : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
             animator.SetBool("Dead", true);
-            lootParticles.gameObject.SetActive(true);
         }
         else
         {
@@ -53,5 +52,10 @@ public class EnemyAnimationController : MonoBehaviour
     public void DamageTaken()
     {
         damageTakenParticles.Emit(3);
+    }
+
+    public void LootParticles(bool active)
+    {
+        lootParticles.gameObject.SetActive(active);
     }
 }

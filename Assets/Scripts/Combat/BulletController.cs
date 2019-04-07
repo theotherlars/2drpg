@@ -25,7 +25,6 @@ public class BulletController : MonoBehaviour
         shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
         shootDirection = shootDirection - transform.position;
 
-        //rb.velocity = transform.right * speed;
         rb.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
 
         Physics2D.IgnoreCollision(thePlayer.gameObject.GetComponent<BoxCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
@@ -51,8 +50,6 @@ public class BulletController : MonoBehaviour
         {
             enemy.TakeDamage(damageToGive);
             animator.SetBool("explode",true);
-            
-            //Destroy(gameObject);
         }
     }
 

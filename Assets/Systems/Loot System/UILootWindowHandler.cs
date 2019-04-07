@@ -52,7 +52,6 @@ public class UILootWindowHandler : MonoBehaviour
             {
                 itemButtons.RemoveAt(i);
             }
-            
         }
         itemButtons.Clear();
     }

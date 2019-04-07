@@ -1,59 +1,56 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// This will be these aspects of the enemy:
-// - Health
-// - Movement
-// - DamageTaken
 
 
 public class EnemyController : MonoBehaviour
 {
-    //public NPC npc;
-    //public GameObjectEvent onDeath;
+    public GameObjectEvent onDeath;
     public event System.Action<float> OnHealthPercentChanged = delegate { };
     private NPCInformation npcInformation;
+    private BoxCollider2D boxCollider2D;
     private NPC npc;
+    private NPCMovementController npcMovementController;
     public NPCLootHandler lootHandler;
     public List<Item_SO> availableLoot = new List<Item_SO>();
-    [HideInInspector]
     public int creditLoot;
-
     public float currentHealth;
     public float currentEnergy;
     public bool isDead;
-
-    private float movementSpeed;
-
-    private Rigidbody2D rigidbody;
-    [HideInInspector]
-    public bool chase;
-    Transform chaseObject;
-    [HideInInspector]
-    public bool idle;
+    public float movementSpeed;
 
     // Start is called before the first frame update
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
         npcInformation = GetComponent<NPCInformation>();
+        npcMovementController = GetComponent<NPCMovementController>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         npc = npcInformation.npc;
-
+        movementSpeed = npc.walkingSpeed;
         isDead = false;
-        chase = false;
-        idle = true;
     }
     public void Start()
     {
         currentHealth = npc.maxHealth;
         currentEnergy = npc.maxEnergy;
-        movementSpeed = npc.walkingSpeed;
+        
     }
     private void Update()
     {
-        Chase();
+        CheckHealth();
+    }
 
+    private void CheckHealth()
+    {
+        if (currentHealth > (npc.maxHealth / 2) && !isDead)
+        {
+            movementSpeed = npc.walkingSpeed;
+        }
+        else if (currentHealth <= (npc.maxHealth / 2) && !isDead)
+        {
+            movementSpeed = npc.runningSpeed;
+        }
     }
 
     public void TakeDamage(float damage)
@@ -63,6 +60,10 @@ public class EnemyController : MonoBehaviour
             currentHealth -= damage;
             float currentHealthPercentage = (float)currentHealth / (float)npc.maxHealth;
             OnHealthPercentChanged(currentHealthPercentage);
+            if (!npcMovementController.isChasing)
+            {
+                npcMovementController.StartChase(FindObjectOfType<PlayerController>().transform);
+            }
         }
 
         if (currentHealth <= 0 && !isDead)
@@ -76,13 +77,13 @@ public class EnemyController : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
-            chase = false;
+            GetComponent<NPCMovementController>().Die();
             movementSpeed = 0;
-            rigidbody.velocity = Vector2.zero;
-
-            lootHandler.gameObject.SetActive(true);
             GenerateLoot();
+            lootHandler.gameObject.SetActive(true);
+            onDeath.Raise(this.gameObject);
             
+            /*
             for (int i = 0; i < npc.gameObjectEvents.Count; i++)
             {
                 if (npc.gameObjectEvents[i].events == NPCEvents.Events.OnDeath)
@@ -90,43 +91,26 @@ public class EnemyController : MonoBehaviour
                     npc.gameObjectEvents[i].gameObjectEvent.Raise(this.gameObject);
                     break;
                 }
-            }
+            }*/
         }
     }
-
-    public void InitiateChase(GameObject go)
-    {
-        if (!chase)
-        {
-            chase = true;
-            idle = false;
-            chaseObject = go.transform;
-        }
-    }
-
-    private void Chase()
-    {
-        if (currentHealth > (npc.maxHealth / 2) && chase && !isDead)
-        {
-            movementSpeed = npc.walkingSpeed;
-            transform.position = Vector2.MoveTowards(transform.position, chaseObject.position, movementSpeed * Time.deltaTime);
-        }
-        else if (currentHealth <= (npc.maxHealth / 2) && chase && !isDead)
-        {
-            movementSpeed = npc.runningSpeed;
-            transform.position = Vector2.MoveTowards(transform.position, chaseObject.position, movementSpeed * Time.deltaTime);
-        }
-    }
-
+    
     private void GenerateLoot()
     {
-        creditLoot = Random.Range(npc.minCredit, npc.maxCredit);
+        if (UnityEngine.Random.Range(0f, 1f) > 0.5)
+        {
+            creditLoot = UnityEngine.Random.Range(npc.minCredit, npc.maxCredit);
+        }
+        else
+        {
+            creditLoot = 0;
+        }
         
-        int amountOfItemsToDrop = Random.Range(0, npc.lootTable.Count); // How many items that dropped
+        int amountOfItemsToDrop = UnityEngine.Random.Range(0, npc.lootTable.Count); // How many items that dropped
         
         for (int i = 0; i < amountOfItemsToDrop; i++)
         {
-            float roll = (float)Random.Range(0f, 100f);
+            float roll = (float)UnityEngine.Random.Range(0f, 100f);
 
             if (roll <= npc.lootTable[i].ItemDropRate)
             {

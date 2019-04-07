@@ -42,7 +42,6 @@ public class WeaponController : MonoBehaviour
 
     void Shoot()
     {
-       
         //...instantiating the bullet from the firepoint
         BulletController newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as BulletController;
     }

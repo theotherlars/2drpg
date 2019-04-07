@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NPCLootHandler : MonoBehaviour
@@ -16,7 +17,7 @@ public class NPCLootHandler : MonoBehaviour
         uiController = FindObjectOfType<UIController>();
         isCollidingWithPlayer = false;
     }
-
+    
     private void Update()
     {
         if (isCollidingWithPlayer && Input.GetKeyDown(KeyCode.E) && !uiController.isLootWindowOpen)
@@ -24,9 +25,15 @@ public class NPCLootHandler : MonoBehaviour
             uiController.OpenLootWindow(parent.gameObject);
         }
 
-        if (parent.availableLoot.Count <= 0)
+        if (parent.availableLoot.Count <= 0 && parent.creditLoot <= 0)
         {
+            GetComponentInParent<EnemyAnimationController>().LootParticles(false);
             lootTrigger.enabled = false;
+        }
+        else if (parent.availableLoot.Count >= 1 || parent.creditLoot > 0)
+        {
+            GetComponentInParent<EnemyAnimationController>().LootParticles(true);
+            lootTrigger.enabled = true;
         }
     }
 

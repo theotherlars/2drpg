@@ -21,7 +21,7 @@ MonoBehaviour:
   maxEnergy: 100
   addMoreStats: 0
   attackSpeed: 0
-  walkingSpeed: 2
+  walkingSpeed: 1.5
   runningSpeed: 3
   dialogue: {fileID: 0}
   shopItems: []

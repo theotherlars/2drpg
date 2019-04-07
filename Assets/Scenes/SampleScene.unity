@@ -5144,9 +5144,10 @@ GameObject:
   - component: {fileID: 240946914}
   - component: {fileID: 240946913}
   - component: {fileID: 240946912}
+  - component: {fileID: 240946916}
   - component: {fileID: 240946911}
   - component: {fileID: 240946910}
-  - component: {fileID: 240946916}
+  - component: {fileID: 240946917}
   m_Layer: 0
   m_Name: RedOrc_1
   m_TagString: Hostile
@@ -5184,14 +5185,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ac8b1dac5f4444db74d06677f60e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath: {fileID: 11400000, guid: f675224d19491bd45a672dd4d1ebbc08, type: 2}
   lootHandler: {fileID: 1214055151}
   availableLoot: []
   creditLoot: 0
   currentHealth: 0
   currentEnergy: 0
   isDead: 0
-  chase: 0
-  idle: 0
+  movementSpeed: 0
 --- !u!114 &240946911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5333,6 +5334,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 11400000, guid: bf4767f6606ae9442a1f03d6a2e15b1a, type: 2}
+--- !u!114 &240946917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240946908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  canWander: 1
+  maxWanderLeft: 3
+  maxWanderRight: 3
+  maxWanderUp: 3
+  maxWanderDown: 3
+  decisionTimeMin: 2
+  decisionTimeMax: 6
+  wanderDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  isChasing: 0
+  endChaseAtDistance: 9
 --- !u!1 &355098578
 GameObject:
   m_ObjectHideFlags: 0
@@ -15229,7 +15260,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799327813}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -15304,7 +15335,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15357,7 +15388,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15789,7 +15820,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -16054,7 +16085,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -20246,6 +20277,36 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1527753123025727473}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1045354292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045354291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  canWander: 1
+  maxWanderLeft: 3
+  maxWanderRight: 3
+  maxWanderUp: 3
+  maxWanderDown: 3
+  decisionTimeMin: 2
+  decisionTimeMax: 6
+  wanderDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  isChasing: 0
+  endChaseAtDistance: 9
 --- !u!114 &1045354298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20361,7 +20422,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047158583}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -20436,7 +20497,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -20489,7 +20550,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -20921,7 +20982,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -21186,7 +21247,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -24957,25 +25018,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &1086373388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6564801330428023301, guid: 7a91524d73f11cb418d62091f94359d2,
-    type: 3}
-  m_PrefabInstance: {fileID: 6564801329644834289}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1086373395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086373388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b7e74e882c1a814eb847b2478b6fea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npc: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4, type: 2}
 --- !u!1 &1086822359
 GameObject:
   m_ObjectHideFlags: 0
@@ -25078,7 +25120,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086822359}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -25153,7 +25195,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -25206,7 +25248,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -25638,7 +25680,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -25903,7 +25945,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -29690,6 +29732,7 @@ GameObject:
   - component: {fileID: 1092098324}
   - component: {fileID: 1092098323}
   - component: {fileID: 1092098329}
+  - component: {fileID: 1092098330}
   m_Layer: 0
   m_Name: RedOrc_2
   m_TagString: Hostile
@@ -29727,14 +29770,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ac8b1dac5f4444db74d06677f60e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath: {fileID: 11400000, guid: f675224d19491bd45a672dd4d1ebbc08, type: 2}
   lootHandler: {fileID: 2106290189}
   availableLoot: []
   creditLoot: 0
   currentHealth: 0
   currentEnergy: 0
   isDead: 0
-  chase: 0
-  idle: 0
+  movementSpeed: 0
 --- !u!114 &1092098324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29876,6 +29919,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 11400000, guid: bf4767f6606ae9442a1f03d6a2e15b1a, type: 2}
+--- !u!114 &1092098330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092098321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  canWander: 1
+  maxWanderLeft: 3
+  maxWanderRight: 3
+  maxWanderUp: 3
+  maxWanderDown: 3
+  decisionTimeMin: 2
+  decisionTimeMax: 6
+  wanderDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  isChasing: 0
+  endChaseAtDistance: 9
 --- !u!1 &1107288400
 GameObject:
   m_ObjectHideFlags: 0
@@ -30464,7 +30537,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640831252}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -30539,7 +30612,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -30592,7 +30665,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -31024,7 +31097,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -31289,7 +31362,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -39982,6 +40055,7 @@ GameObject:
   - component: {fileID: 1913241184}
   - component: {fileID: 1913241183}
   - component: {fileID: 1913241189}
+  - component: {fileID: 1913241190}
   m_Layer: 0
   m_Name: GreenOrc_2
   m_TagString: Hostile
@@ -40019,14 +40093,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ac8b1dac5f4444db74d06677f60e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath: {fileID: 11400000, guid: f675224d19491bd45a672dd4d1ebbc08, type: 2}
   lootHandler: {fileID: 2066140056}
   availableLoot: []
   creditLoot: 0
   currentHealth: 0
   currentEnergy: 0
   isDead: 0
-  chase: 0
-  idle: 0
+  movementSpeed: 0
 --- !u!114 &1913241184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40168,6 +40242,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4, type: 2}
+--- !u!114 &1913241190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913241181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  canWander: 1
+  maxWanderLeft: 3
+  maxWanderRight: 3
+  maxWanderUp: 3
+  maxWanderDown: 3
+  decisionTimeMin: 2
+  decisionTimeMax: 6
+  wanderDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  isChasing: 0
+  endChaseAtDistance: 9
 --- !u!1 &1969925417
 GameObject:
   m_ObjectHideFlags: 0
@@ -40362,6 +40466,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 11400000, guid: c6d9e328fb953a045b494de7c0df1fd7, type: 2}
+--- !u!1 &2035654709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1653089045381313721, guid: ee358689f62ba8d4aab447ad275b2e76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1653089045229554885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &2035654710
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035654709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 8
 --- !u!1 &2055327955
 GameObject:
   m_ObjectHideFlags: 0
@@ -40378,6 +40504,7 @@ GameObject:
   - component: {fileID: 2055327962}
   - component: {fileID: 2055327960}
   - component: {fileID: 2055327961}
+  - component: {fileID: 2055327964}
   m_Layer: 0
   m_Name: GreenOrc_1
   m_TagString: Hostile
@@ -40508,14 +40635,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ac8b1dac5f4444db74d06677f60e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath: {fileID: 11400000, guid: f675224d19491bd45a672dd4d1ebbc08, type: 2}
   lootHandler: {fileID: 1881424413}
   availableLoot: []
   creditLoot: 0
   currentHealth: 0
   currentEnergy: 0
   isDead: 0
-  chase: 0
-  idle: 0
+  movementSpeed: 0
 --- !u!114 &2055327961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40564,6 +40691,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2055327964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055327955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  canWander: 1
+  maxWanderLeft: 3
+  maxWanderRight: 3
+  maxWanderUp: 3
+  maxWanderDown: 3
+  decisionTimeMin: 2
+  decisionTimeMax: 6
+  wanderDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  isChasing: 0
+  endChaseAtDistance: 9
 --- !u!1 &2066140054
 GameObject:
   m_ObjectHideFlags: 0
@@ -41108,6 +41265,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1527753122371109389, guid: 53fca30df228a9b419f9fb8b4caa00e7,
+        type: 3}
+      propertyPath: onDeath
+      value: 
+      objectReference: {fileID: 11400000, guid: f675224d19491bd45a672dd4d1ebbc08,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53fca30df228a9b419f9fb8b4caa00e7, type: 3}
 --- !u!1001 &1653089045229554885
@@ -41959,7 +42122,7 @@ PrefabInstance:
     - target: {fileID: 495890256228215242, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.899841
+      value: -12.899796
       objectReference: {fileID: 0}
     - target: {fileID: 9153423608417595178, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}
@@ -42161,6 +42324,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4,
         type: 2}
+    - target: {fileID: 6564801330461653761, guid: 7a91524d73f11cb418d62091f94359d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a91524d73f11cb418d62091f94359d2, type: 3}
 --- !u!1001 &8095149019859578895

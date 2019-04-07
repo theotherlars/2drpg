@@ -69,7 +69,8 @@ public class LootItemButton : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
         if (!isCredits)
         {
             FindObjectOfType<Inventory>().GiveItem(item.ItemID);
-            enemy.availableLoot.RemoveAt(itemSlotInEnemy);
+            enemy.availableLoot.RemoveAt(enemy.availableLoot.FindIndex(i => i == item));
+            //enemy.availableLoot.RemoveAt(itemSlotInEnemy);
         }
         else
         {
