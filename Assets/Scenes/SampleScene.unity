@@ -5238,10 +5238,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -5346,22 +5346,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   canWander: 1
+  restrictMovement: 0
   maxWanderLeft: 3
   maxWanderRight: 3
   maxWanderUp: 3
   maxWanderDown: 3
   decisionTimeMin: 2
   decisionTimeMax: 6
-  wanderDirections:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: -1, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   isChasing: 0
   endChaseAtDistance: 9
 --- !u!1 &355098578
@@ -20289,22 +20281,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   canWander: 1
+  restrictMovement: 0
   maxWanderLeft: 3
   maxWanderRight: 3
   maxWanderUp: 3
   maxWanderDown: 3
   decisionTimeMin: 2
   decisionTimeMax: 6
-  wanderDirections:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: -1, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   isChasing: 0
   endChaseAtDistance: 9
 --- !u!114 &1045354298
@@ -29931,22 +29915,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   canWander: 1
+  restrictMovement: 0
   maxWanderLeft: 3
   maxWanderRight: 3
   maxWanderUp: 3
   maxWanderDown: 3
   decisionTimeMin: 2
   decisionTimeMax: 6
-  wanderDirections:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: -1, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   isChasing: 0
   endChaseAtDistance: 9
 --- !u!1 &1107288400
@@ -40254,22 +40230,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   canWander: 1
+  restrictMovement: 0
   maxWanderLeft: 3
   maxWanderRight: 3
   maxWanderUp: 3
   maxWanderDown: 3
   decisionTimeMin: 2
   decisionTimeMax: 6
-  wanderDirections:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: -1, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   isChasing: 0
   endChaseAtDistance: 9
 --- !u!1 &1969925417
@@ -40466,28 +40434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 11400000, guid: c6d9e328fb953a045b494de7c0df1fd7, type: 2}
---- !u!1 &2035654709 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1653089045381313721, guid: ee358689f62ba8d4aab447ad275b2e76,
-    type: 3}
-  m_PrefabInstance: {fileID: 1653089045229554885}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &2035654710
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035654709}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 8
 --- !u!1 &2055327955
 GameObject:
   m_ObjectHideFlags: 0
@@ -40703,22 +40649,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3805e2c2fcda8b141a4145b7f4626ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   canWander: 1
+  restrictMovement: 0
   maxWanderLeft: 3
   maxWanderRight: 3
   maxWanderUp: 3
   maxWanderDown: 3
   decisionTimeMin: 2
   decisionTimeMax: 6
-  wanderDirections:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: -1, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   isChasing: 0
   endChaseAtDistance: 9
 --- !u!1 &2066140054
@@ -42122,7 +42060,7 @@ PrefabInstance:
     - target: {fileID: 495890256228215242, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.899796
+      value: -12.89978
       objectReference: {fileID: 0}
     - target: {fileID: 9153423608417595178, guid: 93efd255194d69c4c9d5334d655250aa,
         type: 3}

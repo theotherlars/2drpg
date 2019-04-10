@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+
 
 public class NPCMovementController : MonoBehaviour
 {
@@ -10,7 +13,8 @@ public class NPCMovementController : MonoBehaviour
 
     // NPC Info
     internal Vector3 startPos;
-    public bool isDead;
+    bool isDead;
+    bool isInCamera;
 
     // The movement speed of the object
     private float moveSpeed;
@@ -23,6 +27,7 @@ public class NPCMovementController : MonoBehaviour
     // Restrict area of wandering from starting position
     [Header("Area of wandering:")]
     [Tooltip("Choose how far from the startpos the NPC can wander")]
+    public AvailableMovement restrictMovement;
     public float maxWanderLeft;
     public float maxWanderRight;
     public float maxWanderUp;
@@ -38,8 +43,11 @@ public class NPCMovementController : MonoBehaviour
     // The possible directions that the object can move int, right, left, up, down, and zero for staying in place. I added zero twice to give a bigger chance if it happening than other directions
     [Header("Choose direction:")]
     [Tooltip("Choose which way the NPC is allowed to go, -1 to 1 (left is -1 in X and 0,0,0 is idle, if you have more idle's its more likely that its idle)")]
-    public Vector3[] wanderDirections = new Vector3[] { };
+    //public List<Vector3> wanderDirections = new List<Vector3>();
+    //List<Vector3> wanderDirections_cache = new List<Vector3>();
+    Vector3[] wanderDirections = new Vector3[] { Vector3.up, Vector3.down, Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero, Vector3.left, Vector3.right };
     internal int currentWanderDirection;
+    internal int lastWanderDirection;
 
     // Chasing spesifics
     [Header("Chasing specifics:")]
@@ -61,6 +69,7 @@ public class NPCMovementController : MonoBehaviour
     {
         // Initial variable settings
         isDead = enemyController.isDead;
+        isInCamera = false;
         
         isChasing = false;
         canWander_cache = canWander;
@@ -79,6 +88,9 @@ public class NPCMovementController : MonoBehaviour
         // Set a random time delay for taking a decision ( changing direction, or standing in place for a while )
         decisionTimeCount = UnityEngine.Random.Range(decisionTimeMin, decisionTimeMax);
 
+        // Caching wander directions
+        //wanderDirections_cache = wanderDirections;
+
         // Choose a movement direction, or stay in place
         ChooseMoveDirection();
     }
@@ -86,8 +98,27 @@ public class NPCMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDead)
-        { HandleMovement(); }
+        if (isInCamera)
+        {
+            if (!isDead)
+            { HandleMovement(); }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MainCamera")
+        {
+            isInCamera = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MainCamera")
+        {
+            isInCamera = false;
+        }
     }
 
     public void Die()
@@ -109,6 +140,7 @@ public class NPCMovementController : MonoBehaviour
         {
             // Chase the player
             ChasePlayer();
+
             // If distance is too big between the NPC and player, stop chasing
             if (Vector2.Distance(thisTransform.position, targetTransform.position) > endChaseAtDistance)
             {
@@ -169,7 +201,7 @@ public class NPCMovementController : MonoBehaviour
         {
             // Choose a random time delay for taking a decision ( changing direction, or standing in place for a while )
             decisionTimeCount = UnityEngine.Random.Range(decisionTimeMin, decisionTimeMax);
-
+            
             // Choose a movement direction, or stay in place
             ChooseMoveDirection();
         }
@@ -178,15 +210,44 @@ public class NPCMovementController : MonoBehaviour
     void ChooseMoveDirection()
     {
         // Choose whether to move sideways or up/down
-        currentWanderDirection = Mathf.FloorToInt(UnityEngine.Random.Range(0, wanderDirections.Length));
+        // Array is: 
+        // Idle : 2,3,4,5
+        // Up and down : 0,1
+        // Left and right : 6,7
+
+        switch (restrictMovement)
+        {
+            case AvailableMovement.AllDirections:
+                {
+                    currentWanderDirection = Mathf.FloorToInt(UnityEngine.Random.Range(0, wanderDirections.Length)); // all directions
+                    break;
+                }
+            case AvailableMovement.Horizontal:
+                {
+                    currentWanderDirection = Mathf.FloorToInt(UnityEngine.Random.Range(2, 7)); //Idle, left and right
+                    break;
+                }
+            case AvailableMovement.Vertical:
+                {
+                    currentWanderDirection = Mathf.FloorToInt(UnityEngine.Random.Range(0, 5)); // Idle, up and down
+                    break;
+                }
+        }
+        
     }
 
     void CheckWanderingArea()
     {
         // Restricting NPC to not wander of too long from the start position
-        if (thisTransform.position.x > (startPos.x + maxWanderRight) || thisTransform.position.x < (startPos.x - maxWanderLeft) || thisTransform.position.y > (startPos.y + maxWanderUp) || thisTransform.position.y < (startPos.y - maxWanderDown))
-        {
-            decisionTimeCount = 0;
-        }
+        if (thisTransform.position.x > (startPos.x + maxWanderRight)) // Too far off to the right
+        { currentWanderDirection = 6; }
+        if (thisTransform.position.x < (startPos.x - maxWanderLeft)) // Too far off to the left
+        { currentWanderDirection = 7; }
+        if (thisTransform.position.y > (startPos.y + maxWanderUp)) // Too far off upwards
+        { currentWanderDirection = 1; }
+        if (thisTransform.position.y < (startPos.y - maxWanderDown)) // Too far off downwards
+        { currentWanderDirection = 0; }
     }
+
+    public enum AvailableMovement { AllDirections, Horizontal, Vertical }
 }

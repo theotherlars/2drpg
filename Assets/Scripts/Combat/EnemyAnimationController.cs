@@ -9,6 +9,8 @@ public class EnemyAnimationController : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     Vector2 velocity;
     Vector2 positionLastFrame;
+    Vector3 currentPos;
+    Vector3 lastPos;
     public ParticleSystem lootParticles;
     public ParticleSystem damageTakenParticles;
     EnemyController enemyController;
@@ -24,19 +26,24 @@ public class EnemyAnimationController : MonoBehaviour
     }
     
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         AnimateMovement();
     }
 
     private void AnimateMovement()
     {
-        velocity = rigidbody2D.velocity;
-        if (velocity != Vector2.zero && !enemyController.isDead)
+        currentPos = transform.position; 
+        var direction = currentPos - lastPos;
+        lastPos = transform.position;
+
+        //velocity = rigidbody2D.velocity;
+        //if (velocity != Vector2.zero && !enemyController.isDead)
+        if (!enemyController.isDead)
         {
             animator.SetBool("IsWalking", true);
-            animator.SetFloat("WalkingHorizontal", velocity.x);
-            animator.SetFloat("WalkingVertical", velocity.y);
+            animator.SetFloat("WalkingHorizontal", direction.x);
+            animator.SetFloat("WalkingVertical", direction.y);
         }
         else if (enemyController.isDead)
         {
