@@ -17,13 +17,17 @@ MonoBehaviour:
   description: "Hi man,\nMe an my family has been living in these woods for 3-4 months
     now and we are running out of food... \nWe do not have any weapons, but there
     are some rabbits around here if you'd like to help us out?"
-  type: 2
+  type: 0
   pattern: 0
-  status: 4
+  status: 3
   itemsToGather: []
-  NPCToKill: []
-  itemToDeliver: {fileID: 11400000, guid: 8c28df6cff2583e488e80afd0298daac, type: 2}
-  npcToDeliverItemTo: {fileID: 11400000, guid: d1efc18d075048f4c826e675365c7048, type: 2}
+  NPCToKill:
+  - npcToKill: {fileID: 11400000, guid: be0ae8085ad6a8d4a9057001a4e6f0a4, type: 2}
+    amountToKill: 5
+    currentKill: 5
+    finished: 1
+  itemToDeliver: {fileID: 0}
+  npcToDeliverItemTo: {fileID: 0}
   creditReward: 15
   itemRewardOptions: 1
   itemReward:
