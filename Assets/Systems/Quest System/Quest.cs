@@ -32,6 +32,29 @@ public class Quest : ScriptableObject
     public enum Quest_pattern { Single, Chain, SideQuest, Dilemma, ChooseOne }
     public enum Quest_status { NotEligible, Waiting, InProgress, ReadyToDeliver, Completed }
     public enum Quest_Reward_Decision { GetAllRewards, ChooseOne }
+
+
+    [ContextMenu("ResetQuest")]
+    public void ResetQuest(){
+        
+        // RESET GATHERING QUESTS
+        for (int i = 0; i < itemsToGather.Count; i++)
+        {
+            itemsToGather[i].currentGathered = 0;
+            itemsToGather[i].finished = false;
+        }
+
+        // RESET KILL QUESTS
+        for (int i = 0; i < NPCToKill.Count; i++)
+        {
+            NPCToKill[i].currentKill = 0;
+            NPCToKill[i].finished = false;
+        }
+
+        // RESETTING STATUS
+        status = Quest_status.Waiting;
+        
+    }
 }
 [System.Serializable]
 public class ItemsToGather

@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour
     public GameObject questActiveList;
     public GameObject uiQuestDetails;
     public GameObject lootWindow;
+    public GameObject pauseMenu;
     public bool isLootWindowOpen { get { return lootWindow.activeInHierarchy; } }
     public Text playerHP;
 
@@ -41,6 +42,7 @@ public class UIController : MonoBehaviour
         questActiveList.SetActive(false);
         uiQuestDetails.SetActive(false);
         lootWindow.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -61,7 +63,16 @@ public class UIController : MonoBehaviour
             this.ToggleQuestList();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            this.TogglePauseMenu();
+        }
+
         playerHP.text = "HP: " + playerController.player_HealthPoints.ToString();
+    }
+
+    private void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
 
     private void FixedUpdate()
@@ -226,4 +237,6 @@ public class UIController : MonoBehaviour
     {
         errorText.GetComponent<ErrorText>().DisplayText(textInput);
     }
+
+
 }

@@ -270,13 +270,13 @@ public class UIQuestDetailsHandler : MonoBehaviour
         }
         else if (currentQuest.status == Quest.Quest_status.InProgress)
         {
-            questInventory.ResetQuest(currentQuest);
+            //questInventory.ResetQuest(currentQuest);
             questInventory.RemoveQuest(currentQuest);
             DisableWindow();
         }
         else if (currentQuest.status == Quest.Quest_status.ReadyToDeliver)
         {
-            questInventory.ResetQuest(currentQuest);
+            //questInventory.ResetQuest(currentQuest);
             questInventory.RemoveQuest(currentQuest);
             DisableWindow();
         }

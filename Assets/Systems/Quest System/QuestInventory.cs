@@ -56,7 +56,8 @@ public class QuestInventory : MonoBehaviour
             questInventoryStorage.PlayerQuestInventory.RemoveAt(slot);
             if (questToRemove.status == Quest.Quest_status.InProgress || questToRemove.status == Quest.Quest_status.ReadyToDeliver)
             {
-                questToRemove.status = Quest.Quest_status.Waiting;
+                questToRemove.ResetQuest();
+                //questToRemove.status = Quest.Quest_status.Waiting;
             }
            
         }
@@ -75,7 +76,8 @@ public class QuestInventory : MonoBehaviour
             uiQuestHandler.ResetQuestButton(questToRemove);
             if (questToRemove.status == Quest.Quest_status.InProgress || questToRemove.status == Quest.Quest_status.ReadyToDeliver)
             {
-                questToRemove.status = Quest.Quest_status.Waiting;
+                questToRemove.ResetQuest();
+                //questToRemove.status = Quest.Quest_status.Waiting;
             }
         }
     }

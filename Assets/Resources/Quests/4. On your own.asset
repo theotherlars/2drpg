@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6166ca1ee05a94881fc6a53f6cf4bc, type: 3}
+  m_Name: 4. On your own
+  m_EditorClassIdentifier: 
+  id: 4
+  title: On your own
+  description: 'All my family is dead, I''m on my own.
+
+    What about you ? '
+  type: 1
+  pattern: 0
+  status: 1
+  itemsToGather:
+  - itemToGather: {fileID: 11400000, guid: 2e886760c98d59247ad2cb59bb963d2a, type: 2}
+    amountToGather: 5
+    currentGathered: 0
+    finished: 0
+  NPCToKill:
+  - npcToKill: {fileID: 11400000, guid: bf4767f6606ae9442a1f03d6a2e15b1a, type: 2}
+    amountToKill: 2
+    currentKill: 0
+    finished: 0
+  itemToDeliver: {fileID: 0}
+  npcToDeliverItemTo: {fileID: 0}
+  creditReward: 1
+  itemRewardOptions: 0
+  itemReward:
+  - itemReward: {fileID: 11400000, guid: 1bfa59bb537113b44aaf0d65615fc74a, type: 2}
+    itemStack: 1

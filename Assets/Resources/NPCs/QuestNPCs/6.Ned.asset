@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b59a1b069c8a54c9ce57febcf57056, type: 3}
+  m_Name: 6.Ned
+  m_EditorClassIdentifier: 
+  id: 6
+  name: Ned
+  type: 4
+  allies: 0
+  killable: 0
+  maxHealth: 0
+  maxEnergy: 0
+  addMoreStats: 0
+  attackSpeed: 0
+  walkingSpeed: 0
+  runningSpeed: 0
+  dialogue: {fileID: 11400000, guid: 9efa11b4fa1d0ec419230f547a0d7b9e, type: 2}
+  shopItems: []
+  lootTable: []
+  minCredit: 0
+  maxCredit: 0
+  abilities: []
+  animations: []
+  sounds: []
+  gameObjectEvents: []
